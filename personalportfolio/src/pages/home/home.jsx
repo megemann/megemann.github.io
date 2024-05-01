@@ -45,7 +45,7 @@ export default function Home() {
                         <Divider orientation="vertical" flexItem color="white"/>
                         <Button sx={s.menuItem} onClick={() => nav("/projects")}><Txt style={s.menuButtonText}>All Projects</Txt></Button>
                         <Divider orientation="vertical" flexItem color="white"/>
-                        <Button sx={s.menuItem}><Txt style={s.menuButtonText}>About me</Txt></Button>
+                        <Button sx={s.menuItem} onClick={() => nav("/aboutme")}><Txt style={s.menuButtonText}>About me</Txt></Button>
                         <Divider orientation="vertical" flexItem color="#2E2C31"/>
                         
                     </>
