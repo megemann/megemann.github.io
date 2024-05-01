@@ -1,7 +1,7 @@
 import s from './aboutMe.style';
 import * as React from 'react';
 import { Txt } from '../../Components/Txt/Txt';
-import { Box, Button, Divider, Stack } from '@mui/material';
+import { Button, Divider, Stack } from '@mui/material';
 import golf from '../../assets/golf.png';
 import travel from '../../assets/travel.jpeg';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +20,6 @@ export default function AboutMe() {
                     Right now, I am experienced in Web Development, Native Development, and a little bit of Back end development. I also participated in two years of 
                     First Tech Challenge, a robotics 'contest' for High Schoolers. Aside from CS, I enjoy excercising, playing golf, and traveling the world. 
                     </Txt>
-                    
                     <Stack>
                         <Txt style={{color: "#e64e4e"}}><b>Job Experience:</b></Txt>
                         <Txt>Intramural Manager, UMass Amherst: 5/2024 - Present</Txt>
