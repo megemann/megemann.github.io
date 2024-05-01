@@ -31,11 +31,11 @@ const s = {
     pfpic: {
         width: "25%",
         position: "absolute",
-        top: "20vh",
+        top: "18vh",
         left: "35vw",
         borderRadius: "40%",
         boxShadow: "6px 20px 31px 7px rgba(0,0,0,0.7)",
-        border: "4px solid #000000",
+        border: "4px solid #ffffff",
     },
     umasslogo: {
         width: "5%",

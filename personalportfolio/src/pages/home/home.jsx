@@ -2,7 +2,7 @@ import s from './home.style';
 import * as React from 'react';
 import { Txt } from '../../Components/Txt/Txt';
 import { Box, Button, Divider, IconButton, Link, Stack } from '@mui/material';
-import profilePic from '../../assets/ProfilePic.png';
+import profilePic from '../../assets/ProfilePic.jpg';
 import umassLogo from '../../assets/UmassLogo.png';
 import { ProjectData } from '../../ProjectData';
 import TheDefineHotline from "../../assets/TheDefineHotline.png";
@@ -43,7 +43,7 @@ export default function Home() {
                         <Divider orientation="vertical" flexItem color="#2E2C31"/>
                         <Button sx={s.menuItem} onClick={() => setMenu(false)}><Txt style={s.menuButtonText}>Less</Txt></Button>
                         <Divider orientation="vertical" flexItem color="white"/>
-                        <Button sx={s.menuItem}><Txt style={s.menuButtonText}>Full Timeline</Txt></Button>
+                        <Button sx={s.menuItem} onClick={() => nav("/projects")}><Txt style={s.menuButtonText}>All Projects</Txt></Button>
                         <Divider orientation="vertical" flexItem color="white"/>
                         <Button sx={s.menuItem}><Txt style={s.menuButtonText}>About me</Txt></Button>
                         <Divider orientation="vertical" flexItem color="#2E2C31"/>
@@ -73,6 +73,7 @@ export default function Home() {
                     </IconButton>
                 </Stack>
             </Stack>
+            <Divider color="white" sx={{width: "90vw", alignSelf: "center", marginTop: "-3vh"}}/>
             <Txt style={s.introduction}> Hello! </Txt>
             <Txt style={s.introductionII}> My name is Austin! </Txt>
             <Txt style={s.welcome}> Welcome to my page! {":)"} Stay as long as you'd like. </Txt>

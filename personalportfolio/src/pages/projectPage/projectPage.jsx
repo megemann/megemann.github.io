@@ -7,11 +7,13 @@ import { ProjectData } from '../../ProjectData';
 import TheDefineHotline from "../../assets/TheDefineHotline.png";
 import utrition from "../../assets/Utrition.png";
 import MinuteMunch from "../../assets/MinuteMunch.png";
+import NoImage from "../../assets/NoImage.png";
 
 const images = {
     The_Define_Hotline: TheDefineHotline,
     Utrition: utrition,
-    Minute_Munch: MinuteMunch
+    Minute_Munch: MinuteMunch,
+    Personal_Portfolio: NoImage,
 }
 
 export default function ProjectPage() {
