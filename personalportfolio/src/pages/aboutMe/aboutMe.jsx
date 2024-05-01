@@ -1,10 +1,9 @@
 import s from './aboutMe.style';
 import * as React from 'react';
 import { Txt } from '../../Components/Txt/Txt';
-import { Box, Button, Divider, IconButton, Link, Stack } from '@mui/material';
+import { Box, Button, Divider, Stack } from '@mui/material';
 import golf from '../../assets/golf.png';
 import travel from '../../assets/travel.jpeg';
-import umassLogo from '../../assets/UmassLogo.png';
 import { useNavigate } from 'react-router-dom';
 
 export default function AboutMe() {
@@ -17,7 +16,7 @@ export default function AboutMe() {
             <Stack style={{height:"92vh"}} direction={"row"} spacing={2} divider={<Divider color="white" flexItem orientation='vertical'/>}>
                 <Stack spacing={2} divider={<Divider color="white" flexItem />}>
                     <Txt style={s.title}><b>About Me:</b></Txt>
-                    <Txt style={s.body}>Hello! As I said before, I am currently attending UMass Amherst Majoring in Computer Science.
+                    <Txt style={s.body}>Hello! I am currently attending UMass Amherst Majoring in Computer Science.
                     Right now, I am experienced in Web Development, Native Development, and a little bit of Back end development. I also participated in two years of 
                     First Tech Challenge, a robotics 'contest' for High Schoolers. Aside from CS, I enjoy excercising, playing golf, and traveling the world. 
                     </Txt>

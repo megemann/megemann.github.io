@@ -1,7 +1,7 @@
 import s from './home.style';
 import * as React from 'react';
 import { Txt } from '../../Components/Txt/Txt';
-import { Box, Button, Divider, IconButton, Link, Stack } from '@mui/material';
+import { Box, Button, Divider, IconButton,Slide, Stack } from '@mui/material';
 import profilePic from '../../assets/ProfilePic.jpg';
 import umassLogo from '../../assets/UmassLogo.png';
 import { ProjectData } from '../../ProjectData';
@@ -47,7 +47,6 @@ export default function Home() {
                         <Divider orientation="vertical" flexItem color="white"/>
                         <Button sx={s.menuItem} onClick={() => nav("/aboutme")}><Txt style={s.menuButtonText}>About me</Txt></Button>
                         <Divider orientation="vertical" flexItem color="#2E2C31"/>
-                        
                     </>
                     ) || <>
                         <Divider orientation="vertical" flexItem color="#2E2C31"/>
