@@ -11,8 +11,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
-import Instagram from '@mui/icons-material/Instagram';
-
+import { useNavigate } from 'react-router-dom';
 
 const images = {
     The_Define_Hotline: TheDefineHotline,
@@ -22,6 +21,8 @@ const images = {
 export default function Home() {
 
     const [menu, setMenu] = React.useState(false);
+
+    const nav = useNavigate();
 
     function openInNewTab(url) {
         window.open(url, '_blank').focus();
@@ -98,7 +99,7 @@ export default function Home() {
                                     <Stack style={s.projectContainer} key={index} spacing={2}>   
                                         <Txt style={s.ptitle}> {project.title} - </Txt>
                                         <Txt style={s.pdescription}> {project.description} </Txt>
-                                        <a href={project.link} style={s.plink}> LEARN MORE </a>
+                                        <Button style={s.pbutton} onClick={() => nav(`/project/${project.key}`)}> LEARN MORE </Button>
                                     </Stack>
                                     <img style={s.pimg} src={images[project.key]} />
                                 </Stack>

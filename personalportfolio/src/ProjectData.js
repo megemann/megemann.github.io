@@ -7,6 +7,7 @@ export const ProjectData = [
         highlight: false,
         date: "05/2024",
         lastUpdate: "05/2024",
+        skills: ["React", "CSS", "Animations"],
     },
     {
         title: "The Define Hotline",
@@ -16,6 +17,7 @@ export const ProjectData = [
         highlight: true,
         date: "03/2024",
         lastUpdate: "04/2024",
+        skills: ["React Native", "Animations", "API's", "Expo"],
     },
     {
         title: "Utrition",
@@ -25,6 +27,7 @@ export const ProjectData = [
         highlight: true,
         date: "01/2024",
         lastUpdate: "01/2024",
+        skills: ["React", "MaterialUI", "Java-SpringBoot", "MongoDB"],
     },
     {
         title: "Minute Munch",
@@ -34,5 +37,6 @@ export const ProjectData = [
         highlight: false,
         date: "10/2023",
         lastUpdate: "N/A",
+        skills: ["React", "MongoDB", "Java-SpringBoot", "CSS"],
     }
 ]
