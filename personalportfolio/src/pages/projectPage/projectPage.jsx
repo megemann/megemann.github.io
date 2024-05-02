@@ -51,7 +51,7 @@ export default function ProjectPage() {
                     <Txt style={s.skills}>Skills: {project.skills.join(', ')}</Txt>
                     <Button variant='outlined' style={s.link} onClick={() => window.open(project.link, '_blank')}>Learn More</Button>
                 </Stack>
-                <img style={s.image} src={images[project.key]} />
+                <img style={s.image} src={images[project.key]} alt={project.key} />
             </Stack>
 
         </div>
