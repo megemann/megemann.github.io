@@ -35,8 +35,8 @@ export default function AboutMe() {
                     </Stack>        
                 </Stack>
                 <Stack spacing={5} justifyContent={"center"}>
-                    <img src={golf} style={s.golf}/>
-                    <img src={travel} style={s.travel}/>
+                    <img src={golf} style={s.golf} alt='golf'/>
+                    <img src={travel} style={s.travel} alt='travel'/>
                 </Stack>
             </Stack>
             

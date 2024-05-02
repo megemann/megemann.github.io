@@ -81,7 +81,7 @@ export default function Home() {
                 <Txt style={{textAlign: "center"}}> I am an aspiring Software Engineer from New York currently attending </Txt>
                 <Txt style={{color: "#e64e4e", textAlign: "center"}}>the University of Massachusetts Amherst! (Class of 2027)</Txt>
             </Stack>
-            <img src={profilePic} style={s.pfpic} />
+            <img src={profilePic} style={s.pfpic} alt='profile' />
             <Stack style={s.scroll}>
                 <Txt> SCROLL FOR MORE </Txt>
                 <Box sx={s.horizontalScroll}/>
@@ -101,7 +101,7 @@ export default function Home() {
                                         <Txt style={s.pdescription}> {project.description} </Txt>
                                         <Button style={s.pbutton} onClick={() => nav(`/project/${project.key}`)}> LEARN MORE </Button>
                                     </Stack>
-                                    <img style={s.pimg} src={images[project.key]} />
+                                    <img style={s.pimg} src={images[project.key]}  alt={project.key}/>
                                 </Stack>
                                 <Box style={s.divider}/>
                             </div>
