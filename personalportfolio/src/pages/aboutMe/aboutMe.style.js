@@ -22,7 +22,7 @@ const s = {
         color: "#0096ff",
     },
     backBtn: {
-        width: "4vw",
+        width: "5vw",
         color: "red",
         marginTop: "1%",
         marginLeft: "-2%"

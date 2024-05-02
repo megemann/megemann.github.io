@@ -1,6 +1,3 @@
-import { alignProperty } from "@mui/material/styles/cssUtils";
-import { border, width } from "@mui/system";
-
 const s = {
     container: {
         minHeight: '100vh',

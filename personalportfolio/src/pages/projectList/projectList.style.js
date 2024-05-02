@@ -7,7 +7,7 @@ const s = {
         flexDirection: "column",
     },
     backBtn: {
-        width: "4vw",
+        width: "5vw",
         color: "red",
         marginTop: "1%",
     },

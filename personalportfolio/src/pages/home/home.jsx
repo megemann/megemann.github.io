@@ -77,7 +77,7 @@ export default function Home() {
             <Txt style={s.introductionII}> My name is Austin! </Txt>
             <Txt style={s.welcome}> Welcome to my page! {":)"} Stay as long as you'd like. </Txt>
             <Stack style={s.umass}>
-                <img src={umassLogo} style={{width: "238px", marginBottom: "5%"}} />
+                <img src={umassLogo} style={{width: "238px", marginBottom: "5%"}} alt='umass logo' />
                 <Txt style={{textAlign: "center"}}> I am an aspiring Software Engineer from New York currently attending </Txt>
                 <Txt style={{color: "#e64e4e", textAlign: "center"}}>the University of Massachusetts Amherst! (Class of 2027)</Txt>
             </Stack>
