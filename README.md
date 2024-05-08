@@ -2,7 +2,7 @@
 Website for Displaying My Personal Projects, Created over the course of 24 hrs total working
 
 ## Website Link
-Click [Here](https://austinfairbanks.netlify.app/projects)
+Click [Here](https://austinfairbanks.netlify.app)
 
 ## Libraries/Languages
 1. React
