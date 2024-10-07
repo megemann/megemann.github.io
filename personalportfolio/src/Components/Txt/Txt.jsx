@@ -4,7 +4,7 @@ const styles = {
     txt: {
         color:"white",
         fontSize: "30px",
-        fontFamily: 'Flat',
+        fontFamily: 'Times New Roman', //Flat
     }
 }
 

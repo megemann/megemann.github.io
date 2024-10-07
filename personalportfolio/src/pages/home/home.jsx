@@ -7,6 +7,7 @@ import umassLogo from '../../assets/UmassLogo.png';
 import { ProjectData } from '../../ProjectData';
 import TheDefineHotline from "../../assets/TheDefineHotline.png";
 import utrition from "../../assets/Utrition.png";
+import hpoptimization from "../../assets/hpoptimization.png";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -16,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 const images = {
     The_Define_Hotline: TheDefineHotline,
     Utrition: utrition,
+    Hyperparameter_Optimization_Framework_Evaluation_and_Manual: hpoptimization
 }
 
 export default function Home() {
@@ -78,8 +80,8 @@ export default function Home() {
             <Txt style={s.welcome}> Welcome to my page! {":)"} Stay as long as you'd like. </Txt>
             <Stack style={s.umass}>
                 <img src={umassLogo} style={{width: "238px", marginBottom: "5%"}} alt='umass logo' />
-                <Txt style={{textAlign: "center"}}> I am an aspiring Software Engineer from New York currently attending </Txt>
-                <Txt style={{color: "#e64e4e", textAlign: "center"}}>the University of Massachusetts Amherst! (Class of 2027)</Txt>
+                <Txt style={{textAlign: "center"}}> I am an aspiring ML/AI Engineer from New York currently attending </Txt>
+                <Txt style={{color: "#e64e4e", textAlign: "center"}}>the University of Massachusetts Amherst! (Class of 2026, Year 2)</Txt>
             </Stack>
             <img src={profilePic} style={s.pfpic} alt='profile' />
             <Stack style={s.scroll}>
