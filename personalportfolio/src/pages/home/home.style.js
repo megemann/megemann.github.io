@@ -1,5 +1,3 @@
-import { PaddingRounded } from "@mui/icons-material";
-
 const s = {
     container: {
         minHeight: '100vh',
