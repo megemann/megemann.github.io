@@ -1,3 +1,5 @@
+import { PaddingRounded } from "@mui/icons-material";
+
 const s = {
     container: {
         minHeight: '100vh',
@@ -94,6 +96,7 @@ const s = {
     },
     pdescription: {
         paddingLeft: "5%",
+        paddingRight: "5%",
     },
     plink: {
         fontFamily: "Flat",

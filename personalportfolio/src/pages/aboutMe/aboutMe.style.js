@@ -1,6 +1,6 @@
 const s = {
     container: {
-        minHeight: '100vh',
+        minHeight: '120vh',
         width: '97%',
         display: 'flex',
         backgroundColor: "#2E2C31",

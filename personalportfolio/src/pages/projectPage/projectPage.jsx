@@ -7,12 +7,14 @@ import { ProjectData } from '../../ProjectData';
 import TheDefineHotline from "../../assets/TheDefineHotline.png";
 import utrition from "../../assets/Utrition.png";
 import MinuteMunch from "../../assets/MinuteMunch.png";
+import hpoptimization from "../../assets/hpoptimization.png";
 import NoImage from "../../assets/NoImage.png";
 
 const images = {
     The_Define_Hotline: TheDefineHotline,
     Utrition: utrition,
     Minute_Munch: MinuteMunch,
+    Hyperparameter_Optimization_Framework_Evaluation_and_Manual: hpoptimization,
     Personal_Portfolio: NoImage,
 }
 

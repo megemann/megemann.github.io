@@ -1,5 +1,15 @@
 export const ProjectData = [
     {
+        title: "HP Manual",
+        key: "Hyperparameter_Optimization_Framework_Evaluation_and_Manual",
+        description: "A research paper with related code that outlines the use of different Hyperparameter Optimization Frameworks such as Keras Tuner, Optuna, and Sci-Kit Learn. Additionally, it includes a brief case study to evaluate several algorithms. This project makes use of: Python, Keras/Tensorflow, Jupyter Notebook, Numpy, Matplotlib, and Hyperparameter Optimization Frameworks. I developed this manual in conjunction with my internship at Corning Incorporated through Magnit.",
+        link: "https://github.com/megemann/HPOptimization",
+        highlight: true,
+        date: "07/2024",
+        lastUpdate: "08/2024",
+        skills: ["Keras", "Python", "Matplotlib", "Numpy", "Neural Networks / Deep Learning"],
+    },
+    {
         title: "Personal Portfolio",
         key: "Personal_Portfolio",
         description: "A simple personal portfolio website that displays my projects. This project makes use of React, CSS, Animations, and Github for version control.",
@@ -24,7 +34,7 @@ export const ProjectData = [
         key: "Utrition",
         description: "This project was meant to provide a method for students to easily track their calories, protein, and other macro/micro nutrients. The nutrient information is all gathered from UMass's Certified nutrition program, FoodPro1. This project makes use of React, the MaterialUI library, a Java-SpringBoot backend, and MongoDB as a database.",
         link: "https://github.com/megemann/utrition",
-        highlight: true,
+        highlight: false,
         date: "01/2024",
         lastUpdate: "01/2024",
         skills: ["React", "MaterialUI", "Java-SpringBoot", "MongoDB"],

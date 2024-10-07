@@ -13,7 +13,7 @@ export default function ProjectList() {
         <div style={s.container}>
             <Button onClick={() => nav("/")} style={s.backBtn}>{"< Home"}</Button>
             <Stack spacing={2} sx={s.list} width={"96%"} divider={<Divider color="white" />}>
-                <Stack spacing={2} direction="row" divider={<Divider color="white" orientation="vertical" variant="middle" flexItem />}>
+                <Stack spacing={2} direction="row" divider={<Divider color="white" orientation="vertical" variant="middle" />}>
                     <Txt style={s.title}>Project Title</Txt>
                     <Txt style={s.startdate}>Start Date</Txt>
                     <Txt style={s.enddate}>End Date</Txt>
