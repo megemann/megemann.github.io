@@ -69,7 +69,7 @@ export default function Home() {
                     <IconButton onClick={() => openInNewTab("https://www.linkedin.com/in/ajf2005")} sx={s.iconbutton} >
                         <LinkedInIcon sx={s.icon}/>
                     </IconButton>
-                    <IconButton onClick={() =>   {navigator.clipboard.writeText("ajfairbanks200g5@gmail.com"); alert("Email copied to clipboard!")}} sx={s.iconbutton} >
+                    <IconButton onClick={() =>   {navigator.clipboard.writeText("ajfairbanks2005@gmail.com"); alert("Email copied to clipboard!")}} sx={s.iconbutton} >
                         <EmailIcon sx={s.icon}/>
                     </IconButton>
                 </Stack>
