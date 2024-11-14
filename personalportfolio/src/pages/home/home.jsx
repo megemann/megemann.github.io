@@ -69,7 +69,7 @@ export default function Home() {
                     <IconButton onClick={() => openInNewTab("https://www.linkedin.com/in/ajf2005")} sx={s.iconbutton} >
                         <LinkedInIcon sx={s.icon}/>
                     </IconButton>
-                    <IconButton onClick={() =>   {navigator.clipboard.writeText("austinfairbanks05@gmail.com"); alert("Email copied to clipboard!")}} sx={s.iconbutton} >
+                    <IconButton onClick={() =>   {navigator.clipboard.writeText("ajfairbanks200g5@gmail.com"); alert("Email copied to clipboard!")}} sx={s.iconbutton} >
                         <EmailIcon sx={s.icon}/>
                     </IconButton>
                 </Stack>
@@ -114,7 +114,7 @@ export default function Home() {
             </Box>
             <Stack direction={"row"} spacing={2} alignItems={"center"} style={{marginTop: "5%"}}>
                 <Box style={s.smalldivider}/>
-                <Txt style={{fontSize: "15px", width: "40vw"}}> Copyright 2024 Austin Fairbanks; Contact at ajfairbanks@gmail.com</Txt>
+                <Txt style={{fontSize: "15px", width: "40vw"}}> Copyright 2024 Austin Fairbanks; Contact at ajfairbanks2005@gmail.com</Txt>
                 <Box style={s.smalldivider}/>
             </Stack>
 
