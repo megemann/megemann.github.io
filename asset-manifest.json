@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.57a17f03.css",
+    "main.js": "/static/js/main.002a7e36.js",
+    "static/js/453.8530122b.chunk.js": "/static/js/453.8530122b.chunk.js",
+    "static/media/ProfilePic.jpg": "/static/media/ProfilePic.94136470b3c94f159acf.jpg",
+    "static/media/travel.jpeg": "/static/media/travel.7012b640ec6c39a1daa9.jpeg",
+    "static/media/golf.png": "/static/media/golf.083c4e5444c83df45e79.png",
+    "static/media/hpoptimization.png": "/static/media/hpoptimization.23d9ab6ae3306556cd76.png",
+    "static/media/MinuteMunch.png": "/static/media/MinuteMunch.b3c0258505cde558a918.png",
+    "static/media/NovaFlat-Regular.ttf": "/static/media/NovaFlat-Regular.f187b6b105a27ec5ea9b.ttf",
+    "static/media/NoImage.png": "/static/media/NoImage.817773d85d8896811e22.png",
+    "static/media/UmassLogo.png": "/static/media/UmassLogo.eadc05c43e3c08c85dba.png",
+    "static/media/TheDefineHotline.png": "/static/media/TheDefineHotline.2cec78d0e443e11e77e9.png",
+    "static/media/Utrition.png": "/static/media/Utrition.f2201c586c5ade7acee3.png",
+    "index.html": "/index.html",
+    "main.57a17f03.css.map": "/static/css/main.57a17f03.css.map",
+    "main.002a7e36.js.map": "/static/js/main.002a7e36.js.map",
+    "453.8530122b.chunk.js.map": "/static/js/453.8530122b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.57a17f03.css",
+    "static/js/main.002a7e36.js"
+  ]
+}
