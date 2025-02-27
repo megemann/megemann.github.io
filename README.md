@@ -1,7 +1,7 @@
 # PersonalPortfolio
 Website for Displaying My Personal Projects, Created over the course of 24 hrs total working
 
-## Libraries/Languages
+# Libraries
 1. React
 2. Node.js
 3. Material UI
