@@ -12,7 +12,7 @@ const App = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 900) {
+            if (window.innerWidth < 768) {
                 setIsMobile(true);
             } else {
                 setIsMobile(false);
@@ -30,8 +30,21 @@ const App = () => {
 
     if (isMobile) {
         return (
-            <div style={{ textAlign: 'center', marginTop: '20%' }}>
-                <h1>This site is not available on mobile devices.</h1>
+            <div style={{ 
+                textAlign: 'center', 
+                padding: '10%', 
+                backgroundColor: '#2E2C31', 
+                color: 'white', 
+                height: '100vh', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'center', 
+                alignItems: 'center' 
+            }}>
+                <h1 style={{ color: '#0096ff', marginBottom: '20px' }}>Mobile View Coming Soon</h1>
+                <p style={{ fontSize: '18px', lineHeight: '1.6' }}>
+                    This site is optimized for desktop viewing. Please visit on a larger screen for the best experience.
+                </p>
             </div>
         );
     }

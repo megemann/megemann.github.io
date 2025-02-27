@@ -22,21 +22,21 @@ export default function AboutMe() {
                     First Tech Challenge, a long term robotics 'contest' for High Schoolers. Aside from CS, I enjoy excercising, playing golf, and traveling the world. 
                     </Txt>
                     <Stack>
-                        <Txt style={{color: "#e64e4e"}}><b>Job Experience:</b></Txt>
-                        <Txt> ML Intern, on assignment at Corning Inc. through Magnit: 07/2024 - 08/2024</Txt>
-                        <Txt>Intramural Manager, UMass Amherst: 5/2024 - Present</Txt>
-                        <Txt>Intramural Referee, UMass Amherst: 10/2023 - 5/2024</Txt>
+                        <Txt style={s.skillTitle}><b>Job Experience:</b></Txt>
+                        <Txt style={s.skillItem}>ML Intern, on assignment at Corning Inc. through Magnit: 07/2024 - 08/2024</Txt>
+                        <Txt style={s.skillItem}>Intramural Manager, UMass Amherst: 5/2024 - Present</Txt>
+                        <Txt style={s.skillItem}>Intramural Referee, UMass Amherst: 10/2023 - 5/2024</Txt>
                     </Stack>
                     <Stack>
-                        <Txt style={{color: "#e64e4e"}}><b>Skills:</b></Txt>
-                        <Txt>Deep Learning / Neural Networks</Txt>
-                        <Txt>Keras, Tensorflow, Pytorch</Txt>
-                        <Txt>Python, Numpy, Matplotlib</Txt>
-                        <Txt>Java</Txt>
-                        <Txt>Web Development</Txt>
-                        <Txt>Back End Development</Txt>
-                        <Txt>Database Management (SQL)</Txt>
-                        <Txt>Native Development</Txt>
+                        <Txt style={s.skillTitle}><b>Skills:</b></Txt>
+                        <Txt style={s.skillItem}>Deep Learning / Neural Networks</Txt>
+                        <Txt style={s.skillItem}>Keras, Tensorflow, Pytorch</Txt>
+                        <Txt style={s.skillItem}>Python, Numpy, Matplotlib</Txt>
+                        <Txt style={s.skillItem}>Java</Txt>
+                        <Txt style={s.skillItem}>Web Development</Txt>
+                        <Txt style={s.skillItem}>Back End Development</Txt>
+                        <Txt style={s.skillItem}>Database Management (SQL)</Txt>
+                        <Txt style={s.skillItem}>Native Development</Txt>
                     </Stack>        
                 </Stack>
                 <Stack spacing={5} justifyContent={"center"}>

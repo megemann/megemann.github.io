@@ -5,22 +5,33 @@ const s = {
         display: 'flex',
         backgroundColor: "#2E2C31",
         flexDirection: "column",
-        '@media (max-width: 768px)': {
-            padding: '5%',
-        },
+        overflowX: 'hidden',
     },
     backBtn: {
-        width: "5vw",
-        color: "red",
+        width: "auto",
+        color: "#e64e4e",
         marginTop: "1%",
-        '@media (max-width: 768px)': {
-            width: "10vw",
+        marginLeft: "1%",
+        fontWeight: "bold",
+        transition: "all 0.3s ease",
+        '&:hover': {
+            color: "#ff6b6b",
+            transform: 'scale(1.05)',
+        },
+        '@media (max-width: 900px)': {
+            fontSize: "14px",
         },
     },
     title: {
         fontSize: "80px",
         color: "#0096ff",
-        '@media (max-width: 768px)': {
+        fontWeight: "bold",
+        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+        transition: "all 0.3s ease",
+        '@media (max-width: 1200px)': {
+            fontSize: "60px",
+        },
+        '@media (max-width: 900px)': {
             fontSize: "40px",
         },
     },
@@ -28,23 +39,45 @@ const s = {
         fontSize: "20px",
         color: "#ffffff",
         marginTop: "2%",
-        '@media (max-width: 768px)': {
+        lineHeight: "1.6",
+        transition: "all 0.3s ease",
+        '@media (max-width: 1200px)': {
+            fontSize: "18px",
+        },
+        '@media (max-width: 900px)': {
             fontSize: "16px",
         },
     },
     link: {
         fontSize: "18px",
-        color: "#0096ff",
-        textDecoration: "underline",
-        cursor: "pointer",
-        '@media (max-width: 768px)': {
+        color: "white",
+        backgroundColor: "#0096ff",
+        padding: "10px 20px",
+        borderRadius: "5px",
+        fontWeight: "bold",
+        transition: "all 0.3s ease",
+        '&:hover': {
+            backgroundColor: "#007acc",
+            transform: 'scale(1.05)',
+        },
+        '@media (max-width: 1200px)': {
+            fontSize: "16px",
+            padding: "8px 16px",
+        },
+        '@media (max-width: 900px)': {
             fontSize: "14px",
+            padding: "6px 12px",
         },
     },
     dates: {
         color: "#e64e4e",
         fontSize: "18px",
-        '@media (max-width: 768px)': {
+        fontWeight: "bold",
+        transition: "all 0.3s ease",
+        '@media (max-width: 1200px)': {
+            fontSize: "16px",
+        },
+        '@media (max-width: 900px)': {
             fontSize: "14px",
         },
     },
@@ -52,17 +85,30 @@ const s = {
         fontSize: "18px",
         color: "#ffffff",
         marginTop: "2%",
-        '@media (max-width: 768px)': {
+        transition: "all 0.3s ease",
+        '@media (max-width: 1200px)': {
+            fontSize: "16px",
+        },
+        '@media (max-width: 900px)': {
             fontSize: "14px",
         },
     },
     image: {
         width: "30%",
-        height: "30%",
+        height: "auto",
         marginTop: "2%",
-        '@media (max-width: 768px)': {
-            width: "60%",
-            height: "auto",
+        borderRadius: "15px",
+        boxShadow: "4px 4px 15px rgba(0, 0, 0, 0.3)",
+        transition: "all 0.3s ease",
+        '&:hover': {
+            transform: 'scale(1.03)',
+            boxShadow: "6px 6px 20px rgba(0, 0, 0, 0.4)",
+        },
+        '@media (max-width: 1200px)': {
+            width: "35%",
+        },
+        '@media (max-width: 900px)': {
+            width: "40%",
         },
     },
 };
