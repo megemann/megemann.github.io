@@ -21,6 +21,83 @@
   --card-bg: rgba(30, 41, 59, 0.5);
   --border-radius: 12px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Add light mode colors */
+  --jupyter-bg-light: #ffffff;
+  --jupyter-cell-bg-light: #ffffff;
+  --jupyter-code-bg-light: #f8f9fa;
+  --jupyter-text-light: #2c3e50;
+  --jupyter-border-light: #e9ecef;
+  --jupyter-output-bg-light: #f8f9fa;
+  --jupyter-blue-light: #2196f3;
+  --jupyter-green-light: #4caf50;
+}
+
+/* Light mode */
+.notebook-container:not(.dark-mode) {
+  --jupyter-bg: var(--jupyter-bg-light);
+  --jupyter-cell-bg: var(--jupyter-cell-bg-light);
+  --jupyter-code-bg: var(--jupyter-code-bg-light);
+  --jupyter-text: var(--jupyter-text-light);
+  --jupyter-border: var(--jupyter-border-light);
+  --jupyter-output-bg: var(--jupyter-output-bg-light);
+  --jupyter-blue: var(--jupyter-blue-light);
+  --jupyter-green: var(--jupyter-green-light);
+}
+
+/* Update text colors for light mode */
+.notebook-container:not(.dark-mode) .notebook-title,
+.notebook-container:not(.dark-mode) .input-prompt,
+.notebook-container:not(.dark-mode) .output-prompt {
+  color: var(--jupyter-text-light);
+}
+
+/* Update code area text color for light mode */
+.notebook-container:not(.dark-mode) .code-area {
+  color: #24292e;
+}
+
+/* Update output text color for light mode */
+.notebook-container:not(.dark-mode) .output-result pre {
+  color: var(--jupyter-text-light);
+}
+
+/* Update run button colors for light mode */
+.notebook-container:not(.dark-mode) .run-button {
+  background-color: var(--jupyter-blue-light);
+  color: white;
+}
+
+.notebook-container:not(.dark-mode) .run-button:hover {
+  background-color: var(--jupyter-green-light);
+}
+
+.notebook-container:not(.dark-mode) .run-button.executed {
+  background-color: var(--jupyter-green-light);
+}
+
+/* Update typing indicator colors for light mode */
+.notebook-container:not(.dark-mode) .typing-indicator {
+  color: var(--jupyter-text-light);
+}
+
+/* Update contact info colors for light mode */
+.notebook-container:not(.dark-mode) .contact-content {
+  background-color: var(--jupyter-cell-bg-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notebook-container:not(.dark-mode) .contact-item {
+  background-color: rgba(33, 150, 243, 0.05);
+}
+
+.notebook-container:not(.dark-mode) .contact-item:hover {
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+.notebook-container:not(.dark-mode) .contact-item a,
+.notebook-container:not(.dark-mode) .contact-item span {
+  color: var(--jupyter-text-light);
 }
 
 * {
@@ -1054,17 +1131,23 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-  width: var(--sidebar-width);
-  background-color: var(--sidebar-bg);
+  width: 0;
+  background-color: var(--jupyter-cell-bg);
   height: 100vh;
   overflow-y: auto;
   flex-shrink: 0;
-  border-right: 1px solid #1A1A1A;
+  border-right: 1px solid var(--jupyter-border);
   position: fixed;
   left: 0;
   top: 0;
   scrollbar-width: thin;
   scrollbar-color: rgba(100, 100, 100, 0.5) transparent;
+  transition: var(--transition);
+}
+
+.notebook-container:not(.dark-mode) .sidebar {
+  background-color: var(--jupyter-cell-bg-light);
+  border-right-color: var(--jupyter-border-light);
 }
 
 .sidebar-header {
@@ -1120,9 +1203,17 @@ body {
   color: var(--vscode-text);
 }
 
+.notebook-container:not(.dark-mode) .folder-icon {
+  color: #4a5568;
+}
+
 .folder-name {
   font-family: 'Source Code Pro', monospace;
   font-size: 0.9rem;
+}
+
+.notebook-container:not(.dark-mode) .folder-name {
+  color: var(--jupyter-text-light);
 }
 
 .folder-content {
@@ -1151,6 +1242,10 @@ body {
   color: var(--vscode-text);
 }
 
+.notebook-container:not(.dark-mode) .file-icon {
+  opacity: 0.7;
+}
+
 .python-icon {
   color: #3572A5;
 }
@@ -1172,10 +1267,13 @@ body {
   font-size: 0.85rem;
 }
 
+.notebook-container:not(.dark-mode) .file-name {
+  color: var(--jupyter-text-light);
+}
+
 /* Main Content */
 .main-content {
   flex: 1;
-  margin-left: var(--sidebar-width);
   display: flex;
   flex-direction: column;
   background-color: var(--jupyter-cell-bg);
@@ -1335,6 +1433,10 @@ body {
   position: relative;
 }
 
+.notebook-container:not(.dark-mode) .cell-input {
+  background-color: var(--jupyter-cell-bg-light);
+}
+
 .input-prompt {
   padding: 10px;
   font-family: 'Source Code Pro', monospace;
@@ -1345,10 +1447,18 @@ body {
   border-right: 1px solid var(--jupyter-border);
 }
 
+.notebook-container:not(.dark-mode) .input-prompt {
+  color: var(--jupyter-text-light);
+}
+
 .input-area {
   flex: 1;
   padding: 10px;
   overflow-x: auto;
+}
+
+.notebook-container:not(.dark-mode) .cell-input {
+  background-color: var(--jupyter-cell-bg-light);
 }
 
 .code-area {
@@ -1357,6 +1467,10 @@ body {
   white-space: pre-wrap;
   color: var(--jupyter-text);
   font-size: 0.95rem;
+}
+
+.notebook-container:not(.dark-mode) .code-area {
+  background-color: var(--jupyter-code-bg-light);
 }
 
 .run-button {
@@ -1406,6 +1520,10 @@ body {
   display: flex;
 }
 
+.notebook-container:not(.dark-mode) .cell-output {
+  background-color: var(--jupyter-cell-bg-light);
+}
+
 .output-prompt {
   padding: 10px;
   font-family: 'Source Code Pro', monospace;
@@ -1414,6 +1532,10 @@ body {
   min-width: 70px;
   text-align: right;
   border-right: 1px solid var(--jupyter-border);
+}
+
+.notebook-container:not(.dark-mode) .output-prompt {
+  color: var(--jupyter-text-light);
 }
 
 .output-result {
@@ -1982,7 +2104,7 @@ body {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  background-color: var(--jupyter-code-bg);
+  background-color: var(--jupyter-cell-bg);
   border-radius: 12px;
   box-shadow: var(--jupyter-shadow);
 }
@@ -2221,4 +2343,139 @@ body {
     grid-template-columns: 1fr;
     max-width: 550px;
   }
+}
+
+/* Update text colors for light mode */
+.notebook-container:not(.dark-mode) {
+  background-color: var(--jupyter-bg-light);
+  color: var(--jupyter-text-light);
+}
+
+.notebook-container:not(.dark-mode) .project-description {
+  color: var(--jupyter-text-light);
+}
+
+.notebook-container:not(.dark-mode) .contact-content {
+  background-color: var(--jupyter-cell-bg-light);
+  box-shadow: var(--jupyter-shadow-light);
+}
+
+.notebook-container:not(.dark-mode) .contact-item {
+  background-color: rgba(33, 150, 243, 0.05);
+}
+
+.notebook-container:not(.dark-mode) .contact-item:hover {
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+.notebook-container:not(.dark-mode) .contact-item a,
+.notebook-container:not(.dark-mode) .contact-item span {
+  color: var(--jupyter-text-light);
+}
+
+/* Update tech tags for light mode */
+.notebook-container:not(.dark-mode) .tech-tag {
+  background-color: var(--jupyter-code-bg-light);
+  color: var(--jupyter-text-light);
+}
+
+/* Update folder icons for light mode */
+.notebook-container:not(.dark-mode) .folder-icon {
+  color: #4a5568;
+}
+
+/* Update file icons for light mode */
+.notebook-container:not(.dark-mode) .file-icon {
+  opacity: 0.7;
+}
+
+/* Update sidebar hover and active states for light mode */
+.notebook-container:not(.dark-mode) .file.active,
+.notebook-container:not(.dark-mode) .file:hover {
+  background-color: rgba(33, 150, 243, 0.1); /* Light blue background */
+  color: var(--jupyter-blue);
+}
+
+.notebook-container:not(.dark-mode) .file.active .file-name,
+.notebook-container:not(.dark-mode) .file:hover .file-name {
+  color: var(--jupyter-blue);
+}
+
+/* Update the active file background for both modes */
+.file.active {
+  background-color: var(--jupyter-code-bg);
+}
+
+.notebook-container:not(.dark-mode) .file.active {
+  background-color: rgba(33, 150, 243, 0.15);
+}
+
+/* Add hover effect for clickable files */
+.file-name[style*="cursor: pointer"]:hover {
+    color: var(--jupyter-blue);
+}
+
+/* Add hover effect for clickable files in light mode */
+.notebook-container:not(.dark-mode) .file-name[style*="cursor: pointer"]:hover {
+    color: var(--jupyter-blue);
+}
+
+/* Light mode styles for code and output */
+.notebook-container:not(.dark-mode) {
+    background-color: var(--jupyter-bg-light);
+    color: var(--jupyter-text-light);
+}
+
+/* Code area and input text */
+.notebook-container:not(.dark-mode) .code-area {
+    background-color: #f7f7f7;
+    color: #303030;
+}
+
+/* Cell input and output areas */
+.notebook-container:not(.dark-mode) .cell-input,
+.notebook-container:not(.dark-mode) .cell-output {
+    background-color: #ffffff;
+    color: #303030;
+}
+
+/* Input/Output prompts */
+.notebook-container:not(.dark-mode) .input-prompt,
+.notebook-container:not(.dark-mode) .output-prompt {
+    color: #303030;
+    opacity: 0.5;
+    background-color: transparent;
+}
+
+/* Cell content */
+.notebook-container:not(.dark-mode) .output-result {
+    color: #303030;
+    background-color: #ffffff;
+}
+
+/* Code text color */
+.notebook-container:not(.dark-mode) pre {
+    color: #303030;
+}
+
+/* Run button */
+.notebook-container:not(.dark-mode) .run-button {
+    background-color: transparent;
+    color: #303030;
+    border: 1px solid #e0e0e0;
+}
+
+.notebook-container:not(.dark-mode) .run-button:hover {
+    background-color: #f0f0f0;
+}
+
+.notebook-container:not(.dark-mode) .run-button.executed {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Typing indicator */
+.notebook-container:not(.dark-mode) .typing-indicator {
+    background-color: #f7f7f7;
+    color: #303030;
 } 

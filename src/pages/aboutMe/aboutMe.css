@@ -1,0 +1,128 @@
+.markdown-container {
+    padding: 20px;
+    background-color: var(--jupyter-bg);
+    min-height: calc(100vh - 60px);
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-right: 16px;
+}
+
+.tab-button {
+    background-color: var(--jupyter-code-bg);
+    color: var(--jupyter-text);
+    border: 1px solid var(--jupyter-border);
+    border-radius: 4px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.tab-button.active {
+    background-color: var(--jupyter-blue);
+    color: white;
+    border-color: var(--jupyter-blue);
+}
+
+.tab-button:hover {
+    background-color: var(--jupyter-green);
+    color: white;
+    border-color: var(--jupyter-green);
+}
+
+.raw-content {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 16px;
+    margin: 0;
+    background-color: var(--jupyter-code-bg);
+    border: 1px solid var(--jupyter-border);
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: var(--jupyter-text);
+}
+
+.preview-content {
+    padding: 16px;
+    background-color: var(--jupyter-code-bg);
+    border: 1px solid var(--jupyter-border);
+    border-radius: 4px;
+    color: var(--jupyter-text);
+}
+
+/* Markdown Preview Styles */
+.preview-content h1,
+.preview-content h2 {
+    border-bottom: 1px solid var(--jupyter-border);
+    padding-bottom: 0.3em;
+}
+
+.preview-content h1,
+.preview-content h2,
+.preview-content h3,
+.preview-content h4,
+.preview-content h5,
+.preview-content h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.preview-content ul {
+    padding-left: 20px;
+}
+
+.preview-content p {
+    margin: 16px 0;
+    line-height: 1.6;
+}
+
+.preview-content code {
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 85%;
+    margin: 0;
+    padding: 0.2em 0.4em;
+}
+
+.preview-content strong {
+    font-weight: 600;
+}
+
+.preview-content em {
+    font-style: italic;
+}
+
+/* Add light mode styles */
+.notebook-container:not(.dark-mode) .markdown-container {
+    background-color: var(--jupyter-bg-light);
+}
+
+.notebook-container:not(.dark-mode) .raw-content {
+    background-color: var(--jupyter-code-bg-light);
+    color: var(--jupyter-text-light);
+    border-color: var(--jupyter-border-light);
+}
+
+.notebook-container:not(.dark-mode) .preview-content {
+    background-color: var(--jupyter-cell-bg-light);
+    color: var(--jupyter-text-light);
+    border-color: var(--jupyter-border-light);
+}
+
+.notebook-container:not(.dark-mode) .preview-content h1,
+.notebook-container:not(.dark-mode) .preview-content h2,
+.notebook-container:not(.dark-mode) .preview-content h3,
+.notebook-container:not(.dark-mode) .preview-content h4,
+.notebook-container:not(.dark-mode) .preview-content h5,
+.notebook-container:not(.dark-mode) .preview-content h6 {
+    color: #24292e;
+} 

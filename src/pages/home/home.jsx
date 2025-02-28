@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import profilePic from '../../assets/ProfilePic.jpg';
 import umassLogo from '../../assets/UmassLogo.png';
@@ -7,6 +7,8 @@ import TheDefineHotline from "../../assets/TheDefineHotline.png";
 import utrition from "../../assets/Utrition.png";
 import hpoptimization from "../../assets/hpoptimization.png";
 import './home.css';
+import Sidebar from '../../component/Sidebar/Sidebar';
+import ThemeContext from '../../ThemeContext';
 
 const images = {
     The_Define_Hotline: TheDefineHotline,
@@ -33,15 +35,16 @@ export default function Home() {
         assets: false
     });
     const [isPaused, setIsPaused] = useState(false);
+    const { darkMode: contextDarkMode } = useContext(ThemeContext);
 
     useEffect(() => {
         // Apply dark mode to body
-        if (darkMode) {
+        if (contextDarkMode) {
             document.body.classList.add('dark-mode');
         } else {
             document.body.classList.remove('dark-mode');
         }
-    }, [darkMode]);
+    }, [contextDarkMode]);
 
     const runCell = (cellId) => {
         if (isPaused) return;
@@ -118,92 +121,10 @@ export default function Home() {
     }
 
     return (
-        <div className={`notebook-container ${darkMode ? 'dark-mode' : ''} ${isPaused ? 'paused' : ''}`}>
+        <div className={`notebook-container ${contextDarkMode ? 'dark-mode' : ''} ${isPaused ? 'paused' : ''}`}>
             {/* Sidebar */}
             <div className="sidebar">
-                <div className="sidebar-header">
-                    <span className="explorer-title">Explorer</span>
-                    <button className="sidebar-toggle">
-                        <i className="fas fa-ellipsis-v"></i>
-                    </button>
-                </div>
-                
-                <div className="folder-structure">
-                    {/* Portfolio Folder */}
-                    <div className="folder">
-                        <div className="folder-header" onClick={() => toggleFolder('portfolio')}>
-                            <i className={`folder-icon fas ${expandedFolders.portfolio ? 'fa-folder-open' : 'fa-folder'}`}></i>
-                            <span className="folder-name">portfolio</span>
-                        </div>
-                        
-                        {expandedFolders.portfolio && (
-                            <div className="folder-content">
-                                <div className="file active">
-                                    <i className="file-icon python-icon fab fa-python"></i>
-                                    <span className="file-name">Portfolio.ipynb</span>
-                                </div>
-                                <div className="file">
-                                    <i className="file-icon markdown-icon fas fa-file-alt"></i>
-                                    <span className="file-name">README.md</span>
-                                </div>
-                                <div className="file">
-                                    <i className="file-icon python-icon fab fa-python"></i>
-                                    <span className="file-name">austin_fairbanks.py</span>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                    
-                    {/* Data Folder */}
-                    <div className="folder">
-                        <div className="folder-header" onClick={() => toggleFolder('data')}>
-                            <i className={`folder-icon fas ${expandedFolders.data ? 'fa-folder-open' : 'fa-folder'}`}></i>
-                            <span className="folder-name">data</span>
-                        </div>
-                        
-                        {expandedFolders.data && (
-                            <div className="folder-content">
-                                <div className="file">
-                                    <i className="file-icon json-icon fas fa-file-code"></i>
-                                    <span className="file-name">projects.json</span>
-                                </div>
-                                <div className="file">
-                                    <i className="file-icon json-icon fas fa-file-code"></i>
-                                    <span className="file-name">skills.json</span>
-                                </div>
-                                <div className="file">
-                                    <i className="file-icon python-icon fab fa-python"></i>
-                                    <span className="file-name">data_science.py</span>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                    
-                    {/* Assets Folder */}
-                    <div className="folder">
-                        <div className="folder-header" onClick={() => toggleFolder('assets')}>
-                            <i className={`folder-icon fas ${expandedFolders.assets ? 'fa-folder-open' : 'fa-folder'}`}></i>
-                            <span className="folder-name">assets</span>
-                        </div>
-                        
-                        {expandedFolders.assets && (
-                            <div className="folder-content">
-                                <div className="file">
-                                    <i className="file-icon image-icon fas fa-file-image"></i>
-                                    <span className="file-name">profile.jpg</span>
-                                </div>
-                                <div className="file">
-                                    <i className="file-icon image-icon fas fa-file-image"></i>
-                                    <span className="file-name">umass_logo.png</span>
-                                </div>
-                                <div className="file">
-                                    <i className="file-icon image-icon fas fa-file-image"></i>
-                                    <span className="file-name">projects/</span>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                <Sidebar />
             </div>
             
             {/* Main Content */}
@@ -212,7 +133,7 @@ export default function Home() {
                     <div className="notebook-title">Portfolio.ipynb</div>
                     <div className="notebook-controls">
                         <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
-                            {darkMode ? 'Light Mode' : 'Dark Mode'}
+                            {contextDarkMode ? 'Light Mode' : 'Dark Mode'}
                         </button>
                     </div>
                 </div>

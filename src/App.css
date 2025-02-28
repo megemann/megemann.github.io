@@ -1,38 +1,92 @@
+/* Remove old App styles */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Add layout styles for the app container */
+.app-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+  background-color: var(--jupyter-bg);
 }
 
-.App-link {
-  color: #61dafb;
+/* Style the main container to work with the sidebar */
+.main-container {
+  flex: 1;
+  margin-left: 0;
+  overflow-x: hidden;
+  background-color: var(--jupyter-cell-bg);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Dark mode styles */
+.app-container.dark-mode {
+  background-color: var(--jupyter-bg);
+  color: var(--jupyter-text);
+}
+
+.app-container.dark-mode .main-container {
+  background-color: var(--jupyter-cell-bg);
+}
+
+/* Light mode styles */
+.app-container:not(.dark-mode) {
+  background-color: var(--jupyter-bg-light);
+  color: var(--jupyter-text-light);
+}
+
+.app-container:not(.dark-mode) .main-container {
+  background-color: var(--jupyter-bg-light);
+}
+
+/* Update sidebar in light mode */
+.app-container:not(.dark-mode) .sidebar {
+  background-color: var(--jupyter-cell-bg-light);
+  border-color: var(--jupyter-border-light);
+}
+
+:root {
+  /* Light mode colors */
+  --jupyter-bg-light: #ffffff;
+  --jupyter-cell-bg-light: #ffffff;
+  --jupyter-code-bg-light: #f8f9fa;
+  --jupyter-text-light: #2c3e50;
+  --jupyter-border-light: #e9ecef;
+  --jupyter-output-bg-light: #f8f9fa;
+
+  /* Dark mode colors */
+  --jupyter-bg-dark: #1e1e1e;
+  --jupyter-cell-bg-dark: #252526;
+  --jupyter-code-bg-dark: #1e1e1e;
+  --jupyter-text-dark: #e0e0e0;
+  --jupyter-border-dark: #444444;
+  --jupyter-output-bg-dark: #252526;
+}
+
+/* Light mode */
+.notebook-container:not(.dark-mode) {
+    --jupyter-bg: var(--jupyter-bg-light);
+    --jupyter-cell-bg: var(--jupyter-cell-bg-light);
+    --jupyter-code-bg: var(--jupyter-code-bg-light);
+    --jupyter-text: var(--jupyter-text-light);
+    --jupyter-border: var(--jupyter-border-light);
+    --jupyter-output-bg: var(--jupyter-output-bg-light);
+}
+
+/* Dark mode */
+.notebook-container.dark-mode {
+    --jupyter-bg: var(--jupyter-bg-dark);
+    --jupyter-cell-bg: var(--jupyter-cell-bg-dark);
+    --jupyter-code-bg: var(--jupyter-code-bg-dark);
+    --jupyter-text: var(--jupyter-text-dark);
+    --jupyter-border: var(--jupyter-border-dark);
+    --jupyter-output-bg: var(--jupyter-output-bg-dark);
+}
+
+.app-container {
+    background-color: var(--jupyter-bg);
+    color: var(--jupyter-text);
+}
+
+.main-container {
+    background-color: var(--jupyter-bg);
 }

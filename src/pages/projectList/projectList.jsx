@@ -1,39 +1,107 @@
-import s from "./projectList.style";
-import * as React from 'react';
-import { Txt } from '../../Components/Txt/Txt';
-import { Button, Divider, Stack } from '@mui/material';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProjectData } from '../../ProjectData';
+import './projectList.css';
+import Sidebar from '../../component/Sidebar/Sidebar';
 
 export default function ProjectList() {
-
     const nav = useNavigate();
+    const [hoveredLine, setHoveredLine] = useState(null);
+    const [darkMode, setDarkMode] = useState(true);
+
+    // Helper function for formatting JSON values with syntax highlighting
+    const formatValue = (value, type) => {
+        switch (type) {
+            case 'property':
+                return `<span class="property">${value}</span>`;
+            case 'string':
+                return `<span class="string">"${value.replace(/"/g, '')}"</span>`;
+            case 'punctuation':
+                return `<span class="punctuation">${value}</span>`;
+            case 'bracket':
+                return `<span class="bracket">${value}</span>`;
+            case 'brace':
+                return `<span class="brace">${value}</span>`;
+            case 'boolean':
+                return `<span class="boolean">${value}</span>`;
+            default:
+                return value;
+        }
+    };
+
+    // Format the project data into a pretty JSON string with syntax highlighting
+    const formatProjectData = (project) => {
+        const skills = (project.skills || [])
+            .map(tech => formatValue(`"${tech}"`, 'string'))
+            .join(', ');
+
+        // Truncate description to 80 characters and add ellipsis if needed
+        const description = (project.description || 'No description available')
+            .slice(0, 80) + (project.description.length > 80 ? '...' : '');
+
+        return `    ${formatValue("{", "brace")}
+          ${formatValue('"title"', 'property')}${formatValue(":", "punctuation")} ${formatValue(project.title || 'Untitled', 'string')}${formatValue(",", "punctuation")}
+          ${formatValue('"description"', 'property')}${formatValue(":", "punctuation")} ${formatValue(description, 'string')}${formatValue(",", "punctuation")}
+          ${formatValue('"skills"', 'property')}${formatValue(":", "punctuation")} ${formatValue("[", "bracket")}${skills}${formatValue("]", "bracket")}
+    ${formatValue("}", "brace")}`;
+    };
+
+    const handleProjectClick = (key) => {
+        nav(`/project/${key}`);  // Updated from /projectpage/ to /project/
+    };
 
     return (
-        <div style={s.container}>
-            <Button onClick={() => nav("/")} style={s.backBtn}>{"< Home"}</Button>
-            <Stack spacing={2} sx={s.list} width={"96%"} divider={<Divider color="white" />}>
-                <Stack spacing={2} direction="row" divider={<Divider color="white" orientation="vertical" variant="middle" />}>
-                    <Txt style={s.title}>Project Title</Txt>
-                    <Txt style={s.startdate}>Start Date</Txt>
-                    <Txt style={s.enddate}>End Date</Txt>
-                    <Txt style={s.link}>Link</Txt>
-                    <Txt style={s.skills}>Skills</Txt>
-                </Stack>
-            {
-                ProjectData.map((project) => {
-                    return (
-                        <Stack spacing={2} direction="row" divider={<Divider color="white" orientation="vertical" variant="middle" flexItem />}>
-                            <Txt style={s.title} onClick={() => nav(`/project/${project.key}`)}><u>{project.title}</u></Txt>
-                            <Txt style={s.startdate}>{project.date}</Txt>
-                            <Txt style={s.enddate}>{project.lastUpdate}</Txt>
-                            <Button style={{minWidth: "10%"}} onClick={() => window.open(project.link, "_blank")}><Txt style={s.link}><u>Link</u></Txt></Button>
-                            <Txt style={s.skills}>{(project.skills.join(", ")).length > 45 ? (project.skills.join(", ")).slice(0, 45) + "..." : (project.skills.join(", "))}</Txt>
-                        </Stack>
-                );
-                })
-            }
-            </Stack>
+        <div className={`notebook-container ${darkMode ? 'dark-mode' : ''}`}>
+            <div className="sidebar">
+                <Sidebar/>
+            </div>
+
+            <div className="main-content">
+                <div className="notebook-header">
+                    <div className="notebook-title">projects.json</div>
+                    <div className="notebook-controls">
+                        <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
+                            {darkMode ? 'Light Mode' : 'Dark Mode'}
+                        </button>
+                    </div>
+                </div>
+
+                <div className="json-content">
+                    <pre className="json-line" dangerouslySetInnerHTML={{ 
+                        __html: `${formatValue("{", "brace")}`
+                    }} />
+                    <pre className="json-line" dangerouslySetInnerHTML={{ 
+                        __html: `  ${formatValue('"projects"', 'property')}${formatValue(":", "punctuation")} ${formatValue("[", "bracket")}`
+                    }} />
+                    {ProjectData.map((project, index) => (
+                        <div 
+                            key={project.id || index}
+                            className={`json-project ${hoveredLine === index ? 'hovered' : ''}`}
+                            onMouseEnter={() => setHoveredLine(index)}
+                            onMouseLeave={() => setHoveredLine(null)}
+                            onClick={() => handleProjectClick(project.key)}
+                        >
+                            <pre 
+                                className="json-line project-content"
+                                dangerouslySetInnerHTML={{ 
+                                    __html: `${formatProjectData(project)}${index < ProjectData.length - 1 ? formatValue(',', 'punctuation') : ''}`
+                                }}
+                            />
+                            {hoveredLine === index && (
+                                <button className="view-project-btn">
+                                    View Project <i className="fas fa-arrow-right"></i>
+                                </button>
+                            )}
+                        </div>
+                    ))}
+                    <pre className="json-line" dangerouslySetInnerHTML={{ 
+                        __html: `  ${formatValue("]", "bracket")}`
+                    }} />
+                    <pre className="json-line" dangerouslySetInnerHTML={{ 
+                        __html: formatValue("}", "brace")
+                    }} />
+                </div>
+            </div>
         </div>
-    )
+    );
 }

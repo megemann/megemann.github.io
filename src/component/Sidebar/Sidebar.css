@@ -1,0 +1,134 @@
+/* Sidebar styles */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--jupyter-cell-bg);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 1px solid var(--jupyter-border);
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+/* Sidebar header */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--jupyter-border);
+}
+
+.explorer-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--jupyter-text);
+    opacity: 0.7;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: var(--jupyter-text);
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+/* Folder structure */
+.folder-structure {
+    padding: 10px 0;
+}
+
+.folder-header {
+    display: flex;
+    align-items: center;
+    padding: 4px 15px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.folder-header:hover {
+    background-color: var(--jupyter-code-bg);
+}
+
+.folder-icon {
+    margin-right: 8px;
+    width: 16px;
+    color: var(--jupyter-text);
+    opacity: 0.7;
+}
+
+.folder-name {
+    font-size: 13px;
+    color: var(--jupyter-text);
+}
+
+/* File styles */
+.folder-content {
+    margin-left: 12px;
+}
+
+.file {
+    display: flex;
+    align-items: center;
+    padding: 3px 15px;
+    transition: var(--transition);
+}
+
+.file:hover {
+    background-color: var(--jupyter-code-bg);
+}
+
+.file.active {
+    background-color: var(--jupyter-code-bg);
+}
+
+.file-icon {
+    margin-right: 8px;
+    width: 16px;
+    opacity: 0.7;
+}
+
+.file-name {
+    font-size: 13px;
+    color: var(--jupyter-text);
+}
+
+/* File type specific icons */
+.python-icon {
+    color: #306998;
+}
+
+.json-icon {
+    color: #fac863;
+}
+
+.markdown-icon {
+    color: #519aba;
+}
+
+.image-icon {
+    color: #a074c4;
+}
+
+/* Light mode adjustments */
+.notebook-container:not(.dark-mode) .sidebar {
+    background-color: var(--jupyter-cell-bg-light);
+    border-right-color: var(--jupyter-border-light);
+}
+
+.notebook-container:not(.dark-mode) .file.active,
+.notebook-container:not(.dark-mode) .file:hover {
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+/* Clickable elements */
+.file-name[style*="cursor: pointer"] {
+    cursor: pointer;
+}
+
+.file-name[style*="cursor: pointer"]:hover {
+    color: var(--jupyter-blue);
+} 

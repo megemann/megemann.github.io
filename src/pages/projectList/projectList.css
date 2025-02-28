@@ -1,0 +1,250 @@
+.json-viewer-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.json-header {
+    background-color: var(--jupyter-code-bg);
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--jupyter-border);
+}
+
+.file-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--jupyter-blue);
+}
+
+.json-content {
+    padding: 20px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.json-line {
+    margin: 0;
+    padding: 4px 0;
+    color: #A6ACCD; /* Base text color - light gray */
+    text-indent: -2em;  /* Pull the first line back */
+    padding-left: 2em;  /* Add space for the pulled-back text */
+}
+
+.json-project {
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 4px;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;  /* Align to top for better text wrapping */
+    padding-right: 160px;
+}
+
+.json-project:hover {
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+.project-content {
+    padding: 16px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: 100%;
+    line-height: 1.6;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.json-key {
+    color: var(--jupyter-blue);
+}
+
+.json-string {
+    color: #22c55e; /* Green for strings */
+}
+
+.json-number {
+    color: #f59e0b; /* Amber for numbers */
+}
+
+.json-boolean {
+    color: #8b5cf6; /* Purple for booleans */
+}
+
+.json-null {
+    color: #ef4444; /* Red for null */
+}
+
+.json-bracket,
+.json-brace {
+    color: #89DDFF; /* Light blue */
+}
+
+.json-comma {
+    color: var(--jupyter-text);
+}
+
+.json-colon {
+    color: var(--jupyter-text);
+}
+
+.view-project-btn {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--jupyter-blue);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    opacity: 0;
+}
+
+.json-project:hover .view-project-btn {
+    opacity: 1;
+}
+
+.view-project-btn:hover {
+    background-color: var(--jupyter-green);
+    transform: translateY(-50%) translateX(-4px);
+}
+
+/* Light mode adjustments */
+.notebook-container:not(.dark-mode) .json-viewer-container {
+    background-color: var(--jupyter-cell-bg-light);
+}
+
+.notebook-container:not(.dark-mode) .json-header {
+    background-color: var(--jupyter-code-bg-light);
+}
+
+.notebook-container:not(.dark-mode) .project-line:hover {
+    background-color: rgba(33, 150, 243, 0.05);
+}
+
+/* Make the main content area take up remaining space */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+/* Ensure the notebook header stays at the top */
+.notebook-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--jupyter-cell-bg);
+    border-bottom: 1px solid var(--jupyter-border);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Inherit the sidebar styles from home.css */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--jupyter-cell-bg);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 1px solid var(--jupyter-border);
+    overflow-y: auto;
+}
+
+/* Scrollbar Styling */
+.json-content::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.json-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.json-content::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.5);
+    border-radius: 4px;
+}
+
+.json-content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(100, 100, 100, 0.7);
+}
+
+/* Enhanced syntax highlighting with better colors */
+.json-line {
+    color: #A6ACCD; /* Base text color - light gray */
+}
+
+/* Braces and brackets */
+.json-line .bracket,
+.json-line .brace {
+    color: #89DDFF; /* Light blue */
+}
+
+/* Property names */
+.json-line .property {
+    color: #F07178; /* Coral pink */
+}
+
+/* String values */
+.json-line .string {
+    color: #C3E88D; /* Light green */
+}
+
+/* Numbers */
+.json-line .number {
+    color: #F78C6C; /* Orange */
+}
+
+/* Commas and colons */
+.json-line .punctuation {
+    color: #89DDFF; /* Light blue */
+}
+
+/* Arrays */
+.json-line .array {
+    color: #82AAFF; /* Blue */
+}
+
+/* Add light mode styles */
+.notebook-container:not(.dark-mode) .json-content {
+    background-color: var(--jupyter-code-bg-light);
+    color: var(--jupyter-text-light);
+}
+
+.notebook-container:not(.dark-mode) .json-line {
+    color: #24292e;
+}
+
+.notebook-container:not(.dark-mode) .property {
+    color: #005cc5;
+}
+
+.notebook-container:not(.dark-mode) .string {
+    color: #22863a;
+}
+
+.notebook-container:not(.dark-mode) .json-project:hover {
+    background-color: rgba(33, 150, 243, 0.1);
+} 
