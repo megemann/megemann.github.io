@@ -1,0 +1,55 @@
+/* Import the same styles as home.css */
+@import url('../home/home.css');
+
+/* Specific styles for the data science coming soon page */
+.notebook-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  text-align: center;
+  padding: 2rem;
+}
+
+.notebook-content h1 {
+  color: var(--jupyter-blue);
+  margin-bottom: 1.5rem;
+}
+
+.notebook-content p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.notebook-content .fas {
+  font-size: 4rem;
+  color: var(--jupyter-blue);
+  margin-bottom: 2rem;
+}
+
+.notebook-content .button-container {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Button styling */
+.notebook-content .run-button {
+  background-color: var(--jupyter-blue);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.notebook-content .run-button:hover {
+  background-color: var(--jupyter-green);
+  transform: translateY(-2px);
+} 

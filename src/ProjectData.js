@@ -2,8 +2,10 @@ export const ProjectData = [
     {
         title: "HP Manual",
         key: "Hyperparameter_Optimization_Framework_Evaluation_and_Manual",
+        image: 'hpoptimization.png',
         description: "A research paper with related code that outlines the use of different Hyperparameter Optimization Frameworks such as Keras Tuner, Optuna, and Sci-Kit Learn. Additionally, it includes a brief case study to evaluate several algorithms. This project makes use of: Python, Keras/Tensorflow, Jupyter Notebook, Numpy, Matplotlib, and Hyperparameter Optimization Frameworks. I developed this manual in conjunction with my internship at Corning Incorporated through Magnit.",
         link: "https://github.com/megemann/HPOptimization",
+        readme: "https://github.com/megemann/HPOptimization",
         highlight: true,
         date: "07/2024",
         lastUpdate: "08/2024",
@@ -12,8 +14,9 @@ export const ProjectData = [
     {
         title: "Personal Portfolio",
         key: "Personal_Portfolio",
+        image: 'personalportfolio.png',
         description: "A simple personal portfolio website that displays my projects. This project makes use of React, CSS, Animations, and Github for version control.",
-        link: "https://github.com/megemann/personalportfolio",
+        link: "https://github.com/megemann/megemann.github.io",
         highlight: false,
         date: "05/2024",
         lastUpdate: "05/2024",
@@ -22,6 +25,7 @@ export const ProjectData = [
     {
         title: "The Define Hotline",
         key: "The_Define_Hotline",
+        image: 'TheDefineHotline.png',
         description: "'The Define Hot-line' is a fun vocabulary game that uses random words and definitions to test your vocabulary skills. You have a varying amount of time to pair a definition to a word, and the objective is to get the highest streak possible! There are three modes: Easy, Medium, and Hard; each mode gives you respectively 15, 10, and 5 seconds to answer. This project makes use of React Native, React Native Reanimated, as well as a few API's and a collection of other libraries.",
         link: "https://github.com/megemann/TheDefineHotline",
         highlight: true,
@@ -32,6 +36,7 @@ export const ProjectData = [
     {
         title: "Utrition",
         key: "Utrition",
+        image: 'Utrition.png',
         description: "This project was meant to provide a method for students to easily track their calories, protein, and other macro/micro nutrients. The nutrient information is all gathered from UMass's Certified nutrition program, FoodPro1. This project makes use of React, the MaterialUI library, a Java-SpringBoot backend, and MongoDB as a database.",
         link: "https://github.com/megemann/utrition",
         highlight: false,
@@ -42,11 +47,24 @@ export const ProjectData = [
     {
         title: "Minute Munch",
         key: "Minute_Munch",
+        image: 'MinuteMunch.png',
         description: "Hack Umass 2023 project constructed over the course of 48 hours. This project was a website that simulated creating orders for items in our Umass Dining Halls, and then also had a function of assigning orders to our delivery men, which you could sign up to be in the app. This project made use of: React, CSS, MongoDB, Github for version control, and Java-SpringBoot.",
         link: "https://github.com/Amandinh0/MinuteMunch",
         highlight: false,
         date: "10/2023",
         lastUpdate: "N/A",
         skills: ["React", "MongoDB", "Java-SpringBoot", "CSS"],
+    },
+    {
+        title: "RMPStats",
+        key: "RMPStats",
+        image: 'RMPStats.png',
+        description: "A comprehensive dashboard that displays statistics and analysis based on data collected from web scraping Rate My Professor reviews. The project involved data cleaning, compiling data into CSV files, and performing extensive data analysis using Pandas and other statistical tools. The frontend was built using Next.js to display various graphs and statistics. Additionally, the project utilized the Hugging Face API for advanced data analysis.",
+        link: "https://github.com/megemann/RMPStats",
+        highlight: true,
+        date: "01/2025",
+        lastUpdate: "03/2025",
+        skills: ["Web Scraping", "Data Cleaning", "Pandas", "Data Analysis", "Next.js", "Hugging Face API"],
     }
+    
 ]
