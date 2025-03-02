@@ -16,3 +16,41 @@ code {
   font-family: "Flat";
   src: local("NovaFlatRegular"), url("./fonts/NovaFlat-Regular.ttf") format("truetype");
 }
+
+/* Add these media queries to your global CSS */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 0px;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    .notebook-header {
+        padding: 10px !important;
+    }
+    
+    .notebook-title {
+        font-size: 16px !important;
+    }
+    
+    .notebook-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .theme-toggle {
+        padding: 4px 8px !important;
+        font-size: 12px !important;
+    }
+    
+    /* Ensure content is properly padded on mobile */
+    .python-content, 
+    .markdown-content,
+    .notebook-content {
+        padding: 10px !important;
+    }
+}

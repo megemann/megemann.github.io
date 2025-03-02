@@ -28,23 +28,17 @@ export default function Home() {
     });
     const [isTyping, setIsTyping] = useState(false);
     const [typingText, setTypingText] = useState('');
-    const [darkMode, setDarkMode] = useState(true);
-    const [expandedFolders, setExpandedFolders] = useState({
-        portfolio: true,
-        data: true,
-        assets: false
-    });
     const [isPaused, setIsPaused] = useState(false);
-    const { darkMode: contextDarkMode } = useContext(ThemeContext);
+    const { darkMode, setDarkMode, isMobile } = useContext(ThemeContext);
 
     useEffect(() => {
         // Apply dark mode to body
-        if (contextDarkMode) {
+        if (darkMode) {
             document.body.classList.add('dark-mode');
         } else {
             document.body.classList.remove('dark-mode');
         }
-    }, [contextDarkMode]);
+    }, [darkMode]);
 
     const runCell = (cellId) => {
         if (isPaused) return;
@@ -109,31 +103,26 @@ export default function Home() {
         }
     };
 
-    const toggleFolder = (folder) => {
-        setExpandedFolders(prev => ({
-            ...prev,
-            [folder]: !prev[folder]
-        }));
-    };
-
     function openInNewTab(url) {
         window.open(url, '_blank').focus();
     }
 
     return (
-        <div className={`notebook-container ${contextDarkMode ? 'dark-mode' : ''} ${isPaused ? 'paused' : ''}`}>
-            {/* Sidebar */}
-            <div className="sidebar">
-                <Sidebar />
-            </div>
+        <div className={`notebook-container ${darkMode ? 'dark-mode' : ''} ${isPaused ? 'paused' : ''}`}>
+            {/* Sidebar - only render if not on mobile */}
+            {!isMobile && (
+                <div className="sidebar">
+                    <Sidebar />
+                </div>
+            )}
             
             {/* Main Content */}
-            <div className="main-content">
+            <div className="main-content" style={isMobile ? { marginLeft: 0 } : {}}>
                 <div className="notebook-header">
                     <div className="notebook-title">Portfolio.ipynb</div>
                     <div className="notebook-controls">
                         <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
-                            {contextDarkMode ? 'Light Mode' : 'Dark Mode'}
+                            {darkMode ? 'Light Mode' : 'Dark Mode'}
                         </button>
                     </div>
                 </div>
@@ -401,7 +390,7 @@ export default function Home() {
                                             <div className="experience-grid">
                                                 <div className="experience-item">
                                                     <div className="experience-header">
-                                                        <h4>Intern, Corning Incorporated</h4>
+                                                        <h4>Intern, Corning Incorporated (Magnit)</h4>
                                                         <span className="experience-period">Summer 2024</span>
                                                     </div>
                                                     <p className="experience-brief">Developed hyperparameter optimization guidelines and data preprocessing pipelines for computer vision applications</p>
@@ -494,11 +483,12 @@ export default function Home() {
                                                 </div>
                                                 <div className="skill-tags">
                                                     <span className="skill-tag advanced">Python</span>
-                                                    <span className="skill-tag advanced">Java</span>
-                                                    <span className="skill-tag intermediate">JavaScript/TypeScript</span>
+                                                    <span className="skill-tag advanced">JavaScript/TypeScript</span>
+                                                    <span className="skill-tag intermediate">Java</span>
                                                     <span className="skill-tag intermediate">SQL</span>
                                                     <span className="skill-tag intermediate">C</span>
-                                                    <span className="skill-tag basic">HTML/CSS</span>
+                                                    <span className="skill-tag intermediate">HTML/CSS</span>
+                                                    <span className="skill-tag basic">C++</span>
                                                 </div>
                                             </div>
                                             
@@ -515,6 +505,7 @@ export default function Home() {
                                                     <span className="skill-tag intermediate">React.js</span>
                                                     <span className="skill-tag intermediate">Node.js</span>
                                                     <span className="skill-tag intermediate">Matplotlib</span>
+                                                    <span className="skill-tag basic">OpenCV</span>
                                                 </div>
                                             </div>
                                             
@@ -529,9 +520,6 @@ export default function Home() {
                                                     <span className="skill-tag intermediate">VS Code</span>
                                                     <span className="skill-tag intermediate">Kaggle</span>
                                                     <span className="skill-tag basic">AWS</span>
-                                                    
-                                                    
-                                                    
                                                 </div>
                                             </div>
                                             

@@ -90,3 +90,33 @@
 .main-container {
     background-color: var(--jupyter-bg);
 }
+
+/* Update the notebook container to handle the sidebar properly */
+.notebook-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Style the main content area to work with the sidebar */
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  overflow-x: hidden;
+}
+
+/* Fix the notebook header to span the full width of the content area */
+.notebook-header {
+  width: 100%; /* Full width of the content area */
+  position: fixed;
+  z-index: 100;
+  background-color: var(--jupyter-bg);
+  left: 250px; /* Align with the sidebar width */
+  right: 0;
+}
+
+/* Adjust the notebook content padding */
+.notebook-content {
+  padding-top: 60px;
+  width: 100%;
+}

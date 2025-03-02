@@ -126,84 +126,213 @@
 }
 
 .code-section {
-    position: relative;
     background-color: var(--jupyter-code-bg);
+    border-radius: 6px;
     border: 1px solid var(--jupyter-border);
-    border-radius: 4px;
-    padding: 16px;
     margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 12px 0;
 }
 
 .code-area.python {
-    color: #A6ACCD;
-    margin: 0;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+    counter-reset: line;
+    padding-left: 3.5em;
+    position: relative;
+    font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
-/* Python syntax highlighting */
-.code-area.python .keyword {
-    color: #89DDFF;
+.code-area.python::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3em;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-right: 1px solid var(--jupyter-border);
 }
 
-.code-area.python .string {
-    color: #C3E88D;
+.code-area.python > span {
+    display: block;
+    position: relative;
 }
 
-.code-area.python .comment {
-    color: #676E95;
+.code-area.python > span:before {
+    counter-increment: line;
+    content: counter(line);
+    position: absolute;
+    left: -3em;
+    width: 2.5em;
+    text-align: right;
+    color: #6272a4;
+    font-size: 0.9em;
+    padding-right: 0.5em;
 }
 
-.code-area.python .function {
-    color: #82AAFF;
+.python-keyword {
+    color: #ff79c6;
+    font-weight: 500;
+}
+
+.python-string {
+    color: #f1fa8c;
+}
+
+.python-comment {
+    color: #6272a4;
+    font-style: italic;
+}
+
+.python-function {
+    color: #50fa7b;
+}
+
+.python-class {
+    color: #8be9fd;
+}
+
+.python-number {
+    color: #bd93f9;
+}
+
+.python-operator {
+    color: #ff79c6;
+}
+
+.python-variable {
+    color: #f8f8f2;
 }
 
 .output-section {
-    background-color: var(--jupyter-output-bg);
+    background-color: var(--jupyter-cell-bg);
     border: 1px solid var(--jupyter-border);
-    border-radius: 4px;
+    border-radius: 6px;
+    overflow: hidden;
     margin-top: 20px;
-    width: 100%;
-    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .output-header {
+    background-color: rgba(0, 0, 0, 0.1);
     padding: 8px 16px;
-    border-bottom: 1px solid var(--jupyter-border);
+    font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
+    font-size: 14px;
     font-weight: 500;
-    color: #F07178;
+    border-bottom: 1px solid var(--jupyter-border);
 }
 
 .output-content {
     padding: 16px;
-    margin: 0;
+    font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
+    font-size: 14px;
+    line-height: 1.6;
     white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    color: var(--jupyter-text);
-    position: relative;
-    max-width: 100%;
-    line-height: 1.5;
 }
 
-.output-content pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    max-width: 100%;
+.run-button {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    background-color: #44475a;
+    color: #f8f8f2;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.run-button::before {
+    content: "▶";
+    font-size: 10px;
+}
+
+.run-button:hover {
+    background-color: #6272a4;
+}
+
+.run-button.executed {
+    background-color: #50fa7b;
+    color: #282a36;
+}
+
+.run-button.executed::before {
+    content: "✓";
+}
+
+.notebook-container:not(.dark-mode) .code-area.python {
+    color: #24292e;
+}
+
+.notebook-container:not(.dark-mode) .python-keyword {
+    color: #d73a49;
+}
+
+.notebook-container:not(.dark-mode) .python-string {
+    color: #032f62;
+}
+
+.notebook-container:not(.dark-mode) .python-comment {
+    color: #6a737d;
+}
+
+.notebook-container:not(.dark-mode) .python-function {
+    color: #6f42c1;
+}
+
+.notebook-container:not(.dark-mode) .python-class {
+    color: #22863a;
+}
+
+.notebook-container:not(.dark-mode) .python-number {
+    color: #005cc5;
+}
+
+.notebook-container:not(.dark-mode) .python-operator {
+    color: #d73a49;
+}
+
+.notebook-container:not(.dark-mode) .python-variable {
+    color: #24292e;
+}
+
+.notebook-container:not(.dark-mode) .run-button {
+    background-color: #e1e4e8;
+    color: #24292e;
+}
+
+.notebook-container:not(.dark-mode) .run-button:hover {
+    background-color: #d1d5da;
+}
+
+.notebook-container:not(.dark-mode) .run-button.executed {
+    background-color: #22863a;
+    color: white;
 }
 
 /* Notebook container and header styles from previous CSS */
 .notebook-container {
     display: flex;
     height: 100vh;
-    background-color: var(--jupyter-bg);
+    overflow: hidden;
 }
 
 .main-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     margin-left: var(--sidebar-width);
-    overflow-y: auto;
     padding-right: 20px;
 }
 
@@ -345,4 +474,575 @@
 .notebook-container:not(.dark-mode) .notebook-header {
     background-color: var(--jupyter-cell-bg-light);
     border-color: var(--jupyter-border-light);
+}
+
+/* Light mode improvements */
+.notebook-container:not(.dark-mode) .code-area.python > span:before {
+    color: #8a919a;
+}
+
+.notebook-container:not(.dark-mode) .code-area.python::before {
+    background-color: #f1f1f1;
+}
+
+/* Prism.js line numbers */
+.line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+  white-space: pre;
+  font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  overflow: auto;
+}
+
+.line-numbers > code {
+  position: relative;
+  display: block;
+  padding: 0 1em;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: 0;
+  width: 3em; /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
+  border-right: 1px solid #999;
+  user-select: none;
+}
+
+.line-numbers-rows > span {
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #999;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
+/* Light mode adjustments */
+.notebook-container:not(.dark-mode) pre[class*="language-"] {
+  background-color: #f5f7fa;
+  color: #24292e;
+}
+
+.notebook-container:not(.dark-mode) .token.comment,
+.notebook-container:not(.dark-mode) .token.prolog,
+.notebook-container:not(.dark-mode) .token.doctype,
+.notebook-container:not(.dark-mode) .token.cdata {
+  color: #6a737d;
+}
+
+.notebook-container:not(.dark-mode) .token.punctuation {
+  color: #24292e;
+}
+
+.notebook-container:not(.dark-mode) .token.property,
+.notebook-container:not(.dark-mode) .token.tag,
+.notebook-container:not(.dark-mode) .token.boolean,
+.notebook-container:not(.dark-mode) .token.number,
+.notebook-container:not(.dark-mode) .token.constant,
+.notebook-container:not(.dark-mode) .token.symbol,
+.notebook-container:not(.dark-mode) .token.deleted {
+  color: #005cc5;
+}
+
+.notebook-container:not(.dark-mode) .token.selector,
+.notebook-container:not(.dark-mode) .token.attr-name,
+.notebook-container:not(.dark-mode) .token.string,
+.notebook-container:not(.dark-mode) .token.char,
+.notebook-container:not(.dark-mode) .token.builtin,
+.notebook-container:not(.dark-mode) .token.inserted {
+  color: #22863a;
+}
+
+.notebook-container:not(.dark-mode) .token.operator,
+.notebook-container:not(.dark-mode) .token.entity,
+.notebook-container:not(.dark-mode) .token.url,
+.notebook-container:not(.dark-mode) .language-css .token.string,
+.notebook-container:not(.dark-mode) .style .token.string {
+  color: #d73a49;
+}
+
+.notebook-container:not(.dark-mode) .token.atrule,
+.notebook-container:not(.dark-mode) .token.attr-value,
+.notebook-container:not(.dark-mode) .token.keyword {
+  color: #d73a49;
+}
+
+.notebook-container:not(.dark-mode) .token.function,
+.notebook-container:not(.dark-mode) .token.class-name {
+  color: #6f42c1;
+}
+
+/* Custom Python syntax highlighting */
+.python-code {
+  font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: #282a36;
+  color: #f8f8f2;
+  padding: 16px 0;
+  margin: 0;
+  overflow-x: auto;
+  tab-size: 4;
+}
+
+.code-line {
+  position: relative;
+  padding-left: 60px;
+  min-height: 24px;
+}
+
+.line-number {
+  position: absolute;
+  left: 0;
+  width: 40px;
+  padding-right: 16px;
+  color: #6272a4;
+  font-size: 12px;
+  text-align: right;
+  user-select: none;
+}
+
+.py-keyword {
+  color: #ff79c6;
+  font-weight: 500;
+}
+
+.py-string {
+  color: #f1fa8c;
+}
+
+.py-comment {
+  color: #6272a4;
+  font-style: italic;
+}
+
+.py-function {
+  color: #50fa7b;
+}
+
+.py-number {
+  color: #bd93f9;
+}
+
+/* Light mode styles */
+.notebook-container:not(.dark-mode) .python-code {
+  background-color: #f5f7fa;
+  color: #24292e;
+}
+
+.notebook-container:not(.dark-mode) .line-number {
+  color: #8a919a;
+}
+
+.notebook-container:not(.dark-mode) .py-keyword {
+  color: #d73a49;
+}
+
+.notebook-container:not(.dark-mode) .py-string {
+  color: #032f62;
+}
+
+.notebook-container:not(.dark-mode) .py-comment {
+  color: #6a737d;
+}
+
+.notebook-container:not(.dark-mode) .py-function {
+  color: #6f42c1;
+}
+
+.notebook-container:not(.dark-mode) .py-number {
+  color: #005cc5;
+}
+
+/* Rich text formatting styles */
+.rich-blue {
+  color: #61afef;
+}
+
+.rich-cyan {
+  color: #56b6c2;
+}
+
+.rich-green {
+  color: #98c379;
+}
+
+.rich-red {
+  color: #e06c75;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.output-content {
+  padding: 16px;
+  font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* GitHub-style README container */
+.readme-container {
+  margin-top: 16px;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  background-color: #ffffff;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #24292e;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.dark-mode .readme-container {
+  background-color: #0d1117;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+.readme-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.dark-mode .readme-header {
+  background-color: #161b22;
+  border-bottom-color: #30363d;
+}
+
+.readme-title-section {
+  display: flex;
+  align-items: center;
+}
+
+.readme-controls {
+  display: flex;
+  align-items: center;
+}
+
+.view-toggle {
+  background-color: #f6f8fa;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  color: #24292e;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 8px;
+  transition: background-color 0.2s;
+}
+
+.view-toggle:hover {
+  background-color: #e1e4e8;
+}
+
+.view-toggle.active {
+  background-color: #0366d6;
+  border-color: #0366d6;
+  color: white;
+}
+
+.dark-mode .view-toggle {
+  background-color: #161b22;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+.dark-mode .view-toggle:hover {
+  background-color: #30363d;
+}
+
+.dark-mode .view-toggle.active {
+  background-color: #1f6feb;
+  border-color: #1f6feb;
+  color: white;
+}
+
+/* Raw markdown display */
+.raw-markdown {
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  color: #24292e;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 85%;
+  line-height: 1.45;
+  margin: 0;
+  overflow: auto;
+  padding: 16px;
+  white-space: pre-wrap;
+}
+
+.dark-mode .raw-markdown {
+  background-color: #161b22;
+  color: #c9d1d9;
+}
+
+.readme-content {
+  padding: 16px;
+}
+
+.readme-icon {
+  margin-right: 8px;
+  color: #586069;
+}
+
+.dark-mode .readme-icon {
+  color: #8b949e;
+}
+
+.readme-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #24292e;
+}
+
+.dark-mode .readme-title {
+  color: #c9d1d9;
+}
+
+/* GitHub-style Markdown rendering */
+.markdown-body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  border-bottom: 1px solid #eaecef;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #eaecef;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.markdown-body h3 {
+  font-size: 1.25em;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 1em;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.markdown-body p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.markdown-body ul, 
+.markdown-body ol {
+  padding-left: 2em;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+  margin: 0 0 16px 0;
+}
+
+.dark-mode .markdown-body pre {
+  background-color: #161b22;
+}
+
+.dark-mode .markdown-body code {
+  background-color: rgba(110,118,129,0.4);
+}
+
+.dark-mode .markdown-body blockquote {
+  color: #8b949e;
+  border-left-color: #30363d;
+}
+
+/* Fix scrolling behavior */
+.notebook-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.python-content-wrapper {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.python-content {
+  height: 100%;
+  overflow-y: auto;
+  padding: 0 20px 20px;
+}
+
+.code-section {
+  position: relative;
+  margin-bottom: 20px;
+  border: 1px solid var(--jupyter-border);
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: var(--jupyter-code-bg);
+}
+
+.output-section {
+  border: 1px solid var(--jupyter-border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background-color: var(--jupyter-output-bg);
+}
+
+/* Make sure the sidebar doesn't scroll independently */
+.sidebar {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Related projects section */
+.related-projects {
+  padding: 20px;
+  border-top: 1px solid var(--jupyter-border);
+}
+
+/* Custom scrollbar styling */
+.python-content::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.python-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.python-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.python-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+  background-clip: content-box;
+}
+
+.dark-mode .python-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .python-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  background-clip: content-box;
+}
+
+.dark-mode .python-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+  background-clip: content-box;
+}
+
+/* Add padding at the top of the content */
+.python-content {
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px 20px 20px;
+}
+
+/* Add spacing between header and code section */
+.notebook-header {
+  margin-bottom: 16px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--jupyter-border);
+  background-color: var(--jupyter-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Mobile run button positioning - specific to project page */
+@media (max-width: 920px) {
+    /* Target only the project page run button */
+    .python-content-wrapper .run-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        font-size: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .python-content-wrapper .run-button.executed {
+        background-color: var(--jupyter-green);
+    }
+    
+    /* Add some bottom padding to ensure content isn't hidden behind the button */
+    .python-content {
+        padding-bottom: 100px;
+    }
 } 

@@ -62,8 +62,8 @@ export const ProjectData = [
         description: "A comprehensive dashboard that displays statistics and analysis based on data collected from web scraping Rate My Professor reviews. The project involved data cleaning, compiling data into CSV files, and performing extensive data analysis using Pandas and other statistical tools. The frontend was built using Next.js to display various graphs and statistics. Additionally, the project utilized the Hugging Face API for advanced data analysis.",
         link: "https://github.com/megemann/RMPStats",
         highlight: true,
-        date: "09/2024",
-        lastUpdate: "10/2024",
+        date: "01/2025",
+        lastUpdate: "03/2025",
         skills: ["Web Scraping", "Data Cleaning", "Pandas", "Data Analysis", "Next.js", "Hugging Face API"],
     }
     

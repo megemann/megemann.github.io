@@ -1,6 +1,6 @@
 /* Sidebar styles */
 .sidebar {
-    width: var(--sidebar-width);
+    width: 250px;
     background-color: var(--jupyter-cell-bg);
     height: 100vh;
     position: fixed;
@@ -9,6 +9,7 @@
     border-right: 1px solid var(--jupyter-border);
     overflow-y: auto;
     z-index: 1000;
+    display: block !important; /* Force display */
 }
 
 /* Sidebar header */
@@ -131,4 +132,169 @@
 
 .file-name[style*="cursor: pointer"]:hover {
     color: var(--jupyter-blue);
+}
+
+/* Add these new icon styles */
+.js-icon {
+    color: #f7df1e;
+}
+
+.css-icon {
+    color: #2965f1;
+}
+
+.react-icon {
+    color: #61dafb;
+}
+
+.database-icon {
+    color: #f29111;
+}
+
+.test-icon {
+    color: #9c27b0;
+}
+
+.config-icon {
+    color: #607d8b;
+}
+
+/* Make the folder structure more realistic */
+.folder .folder {
+    margin-left: 0;
+}
+
+.folder .folder .folder-header {
+    padding-left: 25px;
+}
+
+.folder .folder .folder-content {
+    margin-left: 10px;
+}
+
+/* Add a subtle hover effect for files */
+.file:hover .file-icon {
+    opacity: 1;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+/* Make active files more prominent */
+.file.active {
+    background-color: var(--jupyter-code-bg);
+    border-left: 2px solid var(--jupyter-blue);
+}
+
+.file.active .file-icon {
+    opacity: 1;
+}
+
+.file.active .file-name {
+    font-weight: 500;
+}
+
+/* Add these new icon styles */
+.jupyter-icon {
+    color: #F37626;
+}
+
+.csv-icon {
+    color: #217346;
+}
+
+.model-icon {
+    color: #9C27B0;
+}
+
+.shell-icon {
+    color: #607D8B;
+}
+
+/* Chart icons */
+.fa-chart-bar, .fa-chart-line, .fa-chart-pie {
+    color: #FF9800;
+}
+
+/* Brain icon for ML models */
+.fa-brain {
+    color: #E91E63;
+}
+
+/* Highlighted file styling */
+.highlighted-file {
+    position: relative;
+    background-color: rgba(33, 150, 243, 0.08);
+    border-left: 2px solid var(--jupyter-blue);
+    animation: pulse 2s infinite;
+}
+
+.highlighted-file .file-icon {
+    opacity: 1;
+    color: var(--jupyter-blue);
+}
+
+.highlighted-file:hover {
+    background-color: rgba(33, 150, 243, 0.15);
+}
+
+.dark-mode .highlighted-file {
+    background-color: rgba(33, 150, 243, 0.15);
+}
+
+.dark-mode .highlighted-file:hover {
+    background-color: rgba(33, 150, 243, 0.25);
+}
+
+/* Badge to indicate clickable file */
+.file-badge {
+    position: absolute;
+    right: 10px;
+    font-size: 10px;
+    background-color: var(--jupyter-blue);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.file:hover .file-badge {
+    opacity: 1;
+}
+
+/* Subtle pulse animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 5px rgba(33, 150, 243, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
+    }
+}
+
+/* Clickable file styling */
+.clickable-file {
+    position: relative;
+    border-left: 2px solid var(--jupyter-blue);
+}
+
+.clickable-file .file-icon {
+    opacity: 1;
+    color: var(--jupyter-blue);
+}
+
+.clickable-file:hover {
+    background-color: rgba(33, 150, 243, 0.15);
+}
+
+.dark-mode .clickable-file:hover {
+    background-color: rgba(33, 150, 243, 0.25);
+}
+
+/* Remove the pulse animation and badge */
+.file-badge {
+    display: none;
 } 

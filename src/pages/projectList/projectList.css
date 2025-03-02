@@ -21,22 +21,20 @@
 }
 
 .json-content {
-    padding: 20px;
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
     font-size: 14px;
     line-height: 1.6;
-    overflow-x: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    max-width: 100%;
+    padding: 20px;
+    background-color: var(--jupyter-code-bg);
+    color: var(--jupyter-text);
+    overflow-y: auto;
+    height: calc(100vh - 60px);
 }
 
 .json-line {
     margin: 0;
     padding: 4px 0;
-    color: #A6ACCD; /* Base text color - light gray */
-    text-indent: -2em;  /* Pull the first line back */
-    padding-left: 2em;  /* Add space for the pulled-back text */
+    white-space: pre-wrap;
 }
 
 .json-project {
@@ -44,86 +42,230 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
     border-radius: 4px;
-    margin: 8px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;  /* Align to top for better text wrapping */
-    padding-right: 160px;
+    margin: 4px 0;
 }
 
 .json-project:hover {
     background-color: rgba(33, 150, 243, 0.1);
 }
 
+.dark-mode .json-project:hover {
+    background-color: rgba(33, 150, 243, 0.15);
+}
+
+.json-project.hovered {
+    background-color: rgba(33, 150, 243, 0.15);
+}
+
+.dark-mode .json-project.hovered {
+    background-color: rgba(33, 150, 243, 0.2);
+}
+
 .project-content {
-    padding: 16px;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    width: 100%;
-    line-height: 1.6;
-    font-family: 'Source Code Pro', monospace;
+    padding: 8px 16px;
+    border-radius: 4px;
 }
 
-.json-key {
-    color: var(--jupyter-blue);
-}
-
-.json-string {
-    color: #22c55e; /* Green for strings */
-}
-
-.json-number {
-    color: #f59e0b; /* Amber for numbers */
-}
-
-.json-boolean {
-    color: #8b5cf6; /* Purple for booleans */
-}
-
-.json-null {
-    color: #ef4444; /* Red for null */
-}
-
-.json-bracket,
-.json-brace {
-    color: #89DDFF; /* Light blue */
-}
-
-.json-comma {
-    color: var(--jupyter-text);
-}
-
-.json-colon {
-    color: var(--jupyter-text);
-}
-
-.view-project-btn {
+.project-actions {
     position: absolute;
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: var(--jupyter-blue);
+    display: flex;
+    gap: 8px;
+}
+
+.view-project-btn, .source-link {
+    background-color: #0366d6;
     color: white;
     border: none;
-    padding: 8px 16px;
     border-radius: 4px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    padding: 6px 12px;
+    font-size: 12px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
     display: flex;
     align-items: center;
+    gap: 6px;
+}
+
+.view-project-btn:hover, .source-link:hover {
+    background-color: #0056b3;
+}
+
+.source-link {
+    background-color: #28a745;
+}
+
+.source-link:hover {
+    background-color: #218838;
+}
+
+/* Enhanced syntax highlighting with better colors */
+.property {
+    color: #F07178; /* Coral pink */
+}
+
+.string {
+    color: #C3E88D; /* Light green */
+}
+
+.number {
+    color: #F78C6C; /* Orange */
+}
+
+.boolean {
+    color: #FF9D00; /* Amber */
+}
+
+.punctuation, .bracket, .brace {
+    color: #89DDFF; /* Light blue */
+}
+
+/* Light mode syntax highlighting */
+.notebook-container:not(.dark-mode) .property {
+    color: #e36209;
+}
+
+.notebook-container:not(.dark-mode) .string {
+    color: #032f62;
+}
+
+.notebook-container:not(.dark-mode) .number {
+    color: #005cc5;
+}
+
+.notebook-container:not(.dark-mode) .boolean {
+    color: #005cc5;
+}
+
+.notebook-container:not(.dark-mode) .punctuation,
+.notebook-container:not(.dark-mode) .bracket,
+.notebook-container:not(.dark-mode) .brace {
+    color: #24292e;
+}
+
+/* Filter controls */
+.filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: 16px;
+}
+
+.filter-label {
+    font-size: 14px;
+    color: var(--jupyter-text);
+}
+
+.category-filter {
+    display: flex;
     gap: 8px;
+    flex-wrap: wrap;
+}
+
+.category-button {
+    background-color: transparent;
+    border: 1px solid var(--jupyter-border);
+    border-radius: 16px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
     transition: all 0.2s ease;
-    opacity: 0;
+    color: var(--jupyter-text);
 }
 
-.json-project:hover .view-project-btn {
-    opacity: 1;
+.category-button:hover {
+    background-color: rgba(33, 150, 243, 0.1);
 }
 
-.view-project-btn:hover {
-    background-color: var(--jupyter-green);
-    transform: translateY(-50%) translateX(-4px);
+.category-button.active {
+    background-color: #0366d6;
+    color: white;
+    border-color: #0366d6;
+}
+
+.dark-mode .category-button.active {
+    background-color: #1f6feb;
+    border-color: #1f6feb;
+}
+
+.notebook-controls {
+    display: flex;
+    align-items: center;
+}
+
+/* Line numbers */
+.json-content {
+    counter-reset: line;
+    padding-left: 3.5em;
+    position: relative;
+}
+
+.json-content::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3em;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-right: 1px solid var(--jupyter-border);
+}
+
+.json-line {
+    position: relative;
+}
+
+.json-line::before {
+    counter-increment: line;
+    content: counter(line);
+    position: absolute;
+    left: -3em;
+    width: 2.5em;
+    text-align: right;
+    color: #6272a4;
+    font-size: 0.9em;
+    padding-right: 0.5em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .notebook-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    .notebook-controls {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .filter-controls {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .category-filter {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+    
+    .project-actions {
+        position: static;
+        transform: none;
+        margin-top: 8px;
+        padding: 0 16px 8px;
+        justify-content: flex-end;
+    }
 }
 
 /* Light mode adjustments */
@@ -191,60 +333,249 @@
     background-color: rgba(100, 100, 100, 0.7);
 }
 
-/* Enhanced syntax highlighting with better colors */
-.json-line {
-    color: #A6ACCD; /* Base text color - light gray */
+.project-list-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    color: #333;
 }
 
-/* Braces and brackets */
-.json-line .bracket,
-.json-line .brace {
-    color: #89DDFF; /* Light blue */
+.dark-mode.project-list-container {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
 }
 
-/* Property names */
-.json-line .property {
-    color: #F07178; /* Coral pink */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
 }
 
-/* String values */
-.json-line .string {
-    color: #C3E88D; /* Light green */
+.project-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-/* Numbers */
-.json-line .number {
-    color: #F78C6C; /* Orange */
+.dark-mode .project-list-header {
+    border-bottom-color: #333;
 }
 
-/* Commas and colons */
-.json-line .punctuation {
-    color: #89DDFF; /* Light blue */
+.project-list-header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 700;
+    color: #333;
 }
 
-/* Arrays */
-.json-line .array {
-    color: #82AAFF; /* Blue */
+.dark-mode .project-list-header h1 {
+    color: #f0f0f0;
 }
 
-/* Add light mode styles */
-.notebook-container:not(.dark-mode) .json-content {
-    background-color: var(--jupyter-code-bg-light);
-    color: var(--jupyter-text-light);
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-.notebook-container:not(.dark-mode) .json-line {
-    color: #24292e;
+.theme-toggle {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.notebook-container:not(.dark-mode) .property {
-    color: #005cc5;
+.theme-toggle:hover {
+    background-color: #f0f0f0;
 }
 
-.notebook-container:not(.dark-mode) .string {
-    color: #22863a;
+.dark-mode .theme-toggle {
+    border-color: #444;
+    color: #ddd;
 }
 
-.notebook-container:not(.dark-mode) .json-project:hover {
-    background-color: rgba(33, 150, 243, 0.1);
+.dark-mode .theme-toggle:hover {
+    background-color: #2d2d2d;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode .project-card {
+    background-color: #2d2d2d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.project-image-container {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.project-info {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.dark-mode .project-title {
+    color: #f0f0f0;
+}
+
+.project-description {
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.dark-mode .project-description {
+    color: #bbb;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.dark-mode .project-meta {
+    border-top-color: #444;
+}
+
+.project-date {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.dark-mode .project-date {
+    color: #999;
+}
+
+.project-link {
+    color: #0366d6;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.project-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.dark-mode .project-link {
+    color: #58a6ff;
+}
+
+.dark-mode .project-link:hover {
+    color: #79b8ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .project-list-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .controls {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .category-filter {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
 } 
