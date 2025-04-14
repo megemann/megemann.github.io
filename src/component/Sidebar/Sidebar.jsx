@@ -28,6 +28,8 @@ export default function Sidebar() {
     const isProjectsPage = location.pathname === '/projects';
     // Check if we're on the resume page
     const isResumePage = location.pathname === '/resume';
+    // Check if we're on the blogs page
+    const isBlogsPage = location.pathname === '/blogs';
 
     // If on mobile, don't render the sidebar
     if (isMobile) {
@@ -99,6 +101,17 @@ export default function Sidebar() {
                                 >
                                     projects.json
                                     {!isProjectsPage && <span className="file-badge">Click to view projects</span>}
+                                </span>
+                            </div>
+                            <div className={`file ${isBlogsPage ? 'active' : ''} clickable-file`}>
+                                <i className="file-icon zip-icon fas fa-file-archive"></i>
+                                <span 
+                                    className="file-name"
+                                    onClick={() => nav('/blogs')}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    blogs.zip
+                                    {!isBlogsPage && <span className="file-badge">Click to view blogs</span>}
                                 </span>
                             </div>
                             <div className="file">

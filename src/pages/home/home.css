@@ -1012,6 +1012,7 @@ body {
   .cell-input,
   .cell-output {
     padding-left: 10px;
+    padding-right: 10px;
   }
   
   /* Make the cells take up less vertical space */
@@ -1041,6 +1042,68 @@ body {
   
   /* Make the main content area use full width */
   .main-content {
+    padding: 10px;
+  }
+  
+  /* Make all cells scrollable on mobile */
+  .cell-output {
+    max-height: 70vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  /* Center content better on mobile */
+  .output-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Make the second cell's content more zoomed out */
+  #about .output-result {
+    transform: scale(0.85);
+    transform-origin: top center;
+    padding: 0;
+    margin-bottom: -30px;
+  }
+  
+  /* Adjust education and experience sections for mobile */
+  .education-item, 
+  .experience-item {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Adjust skill bars for mobile */
+  .skill-bars {
+    width: 100%;
+  }
+  
+  /* Make images in cells more zoomed out */
+  .cell-output img {
+    max-width: 90%;
+    transform: scale(0.9);
+    margin: 0 auto;
+  }
+  
+  /* Ensure tables are scrollable horizontally */
+  .cell-output table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Adjust project cards for better mobile viewing */
+  .project-card {
+    width: 100%;
+    margin: 0 auto 15px;
+  }
+  
+  /* Adjust contact info for mobile */
+  .contact-info {
+    width: 100%;
     padding: 10px;
   }
   
@@ -1456,8 +1519,19 @@ body {
   transition: var(--transition);
 }
 
+/* Make the text dark in light mode for better visibility */
+.notebook-container:not(.dark-mode) .theme-toggle {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
 .theme-toggle:hover {
   background-color: var(--jupyter-green);
+}
+
+/* Specific hover style for light mode */
+.notebook-container:not(.dark-mode) .theme-toggle:hover {
+  background-color: #3a3a3a;
 }
 
 /* Notebook Content */
@@ -2564,6 +2638,7 @@ body {
     .cell-input,
     .cell-output {
         padding-left: 10px;
+        padding-right: 10px;
     }
     
     /* Make the cells take up less vertical space */
@@ -2595,4 +2670,274 @@ body {
     .main-content {
         padding: 10px;
     }
+    
+    /* Make all cells scrollable on mobile */
+    .cell-output {
+        max-height: 70vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    
+    /* Center content better on mobile */
+    .output-result {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    /* Make the second cell's content more zoomed out */
+    #about .output-result {
+        transform: scale(0.85);
+        transform-origin: top center;
+        padding: 0;
+        margin-bottom: -30px;
+    }
+    
+    /* Adjust education and experience sections for mobile */
+    .education-item, 
+    .experience-item {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Adjust skill bars for mobile */
+    .skill-bars {
+        width: 100%;
+    }
+    
+    /* Make images in cells more zoomed out */
+    .cell-output img {
+        max-width: 90%;
+        transform: scale(0.9);
+        margin: 0 auto;
+    }
+    
+    /* Ensure tables are scrollable horizontally */
+    .cell-output table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Adjust project cards for better mobile viewing */
+    .project-card {
+        width: 100%;
+        margin: 0 auto 15px;
+    }
+    
+    /* Adjust contact info for mobile */
+    .contact-info {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    /* Hide non-essential toolbar buttons on mobile */
+    .toolbar-group:not(:first-child) {
+        display: none;
+    }
+    
+    /* Only show Run All and Restart buttons */
+    .toolbar-group:first-child button:not(.run-all-button):not(.restart-button) {
+        display: none;
+    }
+    
+    /* Make the toolbar more compact */
+    .notebook-toolbar {
+        padding: 5px 10px;
+        justify-content: center;
+    }
+    
+    /* Adjust the visible buttons to be more prominent */
+    .run-all-button, .restart-button {
+        padding: 5px 10px;
+        font-size: 0.85rem;
+    }
+    
+    /* Add some spacing between the visible buttons */
+    .toolbar-group:first-child {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+/* Add these specific styles for the about section on mobile */
+@media (max-width: 768px) {
+    /* Specific improvements for the about section */
+    #about .output-result {
+        transform: scale(0.85);  /* More zoomed out */
+        transform-origin: top center;
+        padding: 0;
+        margin-bottom: -30px;  /* Compensate for the scaling */
+    }
+    
+    /* Make the education and experience sections more compact */
+    #about .education-item, 
+    #about .experience-item {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    /* Reduce font sizes in the about section */
+    #about h3 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+    
+    #about h4 {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    #about p, 
+    #about .degree-title,
+    #about .experience-brief {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+    
+    #about .degree-period,
+    #about .experience-period,
+    #about .education-gpa {
+        font-size: 0.75rem;
+    }
+    
+    /* Adjust the grid layout for education and experience */
+    #about .education-grid,
+    #about .experience-grid {
+        display: block;
+    }
+    
+    /* Make the education and experience items more compact */
+    #about .education-item,
+    #about .experience-item {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    /* Ensure the content is left-aligned for better readability */
+    #about .output-result {
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    /* Add horizontal scrolling for the skills section if needed */
+    #about .skill-category-card {
+        overflow-x: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    /* Make skill tags smaller and more compact */
+    #about .skill-tags {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    #about .skill-tag {
+        padding: 3px 6px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Add these styles to your existing mobile media query */
+@media (max-width: 768px) {
+    /* Make education and experience sections stack vertically on mobile */
+    .education-grid,
+    .experience-grid {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .education-item,
+    .experience-item {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Adjust the education details layout */
+    .education-details {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .education-degrees {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .degree-item {
+        margin-bottom: 10px !important;
+    }
+    
+    /* Adjust the skill category cards */
+    .skill-category-cards {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .skill-category-card {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Make headers more compact */
+    .experience-header,
+    .education-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    
+    .experience-period {
+        margin-top: 5px !important;
+    }
+    
+    /* Reduce spacing between sections */
+    .about-section {
+        margin-bottom: 20px !important;
+    }
+    
+    /* Make sure text is readable */
+    .experience-brief,
+    .education-courses p,
+    .degree-title,
+    .degree-period {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
 } 
+
+/* Add this to your mobile media queries */
+@media (max-width: 768px) {
+    /* Hide the UMass logo on mobile */
+    .umassLogo {
+        display: none !important;
+    }
+    
+    /* If the logo is part of the education header, adjust spacing */
+    .education-header {
+        justify-content: flex-start !important;
+        padding-right: 0 !important;
+    }
+}
+
+/* Add this to your mobile media queries */
+@media (max-width: 768px) {
+    /* Hide the UMass logo on mobile */
+    .education-logo {
+        display: none !important;
+    }
+    
+    /* Adjust the education card layout for mobile */
+    .education-card {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    
+    /* Make the education details take full width */
+    .education-details {
+        width: 100% !important;
+    }
+}
