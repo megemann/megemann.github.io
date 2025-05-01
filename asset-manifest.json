@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.1ed09dab.css",
-    "main.js": "/static/js/main.6879e26e.js",
+    "main.js": "/static/js/main.12dbd088.js",
     "static/js/453.854e04de.chunk.js": "/static/js/453.854e04de.chunk.js",
     "static/media/PSU.jpg": "/static/media/PSU.aca8310fd89f4fe28636.jpg",
     "static/media/Ice_Skate.jpg": "/static/media/Ice_Skate.63faabbd5813ae3a8b91.jpg",
@@ -19,11 +19,11 @@
     "static/media/Utrition.png": "/static/media/Utrition.f2201c586c5ade7acee3.png",
     "index.html": "/index.html",
     "main.1ed09dab.css.map": "/static/css/main.1ed09dab.css.map",
-    "main.6879e26e.js.map": "/static/js/main.6879e26e.js.map",
+    "main.12dbd088.js.map": "/static/js/main.12dbd088.js.map",
     "453.854e04de.chunk.js.map": "/static/js/453.854e04de.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1ed09dab.css",
-    "static/js/main.6879e26e.js"
+    "static/js/main.12dbd088.js"
   ]
 }
