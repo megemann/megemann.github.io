@@ -17,6 +17,18 @@ const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1499750310107-5fef28a66
 const blogs = [
     {
         id: 1,
+        slug: 'oneprompted',
+        title: "OnePrompted: Can AI Learn to Improve Your Prompts? We Built a Model to Try.",
+        description: "We trained a custom Gen AI model to take vague, lazy prompts and turn them into highly effective ones using prompt engineering techniques.",
+        image: 'https://i.postimg.cc/Nj7gYPKx/image.png',
+        date: "April 20, 2025",
+        author: "Austin Fairbanks",
+        tags: ["AI", "Machine Learning", "Prompt Engineering"],
+        readTime: "8 min read",
+        pinned: true
+    },
+    {
+        id: 2,
         slug: 'welcome-to-my-blog',
         title: "Welcome to My Tech Blog",
         description: "An introduction to my blog, what to expect, and a bit about myself.",
@@ -25,7 +37,7 @@ const blogs = [
         author: "Austin Fairbanks",
         tags: ["Introduction", "Personal", "Tech"],
         readTime: "5 min read",
-        pinned: true
+        pinned: false
     },
 ];
 
@@ -215,7 +227,18 @@ export default function Blogs() {
             <div className="main-content" style={isMobile ? { marginLeft: 0 } : {}}>
                 <div className="blogs-header">
                     <div className="blogs-title">blogs.zip</div>
-                    <ThemeToggle />
+                    <div className="blogs-header-controls">
+                        {isMobile && (
+                            <button 
+                                className="home-nav-button" 
+                                onClick={() => nav('/')}
+                                title="Go to Home"
+                            >
+                                <i className="fas fa-home"></i> Home
+                            </button>
+                        )}
+                        <ThemeToggle />
+                    </div>
                 </div>
                 <div className="blogs-container">
                     {/* Hidden view counters for loading view data */}
@@ -226,6 +249,7 @@ export default function Blogs() {
                                 slug={blog.slug}
                                 namespace="blog"
                                 showLabel={false}
+                                increment={false}
                                 className="hidden-counter"
                                 onCountReceived={(count) => handleBlogViewsReceived(blog.slug, count)}
                             />
@@ -252,6 +276,7 @@ export default function Blogs() {
                                                     slug={blog.slug} 
                                                     namespace="blog" 
                                                     showLabel={false}
+                                                    increment={false}
                                                     className="blog-image-views"
                                                 />
                                             </div>

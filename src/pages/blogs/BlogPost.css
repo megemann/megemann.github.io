@@ -593,4 +593,74 @@ html, body {
 /* Dark mode adjustments for utterances */
 .dark-mode .blog-post-comments {
   border-top-color: var(--border-color-dark);
+}
+
+/* Add styles for the HTML in markdown content */
+.markdown-content div[style*="display: flex"] {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.markdown-content div[style*="flex: 1"] {
+  flex: 1 !important;
+  min-width: 250px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-content div[style*="background-color: #f8f9fa"] {
+  background-color: #f8f9fa !important;
+}
+
+.markdown-content div[style*="background-color: #e6f3ff"] {
+  background-color: #e6f3ff !important;
+}
+
+.markdown-content div[style*="background-color: #e6ffe6"] {
+  background-color: #e6ffe6 !important;
+}
+
+.markdown-content h3[style*="color: black"] {
+  color: black !important;
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.markdown-content p[style*="color: black"] {
+  color: black !important;
+}
+
+.markdown-content pre[style*="color: black"] {
+  color: black !important;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+/* Dark mode overrides */
+.dark-mode .markdown-content div[style*="background-color: #f8f9fa"] {
+  background-color: #2a2a2a !important;
+}
+
+.dark-mode .markdown-content div[style*="background-color: #e6f3ff"] {
+  background-color: #2d3748 !important;
+}
+
+.dark-mode .markdown-content div[style*="background-color: #e6ffe6"] {
+  background-color: #2d3d2d !important;
+}
+
+.dark-mode .markdown-content h3[style*="color: black"],
+.dark-mode .markdown-content p[style*="color: black"],
+.dark-mode .markdown-content pre[style*="color: black"] {
+  color: #e0e0e0 !important;
+}
+
+.dark-mode .markdown-content pre[style*="color: black"] {
+  background-color: #333;
 } 

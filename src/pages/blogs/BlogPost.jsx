@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import Sidebar from '../../component/Sidebar/Sidebar';
 import ViewCounter from '../../component/ViewCounter/ViewCounter';
 import ThemeToggle from '../../component/ThemeToggle/ThemeToggle';
@@ -12,6 +13,7 @@ import './BlogPost.css';
 
 // Map of blog slugs to their file paths
 const BLOG_MAP = {
+  'oneprompted': '/blogs/OnePrompted.md',
   'welcome-to-my-blog': '/blogs/welcome-to-my-blog.md',
   'machine-learning-beginners': '/blogs/machine-learning-beginners.md',
   'future-web-development': '/blogs/future-web-development.md'
@@ -470,6 +472,7 @@ export default function BlogPost() {
       <article className={`markdown-content ${darkMode ? 'dark-mode' : ''}`}>
         <ReactMarkdown 
           remarkPlugins={[remarkGfm]} 
+          rehypePlugins={[rehypeRaw]}
           components={{
             img: ({node, ...props}) => (
               <img 
@@ -543,6 +546,7 @@ export default function BlogPost() {
               slug={slug} 
               namespace="blog" 
               className="blog-post-views"
+              increment={true}
             />
           </div>
           <div className="blog-post-share">

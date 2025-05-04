@@ -32,6 +32,18 @@
   font-weight: 600;
 }
 
+/* Eye icon for view counter */
+.view-counter-icon {
+  margin-right: 4px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Ensure dark mode compatibility */
+.dark-mode .view-counter {
+  color: var(--text-secondary-dark);
+}
+
 @keyframes pulse {
   0% { opacity: 0.5; }
   50% { opacity: 1; }

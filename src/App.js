@@ -2,7 +2,7 @@ import './App.css';
 import Home from './pages/home/home';
 import "./fonts/NovaFlat-Regular.ttf";
 import ProjectPage from './pages/projectPage/projectPage';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import ProjectList from './pages/projectList/projectList';
 import AboutMe from './pages/aboutMe/aboutMe';
 import Resume from './pages/resume/resume';
@@ -51,7 +51,7 @@ const App = () => {
 
     return (
         <ThemeContext.Provider value={contextValue}>
-            <BrowserRouter>
+            <HashRouter>
                 <RouteChangeTracker />
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -62,7 +62,7 @@ const App = () => {
                     <Route path="/blogs" element={<Blogs />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </ThemeContext.Provider>
     );
 };

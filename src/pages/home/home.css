@@ -2941,3 +2941,152 @@ body {
         width: 100% !important;
     }
 }
+
+/* Add these styles for the blogs navigation button */
+.blogs-nav-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.blogs-nav-button i {
+    margin-right: 5px;
+}
+
+.blogs-nav-button:hover {
+    background-color: #0069d9;
+}
+
+.dark-mode .blogs-nav-button {
+    background-color: #0d6efd;
+}
+
+.dark-mode .blogs-nav-button:hover {
+    background-color: #0b5ed7;
+}
+
+/* Adjust blogs navigation button for better mobile display */
+.blogs-nav-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.blogs-nav-button i {
+    margin-right: 5px;
+}
+
+.blogs-nav-button:hover {
+    background-color: #0069d9;
+}
+
+.dark-mode .blogs-nav-button {
+    background-color: #0d6efd;
+}
+
+.dark-mode .blogs-nav-button:hover {
+    background-color: #0b5ed7;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 576px) {
+    .blogs-nav-button {
+        padding: 8px 12px;
+        font-size: 13px;
+        margin-left: 8px;
+    }
+    
+    .notebook-controls {
+        display: flex;
+        align-items: center;
+    }
+    
+    .notebook-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .notebook-title {
+        font-size: 1.4rem;
+    }
+}
+
+/* Run All arrow overlay styling */
+.run-all-arrow-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.arrow-container {
+    position: absolute;
+    top: 0px; /* Position it so the bottom aligns with the top of Run All button */
+    left: 355px; /* Return to the previous left position */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 8px 15px; /* Reduced vertical padding to make it shorter */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: bounce 2s infinite;
+    transform-origin: bottom center;
+}
+
+.arrow-text {
+    color: white;
+    font-weight: 500;
+    font-size: 14px; /* Slightly smaller text */
+    margin-bottom: 4px; /* Reduced margin */
+    text-align: center;
+}
+
+.arrow {
+    color: var(--jupyter-blue, #2196F3);
+    font-size: 28px; /* Slightly smaller arrow */
+    font-weight: bold;
+    animation: pulse 1s infinite;
+    margin-top: 0; /* Removed margin */
+}
+
+/* Add animations for the arrow */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+/* Dark mode adjustments */
+.dark-mode .arrow-container {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.dark-mode .arrow {
+    color: var(--jupyter-blue-dark, #4DA3FF);
+}

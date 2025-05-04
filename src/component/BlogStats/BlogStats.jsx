@@ -100,6 +100,7 @@ const BlogStats = ({ blogs = [], className = '' }) => {
             namespace="blog"
             showLabel={false}
             className="blog-stats-hidden-counter"
+            increment={false}
             onCountReceived={(count) => handleViewCountReceived(blog.slug, count)}
           />
         ))}
