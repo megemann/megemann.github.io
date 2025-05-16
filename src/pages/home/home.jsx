@@ -122,65 +122,65 @@ export default function Home() {
         // Hide the arrow when Run All is clicked
         setShowRunAllArrow(false);
         
-        // Clear any existing timeouts to prevent conflicts
-        if (window.runAllTimeouts) {
-            window.runAllTimeouts.forEach(timeout => clearTimeout(timeout));
-        }
-        
-        // Reset all cells first
-        setCellsExecuted({
-            intro: false,
-            about: false,
-            skills: false,
-            projects: false,
-            contact: false
-        });
-        
-        // Reset pause state
-        setIsPaused(false);
-        
-        // Create an array to store all timeout IDs
-        window.runAllTimeouts = [];
-        
-        // Run cells in sequence with proper delays
-        const runSequence = async () => {
-            // Run intro cell
-            runCell('intro');
-            
-            // Wait for intro cell to complete before running about cell
-            const aboutTimeout = setTimeout(() => {
-                if (!isTyping && !isPaused) {
-                    runCell('about');
-                }
-            }, 2000);
-            window.runAllTimeouts.push(aboutTimeout);
-            
-            // Wait for about cell to complete before running skills cell
-            const skillsTimeout = setTimeout(() => {
-                if (!isTyping && !isPaused) {
-                    runCell('skills');
-                }
-            }, 4000);
-            window.runAllTimeouts.push(skillsTimeout);
-            
-            // Wait for skills cell to complete before running projects cell
-            const projectsTimeout = setTimeout(() => {
-                if (!isTyping && !isPaused) {
-                    runCell('projects');
-                }
-            }, 6000);
-            window.runAllTimeouts.push(projectsTimeout);
-            
-            // Wait for projects cell to complete before running contact cell
-            const contactTimeout = setTimeout(() => {
-                if (!isTyping && !isPaused) {
-                    runCell('contact');
-                }
-            }, 8000);
-            window.runAllTimeouts.push(contactTimeout);
-        };
-        
-        runSequence();
+                            // Clear any existing timeouts to prevent conflicts
+                            if (window.runAllTimeouts) {
+                                window.runAllTimeouts.forEach(timeout => clearTimeout(timeout));
+                            }
+                            
+                            // Reset all cells first
+                            setCellsExecuted({
+                                intro: false,
+                                about: false,
+                                skills: false,
+                                projects: false,
+                                contact: false
+                            });
+                            
+                            // Reset pause state
+                            setIsPaused(false);
+                            
+                            // Create an array to store all timeout IDs
+                            window.runAllTimeouts = [];
+                            
+                            // Run cells in sequence with proper delays
+                            const runSequence = async () => {
+                                // Run intro cell
+                                runCell('intro');
+                                
+                                // Wait for intro cell to complete before running about cell
+                                const aboutTimeout = setTimeout(() => {
+                                    if (!isTyping && !isPaused) {
+                                        runCell('about');
+                                    }
+                                }, 2000);
+                                window.runAllTimeouts.push(aboutTimeout);
+                                
+                                // Wait for about cell to complete before running skills cell
+                                const skillsTimeout = setTimeout(() => {
+                                    if (!isTyping && !isPaused) {
+                                        runCell('skills');
+                                    }
+                                }, 4000);
+                                window.runAllTimeouts.push(skillsTimeout);
+                                
+                                // Wait for skills cell to complete before running projects cell
+                                const projectsTimeout = setTimeout(() => {
+                                    if (!isTyping && !isPaused) {
+                                        runCell('projects');
+                                    }
+                                }, 6000);
+                                window.runAllTimeouts.push(projectsTimeout);
+                                
+                                // Wait for projects cell to complete before running contact cell
+                                const contactTimeout = setTimeout(() => {
+                                    if (!isTyping && !isPaused) {
+                                        runCell('contact');
+                                    }
+                                }, 8000);
+                                window.runAllTimeouts.push(contactTimeout);
+                            };
+                            
+                            runSequence();
     };
 
     function openInNewTab(url) {

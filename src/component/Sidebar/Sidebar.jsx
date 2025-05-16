@@ -30,6 +30,8 @@ export default function Sidebar() {
     const isResumePage = location.pathname === '/resume';
     // Check if we're on the blogs page
     const isBlogsPage = location.pathname === '/blogs';
+    // Check if we're on the timeline page
+    const isTimelinePage = location.pathname === '/timeline';
 
     // If on mobile, don't render the sidebar
     if (isMobile) {
@@ -77,6 +79,16 @@ export default function Sidebar() {
                                     style={{ cursor: 'pointer' }}
                                 >
                                     austin_fairbanks.md
+                                </span>
+                            </div>
+                            <div className={`file ${isTimelinePage ? 'active' : ''} clickable-file`}>
+                                <i className="file-icon image-icon fas fa-calendar-alt"></i>
+                                <span 
+                                    className="file-name"
+                                    onClick={() => nav('/timeline')}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    timeline.png
                                 </span>
                             </div>
                         </div>

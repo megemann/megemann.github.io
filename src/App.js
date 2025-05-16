@@ -8,6 +8,7 @@ import AboutMe from './pages/aboutMe/aboutMe';
 import Resume from './pages/resume/resume';
 import Blogs from './pages/blogs/blogs';
 import BlogPost from './pages/blogs/BlogPost';
+import TimelinePage from './pages/timeline/TimelinePage';
 import React, { useEffect, useState } from 'react';
 import ThemeContext from './ThemeContext';
 import { initGA, logPageView } from './analytics';
@@ -61,6 +62,7 @@ const App = () => {
                     <Route path="/resume" element={<Resume />} />
                     <Route path="/blogs" element={<Blogs />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/timeline" element={<TimelinePage />} />
                 </Routes>
             </HashRouter>
         </ThemeContext.Provider>

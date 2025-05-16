@@ -1,0 +1,409 @@
+/* Timeline Container */
+.timeline-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--jupyter-cell-bg);
+    border-radius: 12px;
+    box-shadow: var(--jupyter-shadow);
+    overflow: visible;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(33, 150, 243, 0.3) transparent;
+}
+
+/* Custom scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+.timeline-container::-webkit-scrollbar,
+.timeline::-webkit-scrollbar {
+    width: 8px;
+}
+
+.timeline-container::-webkit-scrollbar-track,
+.timeline::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.timeline-container::-webkit-scrollbar-thumb,
+.timeline::-webkit-scrollbar-thumb {
+    background-color: rgba(33, 150, 243, 0.3);
+    border-radius: 10px;
+    border: 2px solid var(--jupyter-cell-bg);
+}
+
+.timeline-container::-webkit-scrollbar-thumb:hover,
+.timeline::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(33, 150, 243, 0.5);
+}
+
+/* Hide scrollbar when not hovering for a cleaner look */
+.timeline-container:not(:hover)::-webkit-scrollbar-thumb,
+.timeline:not(:hover)::-webkit-scrollbar-thumb {
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+/* Timeline Header */
+.timeline-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.timeline-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--jupyter-blue), #4cc9f0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.timeline-header p {
+    font-size: 1.1rem;
+    color: var(--jupyter-text);
+    opacity: 0.8;
+    max-width: 700px;
+    margin: 0 auto 25px;
+}
+
+/* Timeline Filters */
+.timeline-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    background-color: var(--jupyter-code-bg);
+    color: var(--jupyter-text);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: rgba(33, 150, 243, 0.15);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background-color: var(--jupyter-blue);
+    color: white;
+}
+
+/* Timeline Layout */
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 500px;
+    padding-bottom: 50px;
+    overflow: visible;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: var(--jupyter-blue);
+    transform: translateX(-50%);
+    border-radius: 2px;
+    z-index: 0;
+}
+
+/* Timeline Items */
+.timeline-item {
+    width: 45%;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-item.left {
+    float: left;
+    clear: both;
+}
+
+.timeline-item.right {
+    float: right;
+    clear: both;
+}
+
+/* Timeline Content */
+.timeline-content {
+    background-color: var(--jupyter-code-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Timeline Item Connector */
+.timeline-item.left .timeline-content::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid var(--jupyter-code-bg);
+}
+
+.timeline-item.right .timeline-content::after {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid var(--jupyter-code-bg);
+}
+
+/* Timeline Icon */
+.timeline-icon {
+    position: absolute;
+    background-color: var(--jupyter-blue);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    top: 15px;
+    z-index: 1;
+}
+
+.timeline-item.left .timeline-icon {
+    right: -62px;
+}
+
+.timeline-item.right .timeline-icon {
+    left: -62px;
+}
+
+/* Timeline Content Styling */
+.timeline-date {
+    display: inline-block;
+    background-color: rgba(33, 150, 243, 0.1);
+    color: var(--jupyter-blue);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.timeline-title {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: var(--jupyter-blue);
+}
+
+.timeline-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    color: var(--jupyter-text);
+}
+
+.timeline-link {
+    display: inline-block;
+    color: var(--jupyter-blue);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    transition: all 0.2s ease;
+}
+
+.timeline-link:hover {
+    color: #0c7cd5;
+    text-decoration: underline;
+}
+
+.timeline-link i {
+    margin-left: 4px;
+    font-size: 0.8rem;
+}
+
+/* Timeline Item Types */
+.timeline-item.project .timeline-icon {
+    background-color: #3498db;
+}
+
+.timeline-item.work .timeline-icon {
+    background-color: #2ecc71;
+}
+
+.timeline-item.education .timeline-icon {
+    background-color: #9b59b6;
+}
+
+.timeline-item.event .timeline-icon {
+    background-color: #f39c12;
+}
+
+/* Clear the float */
+.timeline::after {
+    content: '';
+    display: table;
+    clear: both;
+    height: 0;
+    width: 100%;
+}
+
+/* Dark Mode Adjustments */
+.dark-mode .timeline-container {
+    background-color: var(--jupyter-cell-bg);
+}
+
+.dark-mode .timeline-content {
+    background-color: var(--jupyter-code-bg);
+}
+
+.dark-mode .timeline-item.left .timeline-content::after {
+    border-left-color: var(--jupyter-code-bg);
+}
+
+.dark-mode .timeline-item.right .timeline-content::after {
+    border-right-color: var(--jupyter-code-bg);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 40px;
+    }
+    
+    .timeline-item {
+        width: calc(100% - 80px);
+        margin-left: 80px;
+    }
+    
+    .timeline-item.left,
+    .timeline-item.right {
+        float: none;
+    }
+    
+    .timeline-item.left .timeline-content::after,
+    .timeline-item.right .timeline-content::after {
+        left: -15px;
+        right: auto;
+        border-right: 15px solid var(--jupyter-code-bg);
+        border-left: 0;
+    }
+    
+    .timeline-item.left .timeline-icon,
+    .timeline-item.right .timeline-icon {
+        left: -60px;
+        right: auto;
+    }
+    
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .timeline-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .timeline-header p {
+        font-size: 0.95rem;
+    }
+    
+    .timeline-line {
+        left: 20px;
+    }
+    
+    .timeline-item {
+        width: calc(100% - 50px);
+        margin-left: 50px;
+    }
+    
+    .timeline-item.left .timeline-icon,
+    .timeline-item.right .timeline-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+        left: -40px;
+    }
+    
+    .timeline-date {
+        font-size: 0.75rem;
+    }
+    
+    .timeline-title {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* Future Event Styling */
+.timeline-item.future .timeline-content {
+    border: 2px dashed rgba(33, 150, 243, 0.5);
+    background-color: rgba(33, 150, 243, 0.05);
+}
+
+.dark-mode .timeline-item.future .timeline-content {
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+.future-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--jupyter-blue);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.future-badge i {
+    font-size: 0.7rem;
+}
+
+/* Special connector styling for future events */
+.timeline-item.future.left .timeline-content::after {
+    border-left-color: rgba(33, 150, 243, 0.05);
+}
+
+.timeline-item.future.right .timeline-content::after {
+    border-right-color: rgba(33, 150, 243, 0.05);
+}
+
+.dark-mode .timeline-item.future.left .timeline-content::after {
+    border-left-color: rgba(33, 150, 243, 0.1);
+}
+
+.dark-mode .timeline-item.future.right .timeline-content::after {
+    border-right-color: rgba(33, 150, 243, 0.1);
+} 
