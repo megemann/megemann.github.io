@@ -1,14 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.b395e423.css",
-    "main.js": "/static/js/main.9264b18a.js",
-    "static/js/453.854e04de.chunk.js": "/static/js/453.854e04de.chunk.js",
+    "main.css": "/static/css/main.4773e7d3.css",
+    "main.js": "/static/js/main.5d204b8e.js",
+    "static/js/453.8530122b.chunk.js": "/static/js/453.8530122b.chunk.js",
     "static/media/PSU.jpg": "/static/media/PSU.aca8310fd89f4fe28636.jpg",
     "static/media/Ice_Skate.jpg": "/static/media/Ice_Skate.63faabbd5813ae3a8b91.jpg",
+    "static/media/PyTorchvsKerasP1.png": "/static/media/PyTorchvsKerasP1.a7c82ede4286572d1235.png",
     "static/media/OnePrompted.png": "/static/media/OnePrompted.b2ecd92d679caee18444.png",
     "static/media/ProfilePic.jpg": "/static/media/ProfilePic.94136470b3c94f159acf.jpg",
     "static/media/travel.jpeg": "/static/media/travel.7012b640ec6c39a1daa9.jpeg",
     "static/media/golf.png": "/static/media/golf.083c4e5444c83df45e79.png",
+    "static/media/PyTorchvsKerasBanner.png": "/static/media/PyTorchvsKerasBanner.f42d9b4564cad84bf43f.png",
     "static/media/hpoptimization.png": "/static/media/hpoptimization.23d9ab6ae3306556cd76.png",
     "static/media/golf.jpeg": "/static/media/golf.a19503c3ccd2e81f8b09.jpeg",
     "static/media/MinuteMunch.png": "/static/media/MinuteMunch.b3c0258505cde558a918.png",
@@ -19,12 +21,12 @@
     "static/media/TheDefineHotline.png": "/static/media/TheDefineHotline.2cec78d0e443e11e77e9.png",
     "static/media/Utrition.png": "/static/media/Utrition.f2201c586c5ade7acee3.png",
     "index.html": "/index.html",
-    "main.b395e423.css.map": "/static/css/main.b395e423.css.map",
-    "main.9264b18a.js.map": "/static/js/main.9264b18a.js.map",
-    "453.854e04de.chunk.js.map": "/static/js/453.854e04de.chunk.js.map"
+    "main.4773e7d3.css.map": "/static/css/main.4773e7d3.css.map",
+    "main.5d204b8e.js.map": "/static/js/main.5d204b8e.js.map",
+    "453.8530122b.chunk.js.map": "/static/js/453.8530122b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b395e423.css",
-    "static/js/main.9264b18a.js"
+    "static/css/main.4773e7d3.css",
+    "static/js/main.5d204b8e.js"
   ]
 }
