@@ -27,7 +27,7 @@
     display: flex;
     background-color: var(--bg-primary-light);
     color: var(--text-primary-light);
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow: hidden; /* Prevent any overflow on the wrapper */
 }
 
 .dark-mode.blogs-page-wrapper {
@@ -40,6 +40,9 @@
     padding: 2rem;
     font-family: 'Consolas', monospace;
     background-color: var(--bg-primary-light);
+    flex: 1; /* Take remaining space */
+    overflow-y: auto; /* Make this container scrollable */
+    min-height: 0; /* Allow flex shrinking */
 }
 
 .dark-mode .blogs-container {
@@ -122,7 +125,8 @@
 }
 
 .blog-img-container {
-    height: 200px;
+    height: 35%;
+    min-height: 140px;
     overflow: hidden;
     position: relative;
 }
@@ -278,6 +282,11 @@
         height: auto;
         min-height: 320px;
     }
+    
+    .blog-img-container {
+        height: 35%;
+        min-height: 120px;
+    }
 }
 
 /* Original stats class is now less prominent */
@@ -305,8 +314,11 @@
     flex: 1;
     margin-left: 250px; /* Adjust based on sidebar width */
     background-color: var(--bg-primary-light);
-    min-height: 100vh;
+    height: 100vh; /* Set fixed height */
+    overflow-y: auto; /* Enable vertical scrolling for main content */
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .dark-mode.blogs-page-wrapper .main-content {
@@ -315,21 +327,21 @@
 
 @media (max-width: 768px) {
     .blogs-page-wrapper {
-        flex-direction: column; /* Stack elements vertically on mobile */
-    }
-    
-    .main-content {
-        width: 100%;
-        overflow-y: auto; /* Enable vertical scrolling */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    }
-    
-    .blogs-container {
-        padding: 1rem;
+        flex-direction: column;
+        overflow: hidden; /* Prevent overflow on mobile wrapper */
     }
     
     .blogs-page-wrapper .main-content {
         margin-left: 0;
+        height: 100vh; /* Full height on mobile */
+        overflow-y: auto;
+    }
+    
+    .blogs-container {
+        padding: 1rem;
+        overflow-y: auto; /* Ensure scrolling on mobile */
+        height: auto;
+        flex: 1;
     }
 }
 
@@ -508,6 +520,14 @@
 
 .home-nav-button:hover {
   background-color: #0069d9;
+}
+
+.dark-mode .home-nav-button {
+  background-color: #0d6efd;
+}
+
+.dark-mode .home-nav-button:hover {
+  background-color: #0b5ed7;
 }
 
 .dark-mode .home-nav-button {

@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Sidebar from '../../component/Sidebar/Sidebar';
 import ViewCounter from '../../component/ViewCounter/ViewCounter';
 import ThemeToggle from '../../component/ThemeToggle/ThemeToggle';
@@ -14,6 +16,7 @@ import './BlogPost.css';
 // Map of blog slugs to their file paths
 const BLOG_MAP = {
   'oneprompted': '/blogs/OnePrompted.md',
+  'torchvskerasv1': '/blogs/TorchvsKerasv1.md',
   'welcome-to-my-blog': '/blogs/welcome-to-my-blog.md',
   'machine-learning-beginners': '/blogs/machine-learning-beginners.md',
   'future-web-development': '/blogs/future-web-development.md'
@@ -487,21 +490,67 @@ export default function BlogPost() {
             code: ({node, inline, className, children, ...props}) => {
               const match = /language-(\w+)/.exec(className || '');
               const language = match ? match[1] : '';
+              
+              // If it's inline code, use inline styling
+              if (inline) {
+                return (
+                  <code
+                    className="blog-post-code inline-code"
+                    {...props}
+                  >
+                    {children}
+                  </code>
+                );
+              }
+              
+              // If no language is specified for block code, treat as inline
+              if (!language) {
+                return (
+                  <code
+                    className="blog-post-code inline-code"
+                    {...props}
+                  >
+                    {children}
+                  </code>
+                );
+              }
+              
+              // Language specified - use syntax highlighter
               return (
-                <code
-                  className={`${className || ''} blog-post-code ${inline ? 'inline-code' : 'code-block'} ${language ? `language-${language}` : ''}`}
-                  {...props}
+                <SyntaxHighlighter
+                  style={darkMode ? vscDarkPlus : vs}
+                  language={language}
+                  PreTag="div"
+                  className="blog-post-syntax-highlighter"
+                  showLineNumbers={true}
+                  lineNumberStyle={{
+                    minWidth: '3em',
+                    paddingRight: '1em',
+                    color: darkMode ? '#6e7681' : '#656d76',
+                    backgroundColor: 'transparent',
+                    borderRight: `1px solid ${darkMode ? '#30363d' : '#d1d9e0'}`,
+                    marginRight: '1em'
+                  }}
+                  customStyle={{
+                    margin: '1.5rem 0',
+                    borderRadius: '8px',
+                    fontSize: '0.9rem',
+                    backgroundColor: 'transparent'
+                  }}
+                  codeTagProps={{
+                    style: {
+                      fontFamily: "'Consolas', 'Monaco', 'Courier New', monospace"
+                    }
+                  }}
                 >
-                  {!inline && language ? <div className="code-language">{language}</div> : null}
-                  {children}
-                </code>
+                  {String(children).replace(/\n$/, '')}
+                </SyntaxHighlighter>
               );
             },
-            pre: ({children, ...props}) => (
-              <pre className="blog-post-pre" {...props}>
-                {children}
-              </pre>
-            ),
+            pre: ({children, ...props}) => {
+              // Let SyntaxHighlighter handle the pre wrapper
+              return <>{children}</>;
+            },
             a: ({node, ...props}) => (
               <a 
                 {...props} 

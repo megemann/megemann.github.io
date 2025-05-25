@@ -29,6 +29,18 @@ const blogs = [
     },
     {
         id: 2,
+        slug: 'torchvskerasv1',
+        title: "When to Torch vs. When to Flow: A TF.Keras vs. PyTorch Side-by-Side Guide",
+        description: "A comprehensive comparison of PyTorch and TensorFlow/Keras implementations, with side-by-side code examples for deep learning development.",
+        image: 'https://i.postimg.cc/SNjYYxB8/Py-Torchvs-Keras-P1.png',
+        date: "May 22, 2025",
+        author: "Austin Fairbanks",
+        tags: ["PyTorch", "Keras", "Deep Learning", "ML"],
+        readTime: "12 min read",
+        pinned: false
+    },
+    {
+        id: 3,
         slug: 'welcome-to-my-blog',
         title: "Welcome to My Tech Blog",
         description: "An introduction to my blog, what to expect, and a bit about myself.",

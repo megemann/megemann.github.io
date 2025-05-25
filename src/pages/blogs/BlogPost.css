@@ -191,14 +191,30 @@ html, body {
 .blog-post-image {
   max-width: 100%;
   height: auto;
+  min-height: 40vh; /* Ensure images are at least 40% of viewport height */
   margin: 1.5rem 0;
   border-radius: 4px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: block; /* Remove inline gaps */
   transition: opacity 0.3s ease;
+  object-fit: cover; /* Maintain aspect ratio while filling the space */
+  padding: 1rem; /* Add padding around the image */
+  background-color: var(--bg-secondary); /* Background color for padding area */
 }
 
-/* Code blocks responsiveness */
+/* Inline code styling - NEW */
+.blog-post-code.inline-code {
+  background-color: var(--bg-tertiary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Consolas', monospace;
+  font-size: 0.9em;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+/* Code blocks - KEEP ORIGINAL STYLING */
 .blog-post-pre {
   background-color: var(--bg-tertiary);
   border-radius: 8px;
@@ -207,7 +223,7 @@ html, body {
   margin: 1.5rem 0;
   position: relative;
   font-size: 0.9rem;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling for code on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 .code-language {
@@ -227,15 +243,19 @@ html, body {
   font-family: 'Consolas', monospace;
 }
 
-.blog-post-code.inline-code {
-  background-color: var(--bg-tertiary);
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
 .blog-post-code.code-block {
   display: block;
   color: var(--text-primary);
+}
+
+/* Dark mode */
+.dark-mode .blog-post-code.inline-code {
+  background-color: var(--bg-tertiary-dark);
+  border-color: var(--border-color-dark);
+}
+
+.dark-mode .blog-post-pre {
+  background-color: var(--bg-tertiary-dark);
 }
 
 .blog-post-footer {
@@ -337,15 +357,6 @@ html, body {
   background-color: var(--bg-tertiary-dark);
 }
 
-.dark-mode .blog-post-pre {
-  background-color: var(--bg-tertiary-dark);
-}
-
-.dark-mode .blog-post-code.inline-code {
-  background-color: var(--bg-tertiary-dark);
-  color: var(--text-primary-dark);
-}
-
 /* Mobile responsiveness improvements */
 @media (max-width: 768px) {
   .blog-post-container {
@@ -403,6 +414,8 @@ html, body {
   
   .blog-post-image {
     margin: 1rem 0;
+    min-height: 30vh; /* Slightly smaller on mobile but still substantial */
+    padding: 0.75rem; /* Reduce padding on mobile */
   }
   
   .share-button {
@@ -449,6 +462,11 @@ html, body {
   .code-language {
     font-size: 0.65rem;
     padding: 1px 6px;
+  }
+  
+  .blog-post-image {
+    min-height: 25vh; /* Even smaller on very small devices */
+    padding: 0.5rem; /* Minimal padding on very small screens */
   }
 }
 
@@ -663,4 +681,140 @@ html, body {
 
 .dark-mode .markdown-content pre[style*="color: black"] {
   background-color: #333;
+}
+
+/* Comparison tables for side-by-side code blocks */
+.markdown-content .comparison-table {
+  width: 100%;
+  max-width: none;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+/* On larger screens, make comparison tables break out of container and take up more space */
+@media (min-width: 1200px) {
+  .markdown-content .comparison-table {
+    width: 120vw; /* Use viewport width to break out of container */
+    max-width: 1400px; /* Set a reasonable maximum */
+    margin: 2rem calc(-10vw); /* Negative margin to center and break out */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%); /* Center the table */
+  }
+}
+
+@media (min-width: 1600px) {
+  .markdown-content .comparison-table {
+    width: 100vw; /* Even wider on very large screens */
+    max-width: 1600px;
+    margin: 2rem calc(-15vw);
+  }
+}
+
+/* Ensure table cells are equal width and properly spaced */
+.markdown-content .comparison-table td {
+  width: 50%;
+  vertical-align: top;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.markdown-content .comparison-table td h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+}
+
+/* Ensure code blocks within comparison tables are properly sized */
+.markdown-content .comparison-table .blog-post-pre {
+  margin: 0;
+  width: 100%;
+  font-size: 0.9rem; /* Slightly larger since we have more space */
+}
+
+/* Dark mode styling for comparison tables */
+.dark-mode .markdown-content .comparison-table td {
+  border-color: var(--border-color-dark);
+}
+
+/* Mobile responsiveness - stack on smaller screens */
+@media (max-width: 768px) {
+  .markdown-content .comparison-table {
+    width: 100% !important;
+    margin: 2rem 0 !important;
+    transform: none !important;
+    left: auto !important;
+    position: static !important;
+  }
+  
+  .markdown-content .comparison-table,
+  .markdown-content .comparison-table tbody,
+  .markdown-content .comparison-table tr {
+    display: block;
+    width: 100%;
+  }
+  
+  .markdown-content .comparison-table td {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .markdown-content .comparison-table .blog-post-pre {
+    font-size: 0.8rem;
+  }
+}
+
+/* Syntax highlighter styling */
+.blog-post-syntax-highlighter {
+  margin: 1.5rem 0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: var(--bg-tertiary) !important; /* Use your original background */
+}
+
+.dark-mode .blog-post-syntax-highlighter {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background-color: var(--bg-tertiary-dark) !important; /* Dark mode background */
+}
+
+/* Override syntax highlighter line number styling */
+.blog-post-syntax-highlighter .linenumber {
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Ensure code blocks are responsive */
+.blog-post-syntax-highlighter pre {
+  margin: 0 !important;
+  padding: 1rem !important;
+  background: transparent !important;
+  overflow-x: auto;
+}
+
+/* Override the syntax highlighter's default background */
+.blog-post-syntax-highlighter > div {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.dark-mode .blog-post-syntax-highlighter > div {
+  background-color: var(--bg-tertiary-dark) !important;
+}
+
+/* Mobile responsiveness for syntax highlighter */
+@media (max-width: 768px) {
+  .blog-post-syntax-highlighter {
+    font-size: 0.8rem !important;
+    margin: 1rem 0 !important;
+  }
+  
+  .blog-post-syntax-highlighter pre {
+    padding: 0.75rem !important;
+  }
 } 
