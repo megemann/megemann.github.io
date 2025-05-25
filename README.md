@@ -144,6 +144,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-Austin Fairbanks - [LinkedIn](https://www.linkedin.com/in/austin-fairbanks/) - email@example.com
+Austin Fairbanks - [LinkedIn](https://www.linkedin.com/in/ajf2005/) - ajfairbanks2005@gmail.com
 
 Project Link: [https://github.com/megemann/megemann.github.io](https://github.com/megemann/megemann.github.io)
