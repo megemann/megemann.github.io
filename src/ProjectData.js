@@ -28,7 +28,7 @@ export const ProjectData = [
         image: 'TheDefineHotline.png',
         description: "'The Define Hot-line' is a fun vocabulary game that uses random words and definitions to test your vocabulary skills. You have a varying amount of time to pair a definition to a word, and the objective is to get the highest streak possible! There are three modes: Easy, Medium, and Hard; each mode gives you respectively 15, 10, and 5 seconds to answer. This project makes use of React Native, React Native Reanimated, as well as a few API's and a collection of other libraries.",
         link: "https://github.com/megemann/TheDefineHotline",
-        highlight: true,
+        highlight: false,
         date: "03/2024",
         lastUpdate: "04/2024",
         skills: ["React Native", "Animations", "API's", "Expo"],
@@ -52,7 +52,7 @@ export const ProjectData = [
         link: "https://github.com/Amandinh0/MinuteMunch",
         highlight: false,
         date: "10/2023",
-        lastUpdate: "N/A",
+        lastUpdate: "10/2023",
         skills: ["React", "MongoDB", "Java-SpringBoot", "CSS"],
     },
     {
@@ -63,8 +63,18 @@ export const ProjectData = [
         link: "https://github.com/megemann/RMPStats",
         highlight: true,
         date: "01/2025",
-        lastUpdate: "03/2025",
+        lastUpdate: "05/2025",
         skills: ["Web Scraping", "Data Cleaning", "Pandas", "Data Analysis", "Next.js", "Hugging Face API"],
+    }, {
+        title: "OnePrompted",
+        key: "OnePrompted",
+        image: 'OnePrompted.png',
+        description: "A custom Gen AI model trained to transform vague, ineffective prompts into highly optimized ones using prompt engineering techniques. Built with Vertex AI and Gemini, this project involved data processing from ShareGPT52k, model fine-tuning, and implementation of knowledge distillation and grounding techniques. The model demonstrated an 18% performance improvement in pairwise evaluations against baseline solutions. This project was developed as a capstone for the Google March 2025 Gen AI 5-day Intensive program.",
+        link: "https://github.com/megemann/oneprompted",
+        highlight: true,
+        date: "03/2025",
+        lastUpdate: "04/2025",
+        skills: ["Vertex AI", "Fine-Tuning", "Prompt Engineering", "Data Processing", "Knowledge Distillation", "Evaluation Metrics", "Generative AI", "Google Cloud"],
     }
     
 ]

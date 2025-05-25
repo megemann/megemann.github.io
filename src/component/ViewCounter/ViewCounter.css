@@ -1,0 +1,51 @@
+.view-counter {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.view-counter-label {
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+.view-counter-count {
+  font-variant-numeric: tabular-nums;
+}
+
+.view-counter-loading .view-counter-count {
+  animation: pulse 1.5s infinite;
+}
+
+.view-counter-error .view-counter-count {
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+}
+
+.blog-image-views {
+  color: white;
+  margin-left: 4px;
+}
+
+.blog-image-views .view-counter-count {
+  font-weight: 600;
+}
+
+/* Eye icon for view counter */
+.view-counter-icon {
+  margin-right: 4px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Ensure dark mode compatibility */
+.dark-mode .view-counter {
+  color: var(--text-secondary-dark);
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+} 

@@ -30,6 +30,7 @@ export default function Home() {
     const [typingText, setTypingText] = useState('');
     const [isPaused, setIsPaused] = useState(false);
     const { darkMode, setDarkMode, isMobile } = useContext(ThemeContext);
+    const [showRunAllArrow, setShowRunAllArrow] = useState(false);
 
     useEffect(() => {
         // Apply dark mode to body
@@ -39,6 +40,20 @@ export default function Home() {
             document.body.classList.remove('dark-mode');
         }
     }, [darkMode]);
+
+    // Show the Run All arrow on initial load for non-mobile users
+    useEffect(() => {
+        if (!isMobile) {
+            setShowRunAllArrow(true);
+            
+            // Set a timer to hide the arrow after 5 seconds
+            const timer = setTimeout(() => {
+                setShowRunAllArrow(false);
+            }, 5000);
+            
+            return () => clearTimeout(timer);
+        }
+    }, [isMobile]);
 
     const runCell = (cellId) => {
         if (isPaused) return;
@@ -103,44 +118,10 @@ export default function Home() {
         }
     };
 
-    function openInNewTab(url) {
-        window.open(url, '_blank').focus();
-    }
-
-    return (
-        <div className={`notebook-container ${darkMode ? 'dark-mode' : ''} ${isPaused ? 'paused' : ''}`}>
-            {/* Sidebar - only render if not on mobile */}
-            {!isMobile && (
-                <div className="sidebar">
-                    <Sidebar />
-                </div>
-            )}
-            
-            {/* Main Content */}
-            <div className="main-content" style={isMobile ? { marginLeft: 0 } : {}}>
-                <div className="notebook-header">
-                    <div className="notebook-title">Portfolio.ipynb</div>
-                    <div className="notebook-controls">
-                        <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
-                            {darkMode ? 'Light Mode' : 'Dark Mode'}
-                        </button>
-                    </div>
-                </div>
-                
-                <div className="notebook-toolbar">
-                    <div className="toolbar-group">
-                        <button className="toolbar-button" title="Code">
-                            <i className="fas fa-code"></i> Code
-                        </button>
-                        <button className="toolbar-button" title="Markdown">
-                            <i className="fas fa-font"></i> Markdown
-                        </button>
-                    </div>
-                    
-                    <div className="toolbar-divider"></div>
-                    
-                    <div className="toolbar-group">
-                        <button className="toolbar-button run-all" title="Run All Cells" onClick={() => {
+    const handleRunAll = () => {
+        // Hide the arrow when Run All is clicked
+        setShowRunAllArrow(false);
+        
                             // Clear any existing timeouts to prevent conflicts
                             if (window.runAllTimeouts) {
                                 window.runAllTimeouts.forEach(timeout => clearTimeout(timeout));
@@ -200,7 +181,65 @@ export default function Home() {
                             };
                             
                             runSequence();
-                        }}>
+    };
+
+    function openInNewTab(url) {
+        window.open(url, '_blank').focus();
+    }
+
+    return (
+        <div className={`notebook-container ${darkMode ? 'dark-mode' : ''} ${isPaused ? 'paused' : ''}`}>
+            {/* Run All Arrow Overlay */}
+            {showRunAllArrow && !isMobile && (
+                <div className="run-all-arrow-overlay">
+                    <div className="arrow-container">
+                        <div className="arrow-text">Click "Run All" to see my portfolio</div>
+                        <div className="arrow">↓</div>
+                    </div>
+                </div>
+            )}
+            
+            {/* Sidebar - only render if not on mobile */}
+            {!isMobile && (
+                <div className="sidebar">
+                    <Sidebar />
+                </div>
+            )}
+            
+            {/* Main Content */}
+            <div className="main-content" style={isMobile ? { marginLeft: 0 } : {}}>
+                <div className="notebook-header">
+                    <div className="notebook-title">Portfolio.ipynb</div>
+                    <div className="notebook-controls">
+                        <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
+                            {darkMode ? 'Light Mode' : 'Dark Mode'}
+                        </button>
+                        {isMobile && (
+                            <button 
+                                className="blogs-nav-button" 
+                                onClick={() => nav('/blogs')}
+                                title="Go to Blogs"
+                            >
+                                <i className="fas fa-blog"></i> Blogs
+                            </button>
+                        )}
+                    </div>
+                </div>
+                
+                <div className="notebook-toolbar">
+                    <div className="toolbar-group">
+                        <button className="toolbar-button" title="Code">
+                            <i className="fas fa-code"></i> Code
+                        </button>
+                        <button className="toolbar-button" title="Markdown">
+                            <i className="fas fa-font"></i> Markdown
+                        </button>
+                    </div>
+                    
+                    <div className="toolbar-divider"></div>
+                    
+                    <div className="toolbar-group">
+                        <button className="toolbar-button run-all" title="Run All Cells" onClick={handleRunAll}>
                             <i className="fas fa-play"></i> Run All
                         </button>
                         <button className="toolbar-button restart" title="Restart Kernel" onClick={() => {
@@ -519,7 +558,9 @@ export default function Home() {
                                                     <span className="skill-tag advanced">Git/GitHub</span>
                                                     <span className="skill-tag intermediate">VS Code</span>
                                                     <span className="skill-tag intermediate">Kaggle</span>
+                                                    <span className="skill-tag intermediate">Google Cloud/Vertex AI</span>
                                                     <span className="skill-tag basic">AWS</span>
+                                                    <span className="skill-tag intermediate">Hugging Face</span>
                                                 </div>
                                             </div>
                                             
@@ -532,9 +573,27 @@ export default function Home() {
                                                     <span className="skill-tag advanced">Hyperparameter Tuning</span>
                                                     <span className="skill-tag advanced">Data Analysis</span>
                                                     <span className="skill-tag advanced">Machine Learning</span>
+                                                    <span className="skill-tag advanced">Prompt Engineering</span>
+                                                    <span className="skill-tag intermediate">Model Fine-Tuning</span>
                                                     <span className="skill-tag intermediate">Scientific Writing</span>
                                                     <span className="skill-tag intermediate">Web Scraping</span>
                                                     <span className="skill-tag intermediate">LaTeX</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="skill-category-card">
+                                                <div className="skill-category-header">
+                                                    <i className="fas fa-robot"></i>
+                                                    <h4>AI & LLM Techniques</h4>
+                                                </div>
+                                                <div className="skill-tags">
+                                                    <span className="skill-tag advanced">Knowledge Distillation</span>
+                                                    <span className="skill-tag advanced">Prompt Grounding</span>
+                                                    <span className="skill-tag intermediate">Embeddings</span>
+                                                    <span className="skill-tag intermediate">Semantic Similarity</span>
+                                                    <span className="skill-tag intermediate">LLM Evaluation</span>
+                                                    <span className="skill-tag intermediate">Pairwise Comparison</span>
+                                                    <span className="skill-tag basic">Rubric-based Assessment</span>
                                                 </div>
                                             </div>
                                         </div>

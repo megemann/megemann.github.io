@@ -369,7 +369,7 @@ ${project.skills?.map(tech => `  • ${tech}`).join('\n') || ''}
 [bold green]README Content:[/bold green]
 ${readmeContent || '[red]Failed to fetch README[/red]'}`;
     };
-
+    
     return (
         <div className={`notebook-container ${darkMode ? 'dark-mode' : ''}`}>
             {/* Sidebar - only render if not on mobile */}

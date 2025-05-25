@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Graduated from Horseheads High School",
+    "date": "06/2023",
+    "description": "Graduated from Horseheads High School with honors",
+    "type": "education",
+    "icon": "graduation-cap"
+  },
+  {
+    "title": "Started at UMass Amherst",
+    "date": "09/2023",
+    "description": "Began BS in Computer Science at UMass Amherst",
+    "type": "education",
+    "icon": "graduation-cap"
+  },
+  {
+    "title": "Intramural Referee",
+    "date": "09/2023",
+    "description": "Started working as an Intramural Referee at UMass RecWell, officiating campus sports competitions",
+    "type": "work",
+    "icon": "flag-checkered"
+  },
+  {
+    "title": "Hack UMass XI - MinuteMunch",
+    "date": "11/2023",
+    "description": "Developed MinuteMunch, a food delivery system for UMass dining halls, during the 48-hour Hack UMass XI hackathon",
+    "type": "event",
+    "icon": "laptop-code",
+    "link": "https://github.com/Amandinh0/MinuteMunch"
+  },
+  {
+    "title": "Frontend Developer at MyEdMaster",
+    "date": "12/2024",
+    "description": "Redesigned React frontend for ML health analytics tool with Django backend",
+    "type": "work",
+    "icon": "briefcase"
+  },
+  {
+    "title": "Corning Incorporated Internship",
+    "date": "06/2024",
+    "description": "Developed hyperparameter optimization guidelines for computer vision applications",
+    "type": "work",
+    "icon": "briefcase"
+  },
+  {
+    "title": "Midwest Blockchain Conference",
+    "date": "11/2024",
+    "description": "Attended the Midwest Blockchain Conference to explore distributed systems applications",
+    "type": "event",
+    "icon": "cubes"
+  },
+  {
+    "title": "Intramural Manager",
+    "date": "08/2024",
+    "description": "Became an Intramural Manager at UMass RecWell",
+    "type": "work",
+    "icon": "volleyball-ball"
+  },
+  {
+    "title": "Google Gen AI 5-day Intensive",
+    "date": "03/2025",
+    "description": "Participated in Google's intensive 5-day workshop on Generative AI, culminating in the OnePrompted capstone project",
+    "type": "event",
+    "icon": "robot",
+    "link": "https://rsvp.withgoogle.com/events/google-generative-ai-intensive_2025q1?_ga=2.165375996.296387793.1746500172-1592547515.1743807516"
+  },
+  {
+    "title": "Machine Learning Engineering Internship at Corning",
+    "date": "05/2025",
+    "description": "Summer internship at Corning focused on machine learning engineering and data science applications",
+    "type": "work",
+    "icon": "briefcase"
+  },
+  {
+    "title": "Intramural Program Assistant",
+    "date": "08/2025",
+    "description": "Starting role as an Intramural Program Assistant at UMass RecWell",
+    "type": "work",
+    "icon": "users",
+    "isFuture": true
+  }
+] 
