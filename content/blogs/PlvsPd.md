@@ -1,5 +1,10 @@
 # Polars vs Pandas
 
+**Date:** June 28, 2025  
+**Author:** Austin Fairbanks  
+**Tags:** Data Science, Pandas, Polars, Python, Data Analysis, DataFrames  
+**Reading Time:** 15 min read  
+
 ## Why Polars? Why Pandas? Why now?
 
 In the world of Data Science, tabular data is a widespread method to store information for analysis, transformations, and machine learning model inputs. You can imagine this as a 2D matrix, with each column usually representing a *feature,* and each row representing a *sample* that contains *features.* In Python, a common high-level general-purpose programming language, there exists many libraries that implement the properties of a DataFrame. Since 2010, a library called **Pandas** has been the usual choice, being widely used for Finance, Data Science, and Economics in both industry and research. However, with the recent rise of efficiency in computing and memory, datasets are exploding in size; this has allowed some competition, like **Polars**, to start to flourish in the space. With **Polars** creating all this buzz, now is a better time than ever to explore the advantages and disadvantages each provide.
@@ -30,7 +35,7 @@ $$
 \end{bmatrix}
 $$
 
-However, NumPy was created using a **Row-Major Structure**, meaning each row of the frame is stored contiguous in memory. So, the storage of the elements looks a little more like this: 
+Although Pandas stores data column-wise in memory using Series objects, the actual memory storage is a bit more complicated. Pandas uses a data structure called a **BlockManager** to optimize performance, which groups like-data-types into the same 2D NumPy array. However, since NumPy was created using a **Row-Major Structure** (C Style), each row of the frame is stored contiguously in memory. So, the storage of the elements looks a little more like this:
 
 $$
 \begin{array}{|c|c|c|c|c|c|c|c|c|}
