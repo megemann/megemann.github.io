@@ -38,7 +38,7 @@ To minimize API calls and prevent excessive requests:
 
 ### Cloudflare Worker Setup
 
-The Cloudflare Worker is deployed at `https://blog-counter.ajfairbanksblog.workers.dev` and uses two KV namespaces:
+The Cloudflare Worker is deployed at `https://3c2fa4bd-blog-counter.ajfairbanksblog.workers.dev` and uses two KV namespaces:
 - `COUNTS`: Stores the number of views for each blog post
 - `LOGS`: Tracks IP addresses with a 24-hour TTL to prevent duplicate counting
 
@@ -74,6 +74,7 @@ The Cloudflare Worker endpoint is stored in `src/config/api.js` for easy updates
   slug={post.slug} 
   namespace="blog" 
   increment={true}
+  lazy={true}
   showLabel={true}
 />
 
@@ -105,7 +106,7 @@ The view counter styling is defined in `src/component/ViewCounter/ViewCounter.cs
 
 If view counts aren't appearing:
 1. Check the browser console for errors
-2. Verify the Cloudflare Worker is running (`https://blog-counter.ajfairbanksblog.workers.dev/test`)
+2. Verify the Cloudflare Worker is running (`https://3c2fa4bd-blog-counter.ajfairbanksblog.workers.dev/test`)
 3. Check that the correct slug is being passed to the ViewCounter component
 4. Clear localStorage if you suspect the cached counts are incorrect
 

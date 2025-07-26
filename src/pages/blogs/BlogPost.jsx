@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 import rehypeRaw from 'rehype-raw';
+import rehypeKatex from 'rehype-katex';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Sidebar from '../../component/Sidebar/Sidebar';
@@ -12,11 +14,13 @@ import useReadingProgress from '../../hooks/useReadingProgress';
 import ThemeContext from '../../ThemeContext';
 import { logPageView, logEvent, logBlogAnalytics, logScrollDepth, logEngagement } from '../../analytics';
 import './BlogPost.css';
+import 'katex/dist/katex.min.css';
 
 // Map of blog slugs to their file paths
 const BLOG_MAP = {
   'oneprompted': '/blogs/OnePrompted.md',
   'torchvskerasv1': '/blogs/TorchvsKerasv1.md',
+  'PlvsPd': '/blogs/PlvsPd.md',
   'welcome-to-my-blog': '/blogs/welcome-to-my-blog.md',
   'machine-learning-beginners': '/blogs/machine-learning-beginners.md',
   'future-web-development': '/blogs/future-web-development.md'
@@ -130,6 +134,13 @@ export default function BlogPost() {
         
         setMarkdown(content);
         setLoading(false);
+        
+        // Trigger view counter after content is loaded
+        setTimeout(() => {
+          if (window[`triggerViewCounter_${slug}`]) {
+            window[`triggerViewCounter_${slug}`]();
+          }
+        }, 500);
         
         // Ensure content is visible
         setTimeout(() => {
@@ -474,8 +485,8 @@ export default function BlogPost() {
     <div className={`blog-post-content ${darkMode ? 'dark-mode' : ''}`}>
       <article className={`markdown-content ${darkMode ? 'dark-mode' : ''}`}>
         <ReactMarkdown 
-          remarkPlugins={[remarkGfm]} 
-          rehypePlugins={[rehypeRaw]}
+          remarkPlugins={[remarkGfm, remarkMath]} 
+          rehypePlugins={[rehypeRaw, rehypeKatex]}
           components={{
             img: ({node, ...props}) => (
               <img 
@@ -489,7 +500,7 @@ export default function BlogPost() {
             ),
             code: ({node, inline, className, children, ...props}) => {
               const match = /language-(\w+)/.exec(className || '');
-              const language = match ? match[1] : '';
+              const language = match ? match[1].toLowerCase() : '';
               
               // If it's inline code, use inline styling
               if (inline) {
@@ -596,6 +607,7 @@ export default function BlogPost() {
               namespace="blog" 
               className="blog-post-views"
               increment={true}
+              lazy={true}
             />
           </div>
           <div className="blog-post-share">

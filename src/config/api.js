@@ -4,7 +4,7 @@
  */
 
 // Cloudflare Worker endpoint for blog view counting
-export const CLOUDFLARE_WORKER_ENDPOINT = 'https://blog-counter.ajfairbanksblog.workers.dev';
+export const CLOUDFLARE_WORKER_ENDPOINT = 'https://3c2fa4bd-blog-counter.ajfairbanksblog.workers.dev';
 
 // Other API endpoints can be added here
 export const API_CONFIG = {

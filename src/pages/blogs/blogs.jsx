@@ -24,7 +24,7 @@ const blogs = [
         date: "April 20, 2025",
         author: "Austin Fairbanks",
         tags: ["AI", "Machine Learning", "Prompt Engineering"],
-        readTime: "8 min read",
+        readTime: "20 min read",
         pinned: true
     },
     {
@@ -37,6 +37,18 @@ const blogs = [
         author: "Austin Fairbanks",
         tags: ["PyTorch", "Keras", "Deep Learning", "ML"],
         readTime: "12 min read",
+        pinned: false
+    },
+    {
+        id: 4,
+        slug: 'PlvsPd',
+        title: "Polars vs Pandas",
+        description: "A comprehensive comparison of Polars and Pandas DataFrame libraries, exploring performance differences, syntax variations, and when to choose each for your data processing needs.",
+        image: 'https://i.postimg.cc/Z9MfG68k/Chat-GPT-Image-Jun-21-2025-02-18-55-PM.png',
+        date: "June 28, 2025",
+        author: "Austin Fairbanks",
+        tags: ["Data Science", "Python", "Pandas", "Polars", "Performance"],
+        readTime: "15 min read",
         pinned: false
     },
     {
