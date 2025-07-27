@@ -299,3 +299,13 @@ As shown above, the implementation of a model is much more concise in Keras; how
 - [TensorFlow - Wikipedia](https://en.wikipedia.org/wiki/TensorFlow)
 - [Keras - Wikipedia](https://en.wikipedia.org/wiki/Keras)
 - [Keras Sequential Model Guide](https://keras.io/guides/sequential_model/)
+
+---
+
+## Connect With Me
+- [**X/Twitter**](https://twitter.com/ajfairbanksML) - Follow me for quick updates and thoughts
+- [**LinkedIn**](https://linkedin.com/in/ajf2005) - Connect professionally
+- [**GitHub**](https://github.com/megemann) - Check out my code and projects
+- [**Email**](mailto:ajfairbanks2005@gmail.com) - Reach out directly
+
+---
