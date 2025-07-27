@@ -414,4 +414,15 @@ I hope this comparison helps you make an informed decision for all your data pro
 - [Polars Documentation: Lazy API](https://docs.pola.rs/user-guide/concepts/lazy-api/) - Guide to Polars' LazyFrame optimization capabilities
 - [Wikipedia: Row and Column-Major Order](https://en.wikipedia.org/wiki/Row-_and_column-major_order) - Explanation of memory layout differences in dataframes
 
+---
+
+## Connect With Me
+- [**X/Twitter**](https://twitter.com/ajfairbanksML) - Follow me for quick updates and thoughts
+- [**LinkedIn**](https://linkedin.com/in/ajf2005) - Connect professionally
+- [**GitHub**](https://github.com/megemann) - Check out my code and projects
+- [**Email**](mailto:ajfairbanks2005@gmail.com) - Reach out directly
+
+---
+
+
 

@@ -1,46 +1,48 @@
-# Hyperband Blog - Revise Title
+# From Theory to Code: My Hyperband Sampler for Optuna
 
 add IMAGE 
 
-**Date:** May 22, 2025  
+> **Date:** May 22, 2025  
 **Author:** Austin Fairbanks  
 **Tags:** Machine Learning, PyTorch, TensorFlow, Keras, Deep Learning, AI  
 **Reading Time:** 12 min read  
 
 ## What is HP Tuning and HP Optimization?
 
-Hyperparameter tuning is the process of selecting and refining hyperparameters to improve the performance of a machine learning model. It ranges from choosing the value of k in k-nearest neighbors, which defines the neighborhood size, to configuring the architecture of artificial neural networks, including parameters like layer count, learning rate, batch size, and activation functions. Effective hyperparameter tuning is crucial for producing high-quality, reliable model outputs. Basic tuning usually involves manual trial and error approaches or an elementary algorithm, like a small-scale grid search. Overall, the goal is to find a model with **sufficient predictive performance**.
+**Hyperparameter tuning** is the process of selecting and refining hyperparameters to improve the performance of a machine learning model. It ranges from choosing the value of k in k-nearest neighbors, which defines the neighborhood size, to configuring the architecture of artificial neural networks, including parameters like layer count, learning rate, batch size, and activation functions. Overall, whether it be through manual trial and error or a simple elementary algorithm, the goal of tuning is to find a model with **sufficient predictive performance**.
 
-**Hyperparameter Optimization** (HPO) is a systematic, automated approach to improving machine learning model performance by identifying the most effective hyperparameter combinations. It leverages advanced search strategies, such as **Bayesian Optimization**, **Random Search,** or other emerging algorithms, to maximize model performance within user-defined constraints.
+**Hyperparameter Optimization** (HPO) is a systematic, automated approach to improving machine learning model performance by identifying the most effective hyperparameter combinations. Building on basic tuning, it leverages advanced search strategies, such as **Bayesian Optimization**, **Random Search,** or other emerging algorithms, to maximize model performance within user-defined constraints. 
 
 To aid in systematic hyperparameter optimization, a variety of frameworks and libraries provide *black box strategies* that streamline the search-space exploration. These platforms implement the abstractions of search algorithms and enable optimization without needing extensive knowledge. Popular examples include:
-1. Optuna – A lightweight framework focused on dynamic sampling and pruning strategies.
-2. Keras Tuner – Designed for seamless integration with TensorFlow and neural networks.
-3. HyperOpt – Offers support for Bayesian optimization and distributed search.
+1. **Optuna** – A lightweight framework focused on dynamic sampling and pruning strategies.
+2. **Keras Tuner** – Designed for seamless integration with TensorFlow and neural networks.
+3. **HyperOpt** – Offers support for Bayesian optimization and distributed search.
 
-For a reference on usage of some of these frameworks, please reference my HPO MANUAL on my github.
+For a reference on usage of some of these frameworks, please reference my **HPO MANUAL** on my github.
 
 ## What is Hyperband?
 
-**Hyperband** is a hyperparameter optimization algorithm based on the *n-armed bandit problem*, designed to efficiently allocate resources while balancing *exploration and exploitation*. The most intuitive way to visualize its strategy is through a tournament-style competition: Imagine you're watching your favorite tournament (whether in athletics, esports, or your favorite board game) and two teams face off against each other in winner takes all match. The winning team usually then advances to the next *rung* in the bracket, earning more time and *resources* to prove themselves.
+**Hyperband** is an optimization algorithm based on the popular *n-armed bandit problem*, designed to efficiently allocate resources while balancing *exploration and exploitation*. I know it may sound intimidating right now, but it really comes down to a few simple principles, so stick with me for a little.
+
+ Imagine you're watching your favorite tournament (whether in athletics, esports, or your favorite board game) and two teams face off against each other in winner takes all match. The winning team usually then advances to the next *rung* in the bracket, earning more time and *resources* to prove themselves for the championship.
 
 Hyperband follows a similar fundamental structure, with a few optimization-based changes. Firstly, instead of teams, it evaluates configurations, promoting the top performers at each stage. Once promoted, the selected configurations receive additional *resources* to continue their model training, while the weaker contenders are eliminated early. This strategy enables Hyperband to eliminate unpromising trails quickly, avoiding wasted resources and focusing effort where it counts the most.
 
 [![sankeymatic-20250625-220017-1200x1200.png](https://i.postimg.cc/VvZvB30R/sankeymatic-20250625-220017-1200x1200.png)](https://postimg.cc/WqrssYnF)
 
-After establishing the bracket structure and elimination method, Hyperband faces a key question: how should the brackets be populated with configurations, and how do we decide which ones deserve final selection?
+After establishing the bracket structure and configuration pruning method, Hyperband faces a key question: how should the brackets be populated with configurations, and how to decide when and which ones deserve more resources?
 
-At each rung, a *promotion* means allocating more resources to a winning configurations. Because “resources” in practice can mean training time, dataset size, or number of epochs, Hyperband lets users specify a starting value, an ending value, and a strategy for scaling between them. This creates flexibilty for defining how aggressive configurations should be eliminated. 
+Think of it like designing a tournament where teams compete in a few best-of-five matchups rather than a single-elimination bracket. While you may not be able to host as many teams, the extended series could improve your confidence that the winning team truly earned its spot. This dilema mirrors how Hyperband needs to address the tradeoff between **exploration** (many teams, but eliminate quickly) and **exploitation** (few teams, but evaluate thoroughly) through parameter assignment. 
 
-Think of it like designing a tournament where teams compete in a few best-of-five matchups rather than a single-elimination bracket. While you may not be able to host as many teams, the extended series improve your confidence that the winning team truly earned its spot. This structure mirrors how Hyperband enablers users to adjust the tradeoff between **exploration** (many teams, but eliminate quickly) and **exploitation** (few teams, but evaluate thoroughly) through parameter assignment.
-
-In fact, under the hood, Hyperband not only provides a flexible bracket structure, but actually generates multiple bracket schedules rather than relying on a single, fixed configuration. Each bracket varies in its approach, enabling a blend of **exploratory** and **explotiative** strategies to effectively assess a problem space. 
+Instead of deciding on a single, fixed approach, Hyperband opts to generate numerous indepedent brackets. Each one varies in its resource allocation approach, enabling a blend of **exploratory** and **explotiative** strategies to effectively assess a problem space. 
 - Exploitative brackets run fewer trials with high resource budgets from the start. Since each trial runs to completion, there's little early elimination, meaning fewer combinations may be explored, favoring depth over diversity.
 - Exploratory brackets start with low resources and many trials, aggressively pruning early-stage models to allocate more resources to the most promising candidates later on.
+
 By balancing exploratory and exploitative strategies, Hyperband delivers reliable performance across diverse optimization landscapes, allocating resources with not only high flexibility, but also precision.
 
 [![image.png](https://i.postimg.cc/HL3gyby0/image.png)](https://postimg.cc/677gs2zT)
 
+Lastly, because “resources” in practice can represent training time, dataset size, or number of epochs, Hyperband lets users set a starting value, an ending value, and a strategy for scaling between them. Additionally, because developers have a wide variety of resource budgets, Hyperband also exposes a parameter that controls the aggressiveness of elimination, and in-turn decides the number of brackets that Hyperband will construct. This flexibilty through defined constraints allows for adaptation to any desired search space. 
 
 ## My Implementation
 
@@ -48,11 +50,11 @@ Now that we’ve covered the foundational concepts and architecture of Hyperband
 
 ### The idea: Keras Tuner -> Optuna
 
-While exploring various optimization frameworks for a project, I stumbled upon both Keras Tuner (Hyperparameter Optimization tool tailored for Keras) and Optuna (A general-purpose black-box optimization framework). Though I was using [PyTorch](https://pytorch.org/), I admired many aspects of Keras Tuner, particularly regarding its tight integration and direct access to the current model’s structure.
+While exploring various optimization frameworks for a project, I stumbled upon both Keras Tuner (Hyperparameter Optimization tool tailored for Keras) and Optuna (A general-purpose black-box optimization framework). Though I was using [PyTorch](https://pytorch.org/), I admired many aspects of Keras Tuner, particularly its tight integration and direct access to the current model’s structure.
 
-Initially, I attempted to wrap the `HyperbandTuner` class into a *pseudo* optuna sampler; however, there are several limitations in Keras Tuner's design that make this approach impractical. For instance, Keras Tuner automatically saves model weights after each trial, enabling it to resume training from a specific epoch rather than restarting from scratch. While this feature is extremely useful within the Keras ecosystem, it doesn’t translate well to PyTorch and Optuna, which were developed largely independently. 
+Initially, I attempted to wrap the `HyperbandTuner` class into a *pseudo* optuna sampler; however, there are several limitations in Keras Tuner's design that make this approach impractical. For instance, Keras Tuner automatically saves model weights after each trial, enabling it to resume training from a specific epoch rather than restarting from scratch. While this feature is extremely useful within the Keras ecosystem, it doesn’t translate well to PyTorch and Optuna, which were developed largely independently. Moreover, for research purposes, I needed transparency into the samplers internal mechanics to benchmark against other algorithms within Optuna. 
 
-Moreover, for research purposes, I needed transparency into the samplers internal mechanics to benchmark against other algorithms within Optuna. These constraints ultimately led me to develop a custom Optuna sampler that manages resources in a way tailored to my use case, distinct from Keras Tuner’s approach.
+These constraints ultimately led me to develop a custom Optuna sampler that manages resources in a way tailored to my use case, distinct from Keras Tuner’s approach.
 
 ### The `HyperbandSampler`
 
@@ -77,13 +79,15 @@ $$
 s_{\text{max}} = \left\lfloor \frac{\log\left(\frac{\text{max\_resource}}{\text{min\_resource}}\right)}{\log(\text{reduction\_factor})} \right\rfloor + 1
 $$
 brackets.
-These brackets run sequentially, each balancing exploration and exploitation differently while operating under the same resource budget. To start, each initial configuration at rung 0 is generated randomly.
+These brackets run sequentially, each balancing exploration and exploitation differently while operating under the same resource budget. Because the generation of each bracket is done prior to any sampling, each bracket is independently filled with randomly generated configuration values for the models.
 
-In this setup, bracket 1 contains the most rungs (specifically, `s_max + 1`). With each successive bracket, the total number of rungs decreases by one. Fewer rungs means the bracket begins with fewer candidates, but can allocate more resources to each since it shares the same overall budget as the previous bracket. This pattern continues until the final bracket, which runs exactly `s_max trials`, each assigned `max_resource` resources.
+In terms of the pruning approach, the first bracket contains the most rungs (`s_max + 1`). With each successive bracket, the total number of rungs decreases by one. Fewer rungs means the bracket begins with fewer candidates (specifics in the next section), but can allocate more resources to each to increase selection confidence. This pattern continues until the final bracket, which runs exactly `s_max` trials, each assigned `max_resource` resources.
 
 #### Promotion
 
-Now that we’re shifting focus to promotion, let’s unpack the reduction_factor parameter. When promoting to the next rung, we reduce the number of configurations by exactly $\frac{1}{\text{reduction factor}}$. To compensate, we scale the resources for each remaining configuration by `reduction_factor`, ensuring that the total resource consumption matches that of the previous rung. This scaling mechanism maintains consistent resource allocation across all brackets and within each individual rung, ensuring the search space is explored uniformly while preserving a tight overall resource budget.
+Now that we’re shifting focus to promotion, let’s unpack the `reduction_factor` parameter. When promoting to the next rung, we reduce the number of configurations by exactly $\frac{1}{\text{reduction factor}}$. To compensate, we scale the resources for each remaining configuration by `reduction_factor`, ensuring that the total resource consumption matches that of the previous rung. This scaling mechanism maintains consistent resource allocation across **all brackets** and **within each individual rung**, ensuring the search space is explored uniformly while preserving a tight overall resource budget.
+
+This strategy also provides clarity to the number of initial configurations to allocate, as to end up with exactly one configuration after $x$ rungs, we should have exactly $x \cdot$`reduction_factor` to start. With this insight, we can concretely construct a variety of possible bracket structures given the user-defined parameters.
 
 #### Example
 
@@ -93,22 +97,22 @@ An example of a possible structure was shown in Figure 2 above, with `min_resour
 
 ```Hyperband_Study(min_resource, max_resource, reduction_factor, hyperband_iterations=1, directions=None, direction=None, study_name=None, storage=None, load_if_exists=False, sampler_seed=None, ``study_kwargs)```
 
-Since our sampler generates one set of brackets when initialized, it becomes challenging to run multiple iterations of the algorithm in succession while maintaining encapsulation within a single `Hyperband Sampler` instance. To address this, I developed the `HyperbandStudy` class, which wraps the **optuna study** functionality to support multiple runs of the `HyperbandSampler`. If the `hyperband_iterations` parameter is set to 1, then it simply returns a native optuna study using the result from our sampler. However, if `hyperband_iterations` is set to **greater than 1**, it triggers a seperate method called `_serial_optimize`. This method runs multiple Hyperband cycles, and records the best result given accross all iterations as the final hyperparameter value. 
+Since our sampler only generates one set of brackets when initialized, it becomes challenging to run multiple iterations of the algorithm in succession while maintaining encapsulation within a single `Hyperband Sampler` instance. To address this, I developed the `HyperbandStudy` class, which wraps the **Optuna Study** functionality to support multiple runs of the `HyperbandSampler`. If the `hyperband_iterations` parameter is set to 1, then it simply returns a native optuna study using the result from our sampler. However, if `hyperband_iterations` is set to **greater than 1**, it triggers a seperate method called `_serial_optimize`. This method runs multiple Hyperband cycles in succession and records the best result given accross all iterations as the final hyperparameter value. 
 
 The class mirrors Optuna’s core Study behavior and includes overrides for all essential methods, ensuring compatibility while enabling multi-iteration optimization.
 
 ### Advanced Functionality
 
-To match the capabilities of Optuna’s other samplers, the `HyperbandStudy` and `HyperbandSampler` classes incorporate several advanced features. The overall highlights are **Multi-Objective Sampling**, **MultiThreading**, and **Seamless Integration with the Native Optuna Library**.
+To match the capabilities of Optuna’s other samplers, the `HyperbandStudy` and `HyperbandSampler` classes incorporate several advanced features. The overall highlights are **Multi-Objective Sampling**, **MultiProcessing**, and **Seamless Integration with the Native Optuna Library**.
 
-One notable enhancement is their support for Multi-Objective optimization via a Pareto front. In this approach, the sampler identifies and returns a set of non-dominating solutions—meaning each solution outperforms others in at least one attribute when compared individually across the entire set.
+One notable enhancement is its support for Multi-Objective optimization via a Pareto front. In this approach, the sampler identifies and returns a set of non-dominating solutions, meaning each solution outperforms others in at least one attribute when compared individually across the entire set.
 
 > **Note:** This added complexity influenced the promotion logic. Our solution was to simply select a subset of the top-performing non-dominating solutions when the number exceeds the promotion quota.
 
 
-Next, the framework supports parallel execution via **Multithreading**. Hyperband introduces a unique challenge in this area: a trial's progression may depend not only on previously executed trials but also on those yet to run. This dependency chain complicates parallel execution, as the sampler cannot advance to the next rung until all trials in the current rung are completed. To support parallel execution despite the dependency limitations in Hyperband's design, the `HyperbandStudy` class enables multiple instances of `hyperband_sampler` to run independently. This behavior is controlled via the `hyperband_iterations` parameter (in `HyperbandStudy.__init__`) and the `n_jobs` parameter (in `HyperbandStudy.optimize`). This design promotes simplicity, encapsulation, and easier scalability when extending or debugging parallel optimization workflows.
+Next, the framework supports parallel execution via **MultiProcessing**. Hyperband introduces a unique challenge in this area: a trial's progression may depend not only on previously executed trials but also on those yet to run. This dependency chain complicates parallel execution, as the sampler cannot advance to the next rung until all trials in the current rung are completed. To support parallel execution despite the dependency limitations in Hyperband's design, the `HyperbandStudy` class enables multiple instances of `hyperband_sampler` to run independently. This behavior is controlled via the `hyperband_iterations` parameter (in `HyperbandStudy.__init__`) and the `n_jobs` parameter (in `HyperbandStudy.optimize`). This design promotes simplicity, encapsulation, and easier scalability when extending or debugging parallel optimization workflows.
 
-Lastly, to support the research I was conducting, I implemented direct integrations with the Optuna library—ensuring that both `HyperbandSampler` and `HyperbandStudy` behave almost identically to their Optuna counterparts. This compatibility allows them to slot seamlessly into existing Optuna workflows while extending functionality.
+Lastly, to support the research I was conducting, I implemented direct integrations with the Optuna library, ensuring that both the`HyperbandSampler` and `HyperbandStudy` classes behave almost identically to their Optuna counterparts. This compatibility allows them to slot seamlessly into existing Optuna workflows while extending functionality.
 
 The following features were added to achieve this:
 1. **Optuna-style Logging:** Supports native Optuna verbosity levels for consistent diagnostics and output behavior.
@@ -123,7 +127,7 @@ The `HyperbandSampler` can be applied to any black-box optimization problem, as 
 
 The following code snippet is drawn from my ongoing research study and demonstrates the use of `HyperbandStudy` on the **UCI Letter Recognition Dataset**. This dataset includes *16 principal components* and is frequently used as a lightweight benchmark in machine learning experiments.
 
-In practice, `HyperbandStudy` serves as a more versatile framework than using `HyperbandSampler` directly. The snippet illustrates a simple example of replacing a standard Optuna study with `HyperbandStudy`. While the sampler does operate seamlessly with Optuna’s native `Study` class, the wrapper provides stricter usage patterns and a broader set of features—enhancing both usability and extensibility for advanced research workflows.
+In practice, `HyperbandStudy` serves as a more versatile framework than using `HyperbandSampler` directly. The snippet illustrates a simple example of replacing a standard Optuna study with `HyperbandStudy`. While the sampler does operate seamlessly with Optuna’s native `Study` class, the wrapper provides stricter usage patterns and a broader set of features, enhancing both usability and extensibility for advanced research workflows.
 
 ### Code Examples
 ``` Python
@@ -249,7 +253,7 @@ To compare the impact of the `reduction_factor`, I conducted a brief experiment 
 
 As shown in the results, more exploitative approaches (`reduction_factor` = 4 or 5) initially achieve higher accuracy by rapidly pruning low-performing trials and allocating resources only to the most promising candidates. However, as the resource budget increases, the more exploratory strategies (`reduction_factor` = 2 or 3) tend to converge to higher accuracy and lower loss. This behavior emerges because the search space contains many configurations that yield similar results, making it beneficial to evaluate more trials with greater resource depth.
 
-On a different search space, one where early performance is more indicitive of final convergence and where resources are more of a luxury (such as training a large CNN), the more exploitative approaches may converge to a higher accuracy within a given resource limit. Basically, the higher your resource limit, the larger the reduction factor you’ll need.
+On a different search space, one where early performance is more indicitive of final convergence and where resources are more of a luxury (such as training a large CNN), the more exploitative approaches may converge to a higher accuracy within a given resource limit. In summary, the lower your resource limit, the larger the reduction factor you’ll need.
 
 > NOTE: the main parameters that can be altered are `min_resource` and `reduction_factor` when tuning. `max_resource` is best guided by an initial training example and should be set at a value that prevents overfitting.
 
@@ -259,7 +263,16 @@ On a different search space, one where early performance is more indicitive of f
   
 ## Conclusion
 
-Hyperband offers a flexible, resource-aware approach to hyperparameter optimization—especially in scenarios where training costs matter and exploration needs to be strategic. By building my own implementation on top of Optuna, I was able to unlock multi-iteration control, advanced sampling features, and increased PyTorch compatibility.
+Hyperband offers a flexible, resource-aware approach to hyperparameter optimization, especially in scenarios where training costs matter and exploration needs to be strategic. By building my own implementation on top of Optuna, I was able to unlock multi-iteration control, advanced sampling features, and increased PyTorch compatibility.
 
 I hope this blog helps shed light on both the core ideas behind Hyperband and how you can extend them for custom workflows. Feel free to fork the repo, test new datasets, and contribute improvements!
-**
+
+---
+
+## Connect With Me
+- [**X/Twitter**](https://twitter.com/ajfairbanksML) - Follow me for quick updates and thoughts
+- [**LinkedIn**](https://linkedin.com/in/ajf2005) - Connect professionally
+- [**GitHub**](https://github.com/megemann) - Check out my code and projects
+- [**Email**](mailto:ajfairbanks2005@gmail.com) - Reach out directly
+
+---

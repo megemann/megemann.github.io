@@ -211,3 +211,13 @@ as well as a few additional, less popular libraries.
     - Nvidia Integration: https://developer.nvidia.com/opencl
     - Guide: https://github.com/KhronosGroup/OpenCL-Guide
       
+
+---
+
+## Connect With Me
+- [**X/Twitter**](https://twitter.com/ajfairbanksML) - Follow me for quick updates and thoughts
+- [**LinkedIn**](https://linkedin.com/in/ajf2005) - Connect professionally
+- [**GitHub**](https://github.com/megemann) - Check out my code and projects
+- [**Email**](mailto:ajfairbanks2005@gmail.com) - Reach out directly
+
+---
