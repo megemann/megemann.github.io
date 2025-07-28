@@ -2,10 +2,15 @@
 
 [![Chat-GPT-Image-Jul-27-2025-06-10-55-PM.png](https://i.postimg.cc/nV22mr36/Chat-GPT-Image-Jul-27-2025-06-10-55-PM.png)](https://postimg.cc/0r67RkRf)
 
-> **Date:** May 22, 2025  
+> **Date:** July 27, 2025  
 **Author:** Austin Fairbanks  
 **Tags:** Machine Learning, PyTorch, TensorFlow, Keras, Optimization
 **Reading Time:** 20 min read  
+[**Medium Link**](https://medium.com/@ajfairbanks2005/i-ditched-keras-tuner-and-built-my-own-hyperband-sampler-for-pytorch-a29686e6f925)
+
+[![**GitHub**](https://img.shields.io/badge/GitHub-Code%20Available-blue?logo=github)](https://github.com/megemann/Hyperband_sampler) [![Medium](https://img.shields.io/badge/Medium-Follow%20for%20More-green?logo=medium)](https://medium.com/@ajfairbanks2005)
+
+PyTorch users tired of wrestling with Keras Tuner? I built the Hyperband sampler we've all been waiting for.
 
 ## What is HP Tuning and HP Optimization?
 
@@ -285,6 +290,7 @@ Hyperband offers a flexible, resource-aware approach to hyperparameter optimizat
 
 I hope this blog helps shed light on both the core ideas behind Hyperband and how you can extend them for custom workflows. Feel free to fork the repo, test new datasets, and contribute improvements!
 
+
 ## Glossary of Key Terms
 Bracket - A complete tournament-style structure in Hyperband that runs a set of configurations through multiple elimination rounds (rungs). Each bracket has a different strategy for balancing exploration vs exploitation.
 
@@ -315,6 +321,11 @@ Trial - A single evaluation of one configuration with a specific resource alloca
 - [UCI Letter Recognition](https://archive.ics.uci.edu/dataset/59/letter+recognition)
 
 ## Connect With Me
+
+**Found this useful?** Hit that follow button and clap if this saved you some GPU hours. I'm always building tools to make ML development less painful. More optimization deep-dives coming soon.
+
+**Questions or improvements?** Drop them in the comments or open an issue on GitHub. The best code comes from community feedback.
+
 - [**X/Twitter**](https://twitter.com/ajfairbanksML) - Follow me for quick updates and thoughts
 - [**LinkedIn**](https://linkedin.com/in/ajf2005) - Connect professionally
 - [**GitHub**](https://github.com/megemann) - Check out my code and projects
