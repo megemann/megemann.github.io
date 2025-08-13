@@ -1,15 +1,15 @@
 export const ProjectData = [
     {
-        title: "HP Manual",
+        title: "Hyperparameter Optimization Research",
         key: "Hyperparameter_Optimization_Framework_Evaluation_and_Manual",
         image: 'hpoptimization.png',
-        description: "A research paper with related code that outlines the use of different Hyperparameter Optimization Frameworks such as Keras Tuner, Optuna, and Sci-Kit Learn. Additionally, it includes a brief case study to evaluate several algorithms. This project makes use of: Python, Keras/Tensorflow, Jupyter Notebook, Numpy, Matplotlib, and Hyperparameter Optimization Frameworks. I developed this manual in conjunction with my internship at Corning Incorporated through Magnit.",
+        description: "Comprehensive hyperparameter optimization research including implementation guides for Keras Tuner, Optuna, and Scikit-Learn. Currently developing 'A Practitioner's Guide to HPO in Optuna' with systematic algorithm selection frameworks and benchmark datasets. Developed during internship at Corning Incorporated.",
         link: "https://github.com/megemann/HPOptimization",
         readme: "https://github.com/megemann/HPOptimization",
         highlight: true,
         date: "07/2024",
-        lastUpdate: "08/2024",
-        skills: ["Keras", "Python", "Matplotlib", "Numpy", "Neural Networks / Deep Learning"],
+        lastUpdate: "Present",
+        skills: ["Optuna", "Keras Tuner", "Python", "Algorithm Benchmarking", "Technical Writing", "Hyperparameter Optimization"],
     },
     {
         title: "Personal Portfolio",

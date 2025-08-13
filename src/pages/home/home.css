@@ -62,18 +62,93 @@
   color: var(--jupyter-text-light);
 }
 
-/* Update run button colors for light mode */
+/* Light mode support for enhanced buttons */
+.notebook-container:not(.dark-mode) .toolbar-button {
+  background: rgba(33, 150, 243, 0.05);
+  border-color: rgba(33, 150, 243, 0.15);
+  color: var(--jupyter-text-light);
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button:hover {
+  background: rgba(33, 150, 243, 0.1);
+  border-color: rgba(33, 150, 243, 0.3);
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.run-all {
+  background: rgba(39, 174, 96, 0.05);
+  border-color: rgba(39, 174, 96, 0.15);
+  color: #2e7d32;
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.run-all:hover {
+  background: rgba(39, 174, 96, 0.1);
+  border-color: rgba(39, 174, 96, 0.3);
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.restart {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.15);
+  color: #d32f2f;
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.restart:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.pause {
+  background: rgba(255, 193, 7, 0.05);
+  border-color: rgba(255, 193, 7, 0.15);
+  color: #f57c00;
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.pause:hover {
+  background: rgba(255, 193, 7, 0.1);
+  border-color: rgba(255, 193, 7, 0.3);
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.resume {
+  background: rgba(39, 174, 96, 0.05);
+  border-color: rgba(39, 174, 96, 0.15);
+  color: #2e7d32;
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.resume:hover {
+  background: rgba(39, 174, 96, 0.1);
+  border-color: rgba(39, 174, 96, 0.3);
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.clear {
+  background: rgba(33, 150, 243, 0.05);
+  border-color: rgba(33, 150, 243, 0.15);
+  color: var(--jupyter-blue-light);
+}
+
+.notebook-container:not(.dark-mode) .toolbar-button.clear:hover {
+  background: rgba(33, 150, 243, 0.1);
+  border-color: rgba(33, 150, 243, 0.3);
+}
+
 .notebook-container:not(.dark-mode) .run-button {
-  background-color: var(--jupyter-blue-light);
-  color: white;
+  background: rgba(33, 150, 243, 0.05);
+  border-color: rgba(33, 150, 243, 0.15);
+  color: var(--jupyter-blue-light);
 }
 
 .notebook-container:not(.dark-mode) .run-button:hover {
-  background-color: var(--jupyter-green-light);
+  background: rgba(33, 150, 243, 0.1);
+  border-color: rgba(33, 150, 243, 0.3);
 }
 
 .notebook-container:not(.dark-mode) .run-button.executed {
-  background-color: var(--jupyter-green-light);
+  background: rgba(39, 174, 96, 0.05);
+  border-color: rgba(39, 174, 96, 0.15);
+  color: #2e7d32;
+}
+
+.notebook-container:not(.dark-mode) .run-button.executed:hover {
+  background: rgba(39, 174, 96, 0.1);
+  border-color: rgba(39, 174, 96, 0.3);
 }
 
 /* Update typing indicator colors for light mode */
@@ -1439,44 +1514,138 @@ body {
   margin: 0 10px;
 }
 
+/* Enhanced Toolbar button styles */
 .toolbar-button {
   display: flex;
   align-items: center;
-  background: none;
+  background: rgba(33, 150, 243, 0.08);
   border: none;
   color: var(--jupyter-text);
-  padding: 4px 8px;
-  border-radius: 3px;
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.2s ease;
   font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(33, 150, 243, 0.2);
 }
 
 .toolbar-button:hover {
-  background-color: var(--jupyter-code-bg);
+  background-color: rgba(33, 150, 243, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .toolbar-button i {
-  margin-right: 5px;
+  margin-right: 6px;
   font-size: 0.9rem;
+}
+
+.toolbar-button.run-all {
+  background: rgba(39, 174, 96, 0.1);
+  border-color: rgba(39, 174, 96, 0.3);
+  color: var(--jupyter-green);
+}
+
+.toolbar-button.run-all:hover {
+  background: rgba(39, 174, 96, 0.2);
+  border-color: var(--jupyter-green);
 }
 
 .toolbar-button.run-all i {
   color: var(--jupyter-green);
 }
 
+.toolbar-button.restart {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: var(--jupyter-red);
+}
+
+.toolbar-button.restart:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: var(--jupyter-red);
+}
+
 .toolbar-button.restart i {
   color: var(--jupyter-red);
+}
+
+.toolbar-button.pause {
+  background: rgba(255, 193, 7, 0.1);
+  border-color: rgba(255, 193, 7, 0.3);
+  color: #ff9800;
+}
+
+.toolbar-button.pause:hover {
+  background: rgba(255, 193, 7, 0.2);
+  border-color: #ff9800;
+}
+
+.toolbar-button.pause i {
+  color: #ff9800;
+}
+
+.toolbar-button.resume {
+  background: rgba(39, 174, 96, 0.1);
+  border-color: rgba(39, 174, 96, 0.3);
+  color: var(--jupyter-green);
+}
+
+.toolbar-button.resume:hover {
+  background: rgba(39, 174, 96, 0.2);
+  border-color: var(--jupyter-green);
+}
+
+.toolbar-button.resume i {
+  color: var(--jupyter-green);
+}
+
+.toolbar-button.clear {
+  background: rgba(33, 150, 243, 0.1);
+  border-color: rgba(33, 150, 243, 0.3);
+  color: var(--jupyter-blue);
+}
+
+.toolbar-button.clear:hover {
+  background: rgba(33, 150, 243, 0.2);
+  border-color: var(--jupyter-blue);
 }
 
 .toolbar-button.clear i {
   color: var(--jupyter-blue);
 }
 
-.toolbar-button.variables i,
-.toolbar-button.outline i {
+/* Non-interactive toolbar buttons */
+.toolbar-button.variables,
+.toolbar-button.outline,
+.toolbar-button[title="Code"],
+.toolbar-button[title="Markdown"] {
+  background: transparent;
+  border: none;
   color: var(--jupyter-text);
-  opacity: 0.7;
+  opacity: 0.5;
+  cursor: default;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.toolbar-button.variables:hover,
+.toolbar-button.outline:hover,
+.toolbar-button[title="Code"]:hover,
+.toolbar-button[title="Markdown"]:hover {
+  background: transparent;
+  opacity: 0.5;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.toolbar-button.variables i,
+.toolbar-button.outline i,
+.toolbar-button[title="Code"] i,
+.toolbar-button[title="Markdown"] i {
+  color: var(--jupyter-text);
+  opacity: 0.5;
 }
 
 .toolbar-spacer {
@@ -1507,31 +1676,37 @@ body {
   gap: 10px;
 }
 
+/* Enhanced theme toggle button */
 .theme-toggle {
-  background-color: var(--jupyter-blue);
-  color: white;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 3px;
+  background: rgba(33, 150, 243, 0.1);
+  color: var(--jupyter-blue);
+  border: 1px solid rgba(33, 150, 243, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  transition: var(--transition);
-}
-
-/* Make the text dark in light mode for better visibility */
-.notebook-container:not(.dark-mode) .theme-toggle {
-  background-color: #2a2a2a;
-  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .theme-toggle:hover {
-  background-color: var(--jupyter-green);
+  background: rgba(33, 150, 243, 0.2);
+  border-color: var(--jupyter-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Specific hover style for light mode */
+/* Light mode theme toggle styling */
+.notebook-container:not(.dark-mode) .theme-toggle {
+  background: rgba(42, 42, 42, 0.1);
+  color: #2a2a2a;
+  border-color: rgba(42, 42, 42, 0.3);
+}
+
 .notebook-container:not(.dark-mode) .theme-toggle:hover {
-  background-color: #3a3a3a;
+  background: rgba(42, 42, 42, 0.2);
+  border-color: #2a2a2a;
 }
 
 /* Notebook Content */
@@ -1619,28 +1794,40 @@ body {
   background-color: var(--jupyter-code-bg-light);
 }
 
+/* Enhanced run button styles */
 .run-button {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  background-color: var(--jupyter-blue);
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
+  background: rgba(33, 150, 243, 0.1);
+  color: var(--jupyter-blue);
+  border: 1px solid rgba(33, 150, 243, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  transition: var(--transition);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .run-button:hover {
-  background-color: var(--jupyter-green);
+  background: rgba(33, 150, 243, 0.2);
+  border-color: var(--jupyter-blue);
+  transform: translateY(-50%) translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .run-button.executed {
-  background-color: var(--jupyter-green);
+  background: rgba(39, 174, 96, 0.1);
+  color: var(--jupyter-green);
+  border-color: rgba(39, 174, 96, 0.3);
+}
+
+.run-button.executed:hover {
+  background: rgba(39, 174, 96, 0.2);
+  border-color: var(--jupyter-green);
 }
 
 /* Typing Animation */
@@ -1771,9 +1958,9 @@ body {
 
 .intro-image {
   position: relative;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
+  width: 180px;
+  height: 280px;
+  border-radius: 12px;
   overflow: hidden;
   border: 3px solid var(--jupyter-blue);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -1795,7 +1982,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 50%;
+  border-radius: 12px;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
   pointer-events: none;
 }
@@ -2573,20 +2760,22 @@ body {
     color: #303030;
 }
 
-/* Run button */
+/* Override older run button styles for consistency */
 .notebook-container:not(.dark-mode) .run-button {
-    background-color: transparent;
-    color: #303030;
-    border: 1px solid #e0e0e0;
+  background: rgba(33, 150, 243, 0.05) !important;
+  border-color: rgba(33, 150, 243, 0.15) !important;
+  color: var(--jupyter-blue-light) !important;
 }
 
 .notebook-container:not(.dark-mode) .run-button:hover {
-    background-color: #f0f0f0;
+  background: rgba(33, 150, 243, 0.1) !important;
+  border-color: rgba(33, 150, 243, 0.3) !important;
 }
 
 .notebook-container:not(.dark-mode) .run-button.executed {
-    background-color: #e8f5e9;
-    color: #2e7d32;
+  background: rgba(39, 174, 96, 0.05) !important;
+  border-color: rgba(39, 174, 96, 0.15) !important;
+  color: #2e7d32 !important;
 }
 
 /* Typing indicator */

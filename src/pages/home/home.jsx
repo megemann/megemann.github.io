@@ -29,6 +29,7 @@ export default function Home() {
     const [isTyping, setIsTyping] = useState(false);
     const [typingText, setTypingText] = useState('');
     const [isPaused, setIsPaused] = useState(false);
+    const [pausedState, setPausedState] = useState(null); // Store paused typing state
     const { darkMode, setDarkMode, isMobile } = useContext(ThemeContext);
     const [showRunAllArrow, setShowRunAllArrow] = useState(false);
 
@@ -55,6 +56,42 @@ export default function Home() {
         }
     }, [isMobile]);
 
+    const continueTyping = (cellId, currentText, currentIndex, fullCode) => {
+        const typingInterval = setInterval(() => {
+            if (isPaused) {
+                // Save current state when pausing
+                setPausedState({
+                    cellId,
+                    text: currentText,
+                    index: currentIndex,
+                    fullCode
+                });
+                clearInterval(typingInterval);
+                return;
+            }
+            
+            if (currentIndex < fullCode.length) {
+                currentText += fullCode[currentIndex];
+                setTypingText(currentText);
+                currentIndex++;
+            } else {
+                clearInterval(typingInterval);
+                setPausedState(null); // Clear paused state when complete
+                setTimeout(() => {
+                    if (!isPaused) {
+                        setIsTyping(false);
+                        setCellsExecuted(prev => ({
+                            ...prev,
+                            [cellId]: true
+                        }));
+                    }
+                }, 500);
+            }
+        }, 13);
+        
+        window.currentTypingInterval = typingInterval;
+    };
+
     const runCell = (cellId) => {
         if (isPaused) return;
         
@@ -67,38 +104,11 @@ export default function Home() {
         setActiveCell(cellId);
         setIsTyping(true);
         setTypingText('');
+        setPausedState(null); // Clear any previous paused state
         
         // Simulate typing effect for code execution
-        let text = '';
         const cellCode = getCellCode(cellId);
-        let i = 0;
-        
-        const typingInterval = setInterval(() => {
-            if (isPaused) {
-                clearInterval(typingInterval);
-                setIsTyping(false);
-                return;
-            }
-            
-            if (i < cellCode.length) {
-                text += cellCode[i];
-                setTypingText(text);
-                i++;
-            } else {
-                clearInterval(typingInterval);
-                setTimeout(() => {
-                    if (!isPaused) {
-                        setIsTyping(false);
-                        setCellsExecuted(prev => ({
-                            ...prev,
-                            [cellId]: true
-                        }));
-                    }
-                }, 500);
-            }
-        }, 10);
-        
-        window.currentTypingInterval = typingInterval;
+        continueTyping(cellId, '', 0, cellCode);
     };
 
     const getCellCode = (cellId) => {
@@ -252,10 +262,9 @@ export default function Home() {
                             className={`toolbar-button ${isPaused ? 'resume' : 'pause'}`} 
                             title={isPaused ? "Resume Execution" : "Pause Execution"} 
                             onClick={() => {
-                                setIsPaused(!isPaused);
-                                
                                 if (!isPaused) {
                                     // Pausing execution
+                                    setIsPaused(true);
                                     // Clear current typing interval if exists
                                     if (window.currentTypingInterval) {
                                         clearInterval(window.currentTypingInterval);
@@ -266,8 +275,16 @@ export default function Home() {
                                         window.runAllTimeouts.forEach(timeout => clearTimeout(timeout));
                                     }
                                 } else {
-                                    // Resuming execution - we don't auto-resume, just allow new executions
-                                    // This is simpler than trying to resume from the middle of a cell
+                                    // Resuming execution
+                                    setIsPaused(false);
+                                    
+                                    // If there's a paused typing state, continue from where we left off
+                                    if (pausedState) {
+                                        setActiveCell(pausedState.cellId);
+                                        setTypingText(pausedState.text);
+                                        setIsTyping(true);
+                                        continueTyping(pausedState.cellId, pausedState.text, pausedState.index, pausedState.fullCode);
+                                    }
                                 }
                             }}
                         >
@@ -281,6 +298,9 @@ export default function Home() {
                                 projects: false,
                                 contact: false
                             });
+                            setPausedState(null); // Clear paused state when clearing outputs
+                            setIsTyping(false);
+                            setTypingText('');
                         }}>
                             <i className="fas fa-eraser"></i> Clear All Outputs
                         </button>
@@ -340,7 +360,7 @@ export default function Home() {
                                             <div className="intro-text">
                                                 <p className="intro-bio">
                                                     I'm a Computer Science student at UMass Amherst specializing in machine learning, 
-                                                    hyperparameter optimization, and data analysis. My passion lies in developing 
+                                                    optimization, and resource-bounded AI. My passion lies in developing 
                                                     efficient ML solutions and exploring cutting-edge AI technologies.
                                                 </p>
                                                 <div className="intro-highlights">
@@ -350,11 +370,11 @@ export default function Home() {
                                                     </div>
                                                     <div className="highlight-item">
                                                         <i className="fas fa-code"></i>
-                                                        <span>ML/AI Engineer with Python expertise</span>
+                                                        <span>ML/AI Engineer with Python and C++ expertise</span>
                                                     </div>
                                                     <div className="highlight-item">
                                                         <i className="fas fa-chart-line"></i>
-                                                        <span>Machine Learning & Data Science Specialist</span>
+                                                        <span>Applied Machine Learning and Optimization</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -425,14 +445,22 @@ export default function Home() {
                                         </div>
                                         
                                         <div className="about-section">
-                                            <h3>Experience & Publications</h3>
+                                            <h3>Experience</h3>
                                             <div className="experience-grid">
                                                 <div className="experience-item">
                                                     <div className="experience-header">
-                                                        <h4>Intern, Corning Incorporated (Magnit)</h4>
-                                                        <span className="experience-period">Summer 2024</span>
+                                                        <h4>Machine Learning Engineering Intern, Corning Inc. (Magnit)</h4>
+                                                        <span className="experience-period">May 2025 – Aug 2025</span>
                                                     </div>
-                                                    <p className="experience-brief">Developed hyperparameter optimization guidelines and data preprocessing pipelines for computer vision applications</p>
+                                                    <p className="experience-brief">Researching GPU-accelerated DataFrame libraries (cuDF), developing computer vision models for hardware anomaly detection, and optimizing workflows to reduce time-to-insight by 1.5x</p>
+                                                </div>
+                                                
+                                                <div className="experience-item">
+                                                    <div className="experience-header">
+                                                        <h4>Intramural Program Assistant, UMass RecWell</h4>
+                                                        <span className="experience-period">Aug 2025 – Present</span>
+                                                    </div>
+                                                    <p className="experience-brief">Facilitate basketball operations, manage 40+ referees and payroll, train staff in conflict resolution and sports management</p>
                                                 </div>
                                                 
                                                 <div className="experience-item">
@@ -440,23 +468,44 @@ export default function Home() {
                                                         <h4>Frontend Developer, MyEdMaster</h4>
                                                         <span className="experience-period">Dec 2024 – Jan 2025</span>
                                                     </div>
-                                                    <p className="experience-brief">Redesigned React frontend for ML health analytics tool with Django backend and AWS infrastructure</p>
+                                                    <p className="experience-brief">Redesigned React frontend for ML health analytics tool with Django backend and AWS infrastructure integration</p>
                                                 </div>
                                                 
                                                 <div className="experience-item">
                                                     <div className="experience-header">
-                                                        <h4>Hyperparameter Optimization Research</h4>
+                                                        <h4>ML Research Intern, Corning Inc. (Magnit)</h4>
+                                                        <span className="experience-period">July 2024 – Aug 2024</span>
+                                                    </div>
+                                                    <p className="experience-brief">Developed automated hyperparameter optimization guidelines and reusable data preprocessing pipelines for computer vision applications</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="about-section">
+                                            <h3>Research & Publications</h3>
+                                            <div className="experience-grid">
+                                                <div className="experience-item">
+                                                    <div className="experience-header">
+                                                        <h4>Benchmarking DataFrame Libraries in Data-Driven Modeling</h4>
+                                                        <span className="experience-period">Summer 2025</span>
+                                                    </div>
+                                                    <p className="experience-brief">Benchmarked Polars, cuDF, and Pandas for applied modeling, investigating memory layouts and performance tradeoffs. Built interactive Streamlit app for framework recommendations</p>
+                                                </div>
+                                                
+                                                <div className="experience-item">
+                                                    <div className="experience-header">
+                                                        <h4>A Practitioner's Guide to HPO in Optuna</h4>
+                                                        <span className="experience-period">In Development</span>
+                                                    </div>
+                                                    <p className="experience-brief">Technical report bridging theory and practice with systematic algorithm selection framework, benchmark datasets, and parameter guides for Optuna optimization</p>
+                                                </div>
+                                                
+                                                <div className="experience-item">
+                                                    <div className="experience-header">
+                                                        <h4>Hyperparameter Optimization Manual</h4>
                                                         <span className="experience-period">Summer 2024</span>
                                                     </div>
-                                                    <p className="experience-brief">Published guide on implementation of hyperparameter optimization frameworks (Keras Tuner, Optuna, Scikit-learn)</p>
-                                                </div>
-                                                
-                                                <div className="experience-item">
-                                                    <div className="experience-header">
-                                                        <h4>Intramural Manager, UMass RecWell</h4>
-                                                        <span className="experience-period">Aug 2024 – Present</span>
-                                                    </div>
-                                                    <p className="experience-brief">Facilitate intramural sports, train referees, and apply conflict resolution skills</p>
+                                                    <p className="experience-brief">Comprehensive guide comparing Keras Tuner, Optuna, and Scikit-learn frameworks with implementation examples and performance analysis</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -465,12 +514,16 @@ export default function Home() {
                                             <h3>Leadership & Activities</h3>
                                             <div className="activities-list">
                                                 <div className="activity-item">
-                                                    <span className="activity-name">Hack UMass XI MinuteMunch</span>
-                                                    <span className="activity-date">Nov 2023</span>
+                                                    <span className="activity-name">Google Gen AI Intensive</span>
+                                                    <span className="activity-date">April 2025</span>
                                                 </div>
                                                 <div className="activity-item">
                                                     <span className="activity-name">Midwest Blockchain Conference</span>
                                                     <span className="activity-date">Nov 2024</span>
+                                                </div>
+                                                <div className="activity-item">
+                                                    <span className="activity-name">Hack UMass XI MinuteMunch</span>
+                                                    <span className="activity-date">Nov 2023</span>
                                                 </div>
                                                 <div className="activity-item">
                                                     <span className="activity-name">First Tech Challenge Robotics - Lead Programmer</span>
@@ -764,10 +817,11 @@ export default function Home() {
                 
                 <div className="notebook-footer">
                     <div className="footer-content">
-                        <p>© 2024 Austin Fairbanks. All rights reserved.</p>
+                        <p>© {new Date().getFullYear()} Austin Fairbanks. All rights reserved.</p>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
+

@@ -22,6 +22,7 @@ const BLOG_MAP = {
   'torchvskerasv1': '/blogs/TorchvsKerasv1.md',
   'PlvsPd': '/blogs/PlvsPd.md',
   'welcome-to-my-blog': '/blogs/welcome-to-my-blog.md',
+  'hyperband': '/blogs/Hyperband.md',
   'machine-learning-beginners': '/blogs/machine-learning-beginners.md',
   'future-web-development': '/blogs/future-web-development.md'
 };
