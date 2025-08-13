@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { CLOUDFLARE_WORKER_ENDPOINT } from '../../config/api';
 import './ViewCounter.css';
 
@@ -11,6 +11,7 @@ import './ViewCounter.css';
  * @param {boolean} props.showLabel - Whether to show the "Views: " label
  * @param {boolean} props.showIcon - Whether to show the eye icon (default: false)
  * @param {boolean} props.increment - Whether to increment the count (true for blog post page, false for listings)
+ * @param {boolean} props.lazy - Whether to wait for explicit trigger before making API call (default: false)
  * @param {string} props.className - Additional CSS class names
  * @param {function} props.onCountReceived - Optional callback when count is received
  */
@@ -19,23 +20,61 @@ const ViewCounter = ({
   namespace = 'blog', 
   showLabel = true,
   showIcon = false,
-  increment = false, 
+  increment = false,
+  lazy = false,
   className = '',
   onCountReceived = null
 }) => {
   const [count, setCount] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [triggered, setTriggered] = useState(false);
+  const mountedRef = useRef(false);
   
   // Time between fetches in seconds (1000 seconds = ~16.7 minutes)
   const FETCH_COOLDOWN = 1000;
 
+  // Function to trigger the API call
+  const triggerCount = useCallback(() => {
+    if (!triggered && mountedRef.current) {
+      setTriggered(true);
+    }
+  }, [triggered]);
+
+  // Expose triggerCount function globally for blog post pages
   useEffect(() => {
+    if (lazy && increment && slug) {
+      // Store the trigger function globally so blog post can call it
+      window[`triggerViewCounter_${slug}`] = triggerCount;
+      
+      return () => {
+        // Clean up the global function
+        delete window[`triggerViewCounter_${slug}`];
+      };
+    }
+  }, [lazy, increment, slug, triggerCount]);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    // Only proceed if not lazy, or if lazy but triggered
+    if (lazy && !triggered) {
+      setLoading(false);
+      return;
+    }
+
     const getViewCount = async () => {
       if (!slug) return;
 
       try {
-        // Check if we've fetched this count recently
+        // For increment calls, we want to bypass cache to ensure the increment happens
+        // For read-only calls, we can use cache
         const storageKey = `view-counter-${namespace}-${slug}-last-fetch`;
         const cachedCountKey = `view-counter-${namespace}-${slug}-count`;
         
@@ -43,8 +82,9 @@ const ViewCounter = ({
         const cachedCount = parseInt(localStorage.getItem(cachedCountKey) || '0', 10);
         const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
         
-        // If we've fetched recently, use the cached count
-        if (lastFetchTime > 0 && 
+        // Only use cache for read-only calls (not increment calls)
+        if (!increment && 
+            lastFetchTime > 0 && 
             currentTime - lastFetchTime < FETCH_COOLDOWN && 
             cachedCount > 0) {
           setCount(cachedCount);
@@ -119,7 +159,7 @@ const ViewCounter = ({
     // Short delay to ensure component is mounted
     const timer = setTimeout(getViewCount, 100);
     return () => clearTimeout(timer);
-  }, [slug, namespace, increment, onCountReceived, FETCH_COOLDOWN]);
+  }, [slug, namespace, increment, onCountReceived, FETCH_COOLDOWN, lazy, triggered]);
 
   // Format the count with commas for thousands
   const formatCount = (num) => {

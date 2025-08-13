@@ -278,7 +278,10 @@
 /* Clickable file styling */
 .clickable-file {
     position: relative;
+    background-color: rgba(33, 150, 243, 0.08);
     border-left: 2px solid var(--jupyter-blue);
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .clickable-file .file-icon {
@@ -286,12 +289,21 @@
     color: var(--jupyter-blue);
 }
 
+.clickable-file .file-name {
+    color: var(--jupyter-blue);
+    font-weight: 500;
+}
+
 .clickable-file:hover {
-    background-color: rgba(33, 150, 243, 0.15);
+    background-color: rgba(33, 150, 243, 0.2);
+}
+
+.dark-mode .clickable-file {
+    background-color: rgba(33, 150, 243, 0.12);
 }
 
 .dark-mode .clickable-file:hover {
-    background-color: rgba(33, 150, 243, 0.25);
+    background-color: rgba(33, 150, 243, 0.3);
 }
 
 /* Remove the pulse animation and badge */

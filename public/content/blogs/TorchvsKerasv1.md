@@ -9,31 +9,9 @@
 **Date:** May 22, 2025  
 **Author:** Austin Fairbanks  
 **Tags:** Machine Learning, PyTorch, TensorFlow, Keras, Deep Learning, AI  
-**Reading Time:** 5 min read  
+**Reading Time:** 12 min read  
 
 > Note: Assumes familiarity with Python, NumPy, and basic ML. Won't cover layer types, parameters, or loss functions.
-## Table of Contents
-- [When to Torch vs. When to Flow: A TF.Keras vs. PyTorch Side-by-Side Guide](#when-to-torch-vs-when-to-flow-a-tfkeras-vs-pytorch-side-by-side-guide)
-  - [Table of Contents](#table-of-contents)
-  - [PyTorch vs TensorFlow: What's the Inspiration?](#pytorch-vs-tensorflow-whats-the-inspiration)
-  - [What is PyTorch?](#what-is-pytorch)
-    - [Key Features and Syntax](#key-features-and-syntax)
-  - [What is TensorFlow / Keras?](#what-is-tensorflow--keras)
-    - [Key Features and Syntax](#key-features-and-syntax-1)
-  - [Side by Side Implementation of Identical Models](#side-by-side-implementation-of-identical-models)
-    - [Basic Feed Forward Neural Network](#basic-feed-forward-neural-network)
-    - [Convolutional Neural Network (CNN)](#convolutional-neural-network-cnn)
-    - [Recurrent Neural Network (RNN)](#recurrent-neural-network-rnn)
-    - [Training Process](#training-process)
-      - [Model Evaluation](#model-evaluation)
-  - [Conclusions](#conclusions)
-    - [Want to find out more about PyTorch and TensorFlow?](#want-to-find-out-more-about-pytorch-and-tensorflow)
-      - [Visualization Tools](#visualization-tools)
-      - [Advanced Documentation](#advanced-documentation)
-  - [References and Resources](#references-and-resources)
-    - [Industry Surveys \& Research](#industry-surveys--research)
-    - [PyTorch Resources](#pytorch-resources)
-    - [TensorFlow \& Keras Resources](#tensorflow--keras-resources)
 
 
 ## PyTorch vs TensorFlow: What's the Inspiration?
@@ -321,3 +299,13 @@ As shown above, the implementation of a model is much more concise in Keras; how
 - [TensorFlow - Wikipedia](https://en.wikipedia.org/wiki/TensorFlow)
 - [Keras - Wikipedia](https://en.wikipedia.org/wiki/Keras)
 - [Keras Sequential Model Guide](https://keras.io/guides/sequential_model/)
+
+---
+
+## Connect With Me
+- [**X/Twitter**](https://twitter.com/ajfairbanksML) - Follow me for quick updates and thoughts
+- [**LinkedIn**](https://linkedin.com/in/ajf2005) - Connect professionally
+- [**GitHub**](https://github.com/megemann) - Check out my code and projects
+- [**Email**](mailto:ajfairbanks2005@gmail.com) - Reach out directly
+
+---
