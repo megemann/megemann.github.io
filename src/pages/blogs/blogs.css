@@ -180,6 +180,26 @@
     display: inline;
 }
 
+.blog-pdf-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(220, 53, 69, 0.9);
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.blog-pdf-badge i {
+    font-size: 0.9rem;
+}
+
 .blog-content {
     padding: 18px;
     flex-grow: 1;

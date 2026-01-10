@@ -130,25 +130,34 @@
 }
 
 .notebook-container:not(.dark-mode) .run-button {
-  background: rgba(33, 150, 243, 0.05);
-  border-color: rgba(33, 150, 243, 0.15);
-  color: var(--jupyter-blue-light);
+  background: transparent;
+  border-color: transparent;
+  color: #616161;
 }
 
 .notebook-container:not(.dark-mode) .run-button:hover {
-  background: rgba(33, 150, 243, 0.1);
-  border-color: rgba(33, 150, 243, 0.3);
+  background: rgba(33, 150, 243, 0.08);
+  border-color: rgba(33, 150, 243, 0.2);
+  color: var(--jupyter-blue-light);
+}
+
+.notebook-container:not(.dark-mode) .run-button:active {
+  background: rgba(33, 150, 243, 0.15);
 }
 
 .notebook-container:not(.dark-mode) .run-button.executed {
-  background: rgba(39, 174, 96, 0.05);
-  border-color: rgba(39, 174, 96, 0.15);
+  background: transparent;
+  border-color: transparent;
   color: #2e7d32;
 }
 
 .notebook-container:not(.dark-mode) .run-button.executed:hover {
-  background: rgba(39, 174, 96, 0.1);
-  border-color: rgba(39, 174, 96, 0.3);
+  background: rgba(39, 174, 96, 0.08);
+  border-color: rgba(39, 174, 96, 0.2);
+}
+
+.notebook-container:not(.dark-mode) .run-button.executed:active {
+  background: rgba(39, 174, 96, 0.15);
 }
 
 /* Update typing indicator colors for light mode */
@@ -796,8 +805,8 @@ body {
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: none;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   border-color: var(--accent);
 }
 
@@ -879,8 +888,8 @@ body {
 }
 
 .project-link-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+  transform: none;
+  box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
 }
 
 .project-link-secondary {
@@ -1532,8 +1541,8 @@ body {
 
 .toolbar-button:hover {
   background-color: rgba(33, 150, 243, 0.15);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: none;
+  box-shadow: none;
 }
 
 .toolbar-button i {
@@ -1693,8 +1702,8 @@ body {
 .theme-toggle:hover {
   background: rgba(33, 150, 243, 0.2);
   border-color: var(--jupyter-blue);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Light mode theme toggle styling */
@@ -1794,40 +1803,54 @@ body {
   background-color: var(--jupyter-code-bg-light);
 }
 
-/* Enhanced run button styles */
+/* Enhanced run button styles - Jupyter-like */
 .run-button {
   position: absolute;
   right: 10px;
   top: 50%;
-  transform: translateY(-50%);
-  background: rgba(33, 150, 243, 0.1);
-  color: var(--jupyter-blue);
-  border: 1px solid rgba(33, 150, 243, 0.3);
-  padding: 6px 12px;
-  border-radius: 4px;
+  transform: translateY(-50%) !important;
+  background: transparent;
+  color: #757575;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 4px 8px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  font-size: 0.75rem;
+  font-weight: 400;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition-property: background-color, border-color, color;
+  min-width: 28px;
+  height: 28px;
 }
 
 .run-button:hover {
-  background: rgba(33, 150, 243, 0.2);
-  border-color: var(--jupyter-blue);
-  transform: translateY(-50%) translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(33, 150, 243, 0.08);
+  color: var(--jupyter-blue);
+  border-color: rgba(33, 150, 243, 0.2);
+}
+
+.run-button:active {
+  background: rgba(33, 150, 243, 0.15);
 }
 
 .run-button.executed {
-  background: rgba(39, 174, 96, 0.1);
+  background: transparent;
   color: var(--jupyter-green);
-  border-color: rgba(39, 174, 96, 0.3);
+  border-color: transparent;
 }
 
 .run-button.executed:hover {
-  background: rgba(39, 174, 96, 0.2);
-  border-color: var(--jupyter-green);
+  background: rgba(39, 174, 96, 0.08);
+  border-color: rgba(39, 174, 96, 0.2);
+}
+
+.run-button.executed:active {
+  background: rgba(39, 174, 96, 0.15);
 }
 
 /* Typing Animation */
@@ -2285,8 +2308,8 @@ body {
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .project-image {
@@ -2762,19 +2785,24 @@ body {
 
 /* Override older run button styles for consistency */
 .notebook-container:not(.dark-mode) .run-button {
-  background: rgba(33, 150, 243, 0.05) !important;
-  border-color: rgba(33, 150, 243, 0.15) !important;
-  color: var(--jupyter-blue-light) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  color: #616161 !important;
 }
 
 .notebook-container:not(.dark-mode) .run-button:hover {
-  background: rgba(33, 150, 243, 0.1) !important;
-  border-color: rgba(33, 150, 243, 0.3) !important;
+  background: rgba(33, 150, 243, 0.08) !important;
+  border-color: rgba(33, 150, 243, 0.2) !important;
+  color: var(--jupyter-blue-light) !important;
+}
+
+.notebook-container:not(.dark-mode) .run-button:active {
+  background: rgba(33, 150, 243, 0.15) !important;
 }
 
 .notebook-container:not(.dark-mode) .run-button.executed {
-  background: rgba(39, 174, 96, 0.05) !important;
-  border-color: rgba(39, 174, 96, 0.15) !important;
+  background: transparent !important;
+  border-color: transparent !important;
   color: #2e7d32 !important;
 }
 

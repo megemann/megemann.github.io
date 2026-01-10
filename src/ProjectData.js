@@ -1,17 +1,5 @@
 export const ProjectData = [
     {
-        title: "Hyperparameter Optimization Research",
-        key: "Hyperparameter_Optimization_Framework_Evaluation_and_Manual",
-        image: 'hpoptimization.png',
-        description: "Comprehensive hyperparameter optimization research including implementation guides for Keras Tuner, Optuna, and Scikit-Learn. Currently developing 'A Practitioner's Guide to HPO in Optuna' with systematic algorithm selection frameworks and benchmark datasets. Developed during internship at Corning Incorporated.",
-        link: "https://github.com/megemann/HPOptimization",
-        readme: "https://github.com/megemann/HPOptimization",
-        highlight: true,
-        date: "07/2024",
-        lastUpdate: "Present",
-        skills: ["Optuna", "Keras Tuner", "Python", "Algorithm Benchmarking", "Technical Writing", "Hyperparameter Optimization"],
-    },
-    {
         title: "Personal Portfolio",
         key: "Personal_Portfolio",
         image: 'personalportfolio.png',
@@ -71,10 +59,32 @@ export const ProjectData = [
         image: 'OnePrompted.png',
         description: "A custom Gen AI model trained to transform vague, ineffective prompts into highly optimized ones using prompt engineering techniques. Built with Vertex AI and Gemini, this project involved data processing from ShareGPT52k, model fine-tuning, and implementation of knowledge distillation and grounding techniques. The model demonstrated an 18% performance improvement in pairwise evaluations against baseline solutions. This project was developed as a capstone for the Google March 2025 Gen AI 5-day Intensive program.",
         link: "https://github.com/megemann/oneprompted",
-        highlight: true,
+        highlight: false,
         date: "03/2025",
         lastUpdate: "04/2025",
         skills: ["Vertex AI", "Fine-Tuning", "Prompt Engineering", "Data Processing", "Knowledge Distillation", "Evaluation Metrics", "Generative AI", "Google Cloud"],
+    }, {
+        title: "SpotifyGesture",
+        key: "SpotifyGesture",
+        image: 'SpotifyGesture.png',
+        description: "A hands-free music control system that enables users to control Spotify using intuitive hand gestures and swipes. Features CNN-based hand detection (100% real-time accuracy), ToF sensor swipe detection, distance-based volume control, and direct Spotify API integration. Built with ESP32-S3-CAM, VL53L1X sensors, and custom 3D-printed apparatus. Developed for CICS 256: Make at UMass Amherst (Fall 2025).",
+        link: "https://github.com/newmie10/SpotifyGesture",
+        readme: "https://newmie10.github.io/SpotifyGesture/",
+        highlight: true,
+        date: "12/2025",
+        lastUpdate: "12/2025",
+        skills: ["ESP32", "Machine Learning", "Computer Vision", "TensorFlow Lite", "IoT", "Embedded Systems", "Spotify API", "Arduino", "3D Printing", "Physical Computing"],
+    }, {
+        title: "Intramural Referee Scheduling System",
+        key: "Referee_Scheduling_Optimization",
+        image: 'RefScheduling.png',
+        description: "An optimization-based scheduling system that automates referee assignments for UMass Intramural Sports. Uses Mixed-Integer Linear Programming (MILP) with Pyomo and Gurobi to balance workload fairness, skill matching, and shift consolidation. Features a Streamlit dashboard with Excel integration, reducing manual scheduling time from 4+ hours to minutes while improving schedule quality and referee satisfaction.",
+        link: "https://github.com/megemann/refscheduling",
+        highlight: true,
+        date: "09/2025",
+        lastUpdate: "Present",
+        skills: ["Python", "Pyomo", "Gurobi", "MILP", "Operations Research", "Streamlit", "Optimization", "Excel Integration", "Mathematical Modeling", "Data Structures"],
+        pinned: true
     }
     
 ]

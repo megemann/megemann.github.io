@@ -5,7 +5,8 @@ import umassLogo from '../../assets/UmassLogo.png';
 import { ProjectData } from '../../ProjectData';
 import TheDefineHotline from "../../assets/TheDefineHotline.png";
 import utrition from "../../assets/Utrition.png";
-import hpoptimization from "../../assets/hpoptimization.png";
+import spotifyGesture from "../../assets/SpotifyGesture.png";
+import refScheduling from "../../assets/RefScheduling.png";
 import './home.css';
 import Sidebar from '../../component/Sidebar/Sidebar';
 import ThemeContext from '../../ThemeContext';
@@ -13,7 +14,8 @@ import ThemeContext from '../../ThemeContext';
 const images = {
     The_Define_Hotline: TheDefineHotline,
     Utrition: utrition,
-    Hyperparameter_Optimization_Framework_Evaluation_and_Manual: hpoptimization
+    SpotifyGesture: spotifyGesture,
+    Referee_Scheduling_Optimization: refScheduling
 }
 
 export default function Home() {
@@ -710,7 +712,7 @@ export default function Home() {
                                                                 ? images[project.id.replace(/-/g, '_')] 
                                                                 : project.image 
                                                                     ? require(`../../assets/${project.image}`) 
-                                                                    : hpoptimization // Final fallback
+                                                                    : refScheduling // Final fallback
                                                         } 
                                                         alt={project.title} 
                                                     />

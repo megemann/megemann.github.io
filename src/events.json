@@ -74,9 +74,23 @@
   {
     "title": "Intramural Program Assistant",
     "date": "08/2025",
-    "description": "Starting role as an Intramural Program Assistant at UMass RecWell",
+    "description": "Promoted to Intramural Program Assistant at UMass RecWell, managing referee recruitment, training, and scheduling optimization",
     "type": "work",
-    "icon": "users",
+    "icon": "users"
+  },
+  {
+    "title": "Machine Learning Contract - Corning Inc",
+    "date": "12/2025",
+    "description": "Contract ML Engineer through Magnit for Corning Incorporated, working on machine learning and optimization projects",
+    "type": "work",
+    "icon": "briefcase"
+  },
+  {
+    "title": "Zipline Co-op",
+    "date": "01/2026",
+    "description": "Starting co-op position at Zipline working on autonomous delivery systems and machine learning applications",
+    "type": "work",
+    "icon": "briefcase",
     "isFuture": true
   }
 ] 

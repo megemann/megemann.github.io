@@ -8,6 +8,7 @@ import AboutMe from './pages/aboutMe/aboutMe';
 import Resume from './pages/resume/resume';
 import Blogs from './pages/blogs/blogs';
 import BlogPost from './pages/blogs/BlogPost';
+import PDFBlogPost from './pages/blogs/PDFBlogPost';
 import TimelinePage from './pages/timeline/TimelinePage';
 import React, { useEffect, useState } from 'react';
 import ThemeContext from './ThemeContext';
@@ -62,6 +63,7 @@ const App = () => {
                     <Route path="/resume" element={<Resume />} />
                     <Route path="/blogs" element={<Blogs />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/blog-pdf/:slug" element={<PDFBlogPost />} />
                     <Route path="/timeline" element={<TimelinePage />} />
                 </Routes>
             </HashRouter>

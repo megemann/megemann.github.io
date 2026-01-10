@@ -21,49 +21,68 @@
 }
 
 .json-content {
-    font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
-    font-size: 14px;
-    line-height: 1.6;
-    padding: 20px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+    font-size: 15px;
+    line-height: 1.8;
+    padding: 20px 20px 20px 0;
     background-color: var(--jupyter-code-bg);
     color: var(--jupyter-text);
     overflow-y: auto;
     height: calc(100vh - 60px);
+    position: relative;
 }
 
 .json-line {
     margin: 0;
-    padding: 4px 0;
+    padding: 3px 0;
     white-space: pre-wrap;
+    transition: background-color 0.2s ease;
+}
+
+.json-line:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.dark-mode .json-line:hover {
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .json-project {
     position: relative;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    border-radius: 4px;
-    margin: 4px 0;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    margin: 8px 0;
+    padding: 4px;
+    border-left: 3px solid transparent;
 }
 
 .json-project:hover {
-    background-color: rgba(33, 150, 243, 0.1);
+    background-color: rgba(33, 150, 243, 0.12);
+    border-left-color: #2196F3;
+    transform: translateX(2px);
 }
 
 .dark-mode .json-project:hover {
-    background-color: rgba(33, 150, 243, 0.15);
+    background-color: rgba(33, 150, 243, 0.18);
+    border-left-color: #42A5F5;
 }
 
 .json-project.hovered {
     background-color: rgba(33, 150, 243, 0.15);
+    border-left-color: #2196F3;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
 }
 
 .dark-mode .json-project.hovered {
-    background-color: rgba(33, 150, 243, 0.2);
+    background-color: rgba(33, 150, 243, 0.22);
+    border-left-color: #42A5F5;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
 }
 
 .project-content {
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 10px 18px;
+    border-radius: 6px;
 }
 
 .project-actions {
@@ -104,46 +123,61 @@
 
 /* Enhanced syntax highlighting with better colors */
 .property {
-    color: #F07178; /* Coral pink */
+    color: #FF79C6; /* Bright pink for properties */
+    font-weight: 600;
 }
 
 .string {
-    color: #C3E88D; /* Light green */
+    color: #50FA7B; /* Bright green for strings */
 }
 
 .number {
-    color: #F78C6C; /* Orange */
+    color: #FFB86C; /* Orange for numbers */
+    font-weight: 500;
 }
 
 .boolean {
-    color: #FF9D00; /* Amber */
+    color: #BD93F9; /* Purple for booleans */
+    font-weight: 600;
 }
 
-.punctuation, .bracket, .brace {
-    color: #89DDFF; /* Light blue */
+.punctuation {
+    color: #F8F8F2; /* Light grey for punctuation */
 }
 
-/* Light mode syntax highlighting */
+.bracket, .brace {
+    color: #8BE9FD; /* Cyan for brackets/braces */
+    font-weight: 700;
+}
+
+/* Light mode syntax highlighting - improved contrast */
 .notebook-container:not(.dark-mode) .property {
-    color: #e36209;
+    color: #D73A49; /* Red for properties */
+    font-weight: 600;
 }
 
 .notebook-container:not(.dark-mode) .string {
-    color: #032f62;
+    color: #22863A; /* Green for strings */
 }
 
 .notebook-container:not(.dark-mode) .number {
-    color: #005cc5;
+    color: #E36209; /* Orange for numbers */
+    font-weight: 500;
 }
 
 .notebook-container:not(.dark-mode) .boolean {
-    color: #005cc5;
+    color: #6F42C1; /* Purple for booleans */
+    font-weight: 600;
 }
 
-.notebook-container:not(.dark-mode) .punctuation,
+.notebook-container:not(.dark-mode) .punctuation {
+    color: #24292E; /* Dark grey for punctuation */
+}
+
 .notebook-container:not(.dark-mode) .bracket,
 .notebook-container:not(.dark-mode) .brace {
-    color: #24292e;
+    color: #005CC5; /* Blue for brackets/braces */
+    font-weight: 700;
 }
 
 /* Filter controls */
@@ -196,38 +230,50 @@
     align-items: center;
 }
 
-/* Line numbers */
+/* Line numbers - improved styling */
 .json-content {
     counter-reset: line;
-    padding-left: 3.5em;
+    padding-left: 4.5em;
     position: relative;
 }
 
 .json-content::before {
     content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 3em;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-right: 1px solid var(--jupyter-border);
+    position: fixed;
+    left: var(--sidebar-width);
+    top: 60px;
+    width: 4em;
+    height: calc(100vh - 60px);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.08) 100%);
+    border-right: 2px solid var(--jupyter-border);
+    z-index: 1;
+}
+
+.dark-mode .json-content::before {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
 }
 
 .json-line {
     position: relative;
+    padding: 2px 0;
 }
 
 .json-line::before {
     counter-increment: line;
     content: counter(line);
     position: absolute;
-    left: -3em;
-    width: 2.5em;
+    left: -4em;
+    width: 3.5em;
     text-align: right;
-    color: #6272a4;
-    font-size: 0.9em;
-    padding-right: 0.5em;
+    color: #7c7c7c;
+    font-size: 0.85em;
+    padding-right: 0.75em;
+    user-select: none;
+    font-weight: 500;
+}
+
+.dark-mode .json-line::before {
+    color: #6e7681;
 }
 
 /* Responsive adjustments */
@@ -312,6 +358,7 @@
     top: 0;
     border-right: 1px solid var(--jupyter-border);
     overflow-y: auto;
+    z-index: 100;
 }
 
 /* Scrollbar Styling */

@@ -9,6 +9,7 @@ import ThemeToggle from '../../component/ThemeToggle/ThemeToggle';
 import ThemeContext from '../../ThemeContext';
 import './blogs.css';
 import { logPageView, logEvent, logBlogAnalytics, logEngagement } from '../../analytics';
+import EdgeMLImage from '../../assets/EdgeML.png';
 
 // Placeholder image for blogs without custom images
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
@@ -74,6 +75,19 @@ const blogs = [
         tags: ["Deep Learning", "HPO", "Optuna", "PyTorch"],
         readTime: "20 min read",
         pinned: true
+    },
+    {
+        id: 6,
+        slug: 'edgeml',
+        title: "Optimizations in Edge AI: Techniques and Challenges in Deploying Machine Learning at the Edge",
+        description: "A comprehensive research methods summary exploring data, model, and system-level optimization strategies used to overcome computational and resource constraints in edge ML deployment.",
+        image: EdgeMLImage,
+        date: "November 1, 2025",
+        author: "Austin Fairbanks",
+        tags: ["Edge ML", "IoT", "Machine Learning", "Optimization", "Research"],
+        readTime: "PDF Document",
+        pinned: false,
+        isPDF: true
     }
 ];
 
@@ -227,11 +241,16 @@ export default function Blogs() {
         logBlogAnalytics(blog, 'Card Click', {
             position: sortedBlogs.findIndex(b => b.slug === blog.slug) + 1,
             view_count: blogViews[blog.slug] || 0,
-            is_pinned: !!blog.pinned
+            is_pinned: !!blog.pinned,
+            content_type: blog.isPDF ? 'pdf' : 'markdown'
         });
         
-        // Navigate to the blog post
-        nav(`/blog/${blog.slug}`);
+        // Navigate to the appropriate blog post component
+        if (blog.isPDF) {
+            nav(`/blog-pdf/${blog.slug}`);
+        } else {
+            nav(`/blog/${blog.slug}`);
+        }
     };
 
     // Track hover interactions for analytics
@@ -306,6 +325,7 @@ export default function Blogs() {
                                             <img src={blog.image} alt={blog.title} className="blog-img" />
                                             <div className="blog-date">{blog.date}</div>
                                             {blog.pinned && <div className="blog-pinned"><i className="fas fa-thumbtack"></i></div>}
+                                            {blog.isPDF && <div className="blog-pdf-badge"><i className="fas fa-file-pdf"></i> PDF</div>}
                                             <div className="blog-view-counter">
                                                 <i className="fas fa-eye"></i>
                                                 <ViewCounter 
@@ -340,6 +360,7 @@ export default function Blogs() {
                                                     ))}
                                                 </div>
                                                 <span className="blog-read-more">
+                                                    {blog.isPDF && <i className="fas fa-file-pdf"></i>}
                                                     {blog.readTime}
                                                     <i className="fas fa-arrow-right"></i>
                                                 </span>
